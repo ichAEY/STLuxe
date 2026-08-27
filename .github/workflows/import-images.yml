@@ -19,7 +19,7 @@ jobs:
       - name: Install Pillow
         run: python -m pip install --quiet pillow
 
-      - name: Download and optimize real STLuxe photos
+      - name: Download, optimize and connect real STLuxe photos
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -40,6 +40,7 @@ jobs:
           out.mkdir(parents=True, exist_ok=True)
           headers = {'User-Agent': 'Mozilla/5.0'}
 
+          replacements = {}
           for filename, url in photos.items():
               print('Downloading', filename)
               req = Request(url, headers=headers)
@@ -48,17 +49,24 @@ jobs:
               image = Image.open(BytesIO(data)).convert('RGB')
               image.thumbnail((1800, 1800), Image.Resampling.LANCZOS)
               image.save(out / filename, 'WEBP', quality=82, method=6)
+              replacements[url] = f'assets/images/{filename}'
               print(filename, (out / filename).stat().st_size, 'bytes')
+
+          page = Path('index.html')
+          html = page.read_text(encoding='utf-8')
+          for remote, local in replacements.items():
+              html = html.replace(remote, local)
+          page.write_text(html, encoding='utf-8')
           PY
 
-      - name: Commit optimized images
+      - name: Commit optimized images and local paths
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/images
+          git add assets/images index.html
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "Import and optimize STLuxe photos"
+            git commit -m "Use local optimized STLuxe photos"
             git push
           fi
