@@ -1,116 +1,352 @@
 (() => {
-  if (!matchMedia('(max-width: 767px)').matches) return;
-  const YANDEX='https://yandex.ru/navi/org/stluxe/51087098664?si=4x8mkunbkhugdwe7bkyfw55fh0';
-  const PHONE='+79163552222';
-  const photos=[
-    ['assets/images/salon-reception.webp','interior','Интерьер STLuxe'],
-    ['assets/images/salon-nail-zone.webp','interior','Рабочая зона STLuxe'],
-    ['assets/images/nails-pink.webp','nails','Маникюр STLuxe'],
-    ['assets/images/nails-green.webp','nails','Дизайн ногтей STLuxe'],
-    ['assets/images/nails-light.webp','nails','Маникюр STLuxe'],
-    ['assets/images/hair-style.webp','hair','Работа с волосами STLuxe']
-  ];
-  const services=[
-    ['nails','Маникюр с покрытием гель-лака OPI, Luxio, EMI','1 700 ₽',''],
-    ['nails','Женский педикюр — аппаратный, обрезной или комбинированный','2 000 ₽',''],
-    ['nails','Экспресс-педикюр — аппаратный, обрезной или комбинированный','1 500 ₽',''],
-    ['nails','Наращивание ногтей гелем + цветное верхнее покрытие','3 000 ₽',''],
-    ['hair','Стрижка и укладка — короткие волосы до 12 см','800 ₽',''],
-    ['hair','Утюжок — доплата при укладке, короткие волосы','300 ₽',''],
-    ['hair','Диффузор — доплата при укладке, короткие волосы','150 ₽',''],
-    ['hair','Вечерняя причёска — короткие волосы до 12 см','1 500 ₽',''],
-    ['hair','Вечерняя причёска — средние волосы до 30 см','1 500 ₽',''],
-    ['hair','Вечерняя причёска — длинные волосы от 31 см','1 500 ₽',''],
-    ['hair','Биохимическая завивка Selective — короткие волосы','2 000 ₽',''],
-    ['hair','Биохимическая завивка Selective — средние волосы','2 400 ₽',''],
-    ['hair','Биохимическая завивка Selective — длинные волосы','2 900 ₽',''],
-    ['hair','Колорирование / шатуш / балаяж Londa / Barex — короткие волосы','3 400 ₽',''],
-    ['hair','Колорирование / шатуш / балаяж Londa / Barex — средние волосы','3 800 ₽',''],
-    ['hair','Колорирование / шатуш / балаяж Londa / Barex — длинные волосы','4 500 ₽',''],
-    ['hair','Частичное мелирование до 10 прядей при окрашивании — короткие волосы','700 ₽',''],
-    ['hair','Частичное мелирование до 10 прядей при окрашивании — длинные волосы','1 500 ₽',''],
-    ['hair','Мелирование на фольге и тонирование Londa / Barex — длинные волосы','3 900 ₽',''],
-    ['face','Чистка лица','Цена по записи',''],
-    ['face','Аппаратная чистка лица','Цена по записи',''],
-    ['face','Гальваническая чистка лица','Цена по записи',''],
-    ['face','Пилинг лица','Цена по записи',''],
-    ['face','Химический пилинг лица','Цена по записи',''],
-    ['face','Гликолевый пилинг','Цена по записи',''],
-    ['face','Салициловый пилинг','Цена по записи',''],
-    ['brows','Коррекция и окрашивание бровей','Цена по записи',''],
-    ['lashes','Окрашивание ресниц','Цена по записи',''],
-    ['lashes','Наращивание ресниц','Цена по записи',''],
-    ['lashes','Голливудское наращивание ресниц','Цена по записи',''],
-    ['other','Перманентный макияж','Цена по записи',''],
-    ['depilation','Шугаринг','Цена по записи',''],
-    ['depilation','Восковая депиляция','Цена по записи',''],
-    ['depilation','Эпиляция','Цена по записи','']
-  ];
-  const reviews=[
-    ['мария н.','«Атмосфера в салоне благоприятная, красиво, стильно, уютно… Татьяна — мастер своего дела.»'],
-    ['Ольга К.','«Отличная атмосфера, всё чисто, стерильно, приветливый персонал, всегда предлагают чай или кофе.»'],
-    ['Елизавета С.','«Отличное обслуживание, все мастера вежливые и отлично выполняют бьюти-услуги! Салон чистый, стильный!»'],
-    ['Мама Рита','«Прекрасный косметолог Мария. Умеет всё. Препараты качественные, новейшие. Очень советую мастера.»']
+  if (!window.matchMedia('(max-width: 767px)').matches) return;
+
+  const YANDEX = 'https://yandex.ru/navi/org/stluxe/51087098664?si=4x8mkunbkhugdwe7bkyfw55fh0';
+  const PHONE = '+79163552222';
+  const photos = [
+    {src:'assets/images/salon-reception.webp', cat:'interior', alt:'Интерьер STLuxe'},
+    {src:'assets/images/salon-nail-zone.webp', cat:'interior', alt:'Рабочая зона STLuxe'},
+    {src:'assets/images/nails-pink.webp', cat:'nails', alt:'Маникюр STLuxe'},
+    {src:'assets/images/nails-green.webp', cat:'nails', alt:'Дизайн ногтей STLuxe'},
+    {src:'assets/images/nails-light.webp', cat:'nails', alt:'Маникюр STLuxe'},
+    {src:'assets/images/hair-style.webp', cat:'hair', alt:'Работа с волосами STLuxe'}
   ];
 
-  const css=document.createElement('style');
-  css.textContent=`@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;450;500&display=swap');
-  @media(max-width:767px){
-    html,body{margin:0!important;background:#fff!important;color:#0b0b0c!important;font-family:'Inter Tight','Helvetica Neue',Arial,sans-serif!important;font-weight:400!important;-webkit-font-smoothing:antialiased!important;overflow-x:hidden!important}
-    body>*:not(#stluxe-luxe-v2):not(script):not(style){display:none!important}#stluxe-luxe-v2{display:block!important}#stluxe-luxe-v2 *{box-sizing:border-box}button,a{font:inherit}.lx{background:#fff;padding-bottom:104px}.lx-pad{padding-left:17px;padding-right:17px}
-    .lx-top{height:48px;padding:0 17px;display:flex;align-items:center;justify-content:space-between;background:#fff}.lx-logo{font-size:21px;letter-spacing:-.045em;font-weight:500;text-decoration:none}.lx-map{display:flex;align-items:center;gap:5px;font-size:12px;text-decoration:none;border-bottom:1px solid #111;padding-bottom:2px}.lx-map svg{width:13px;height:13px;stroke:#111;fill:none;stroke-width:1.45}
-    .lx-hero-gallery{width:100vw;height:min(70vw,315px);position:relative;overflow:hidden;background:#eee}.lx-track{height:100%;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.lx-track::-webkit-scrollbar{display:none}.lx-slide{min-width:100%;height:100%;scroll-snap-align:start;border:0;padding:0;background:#eee}.lx-slide img{width:100%;height:100%;object-fit:cover;display:block}.lx-counter{position:absolute;right:13px;bottom:32px;height:21px;min-width:34px;padding:0 8px;border-radius:10px;background:rgba(12,12,12,.54);backdrop-filter:blur(8px);color:#fff;font-size:9.5px;letter-spacing:.03em;display:grid;place-items:center}
-    .lx-hero{position:relative;z-index:3;margin-top:-20px;background:#fff;border-radius:22px 22px 0 0;padding:22px 17px 20px}.lx-title{font-size:32px;line-height:1.02;letter-spacing:-.052em;font-weight:500;margin:0 0 8px}.lx-sub{font-size:15px;line-height:1.35;color:#555;margin:0 0 12px}.lx-rating{display:flex;align-items:center;gap:7px;font-size:15px;margin-bottom:12px}.lx-rating svg{width:15px;height:15px;fill:#111}.lx-hours{display:flex;align-items:center;gap:7px;font-size:14px;margin-bottom:13px}.lx-hours svg{width:16px;height:16px;stroke:#111;fill:none;stroke-width:1.45}.lx-state{font-weight:500}.lx-state.open{color:#16833d}.lx-state.closed{color:#dd6b20}.lx-address{display:flex;align-items:center;gap:8px;background:#f4f4f4;border-radius:14px;padding:10px 11px;font-size:11.5px;color:#525252;margin-bottom:16px}.lx-address svg{width:16px;height:16px;stroke:#111;fill:none;stroke-width:1.4;flex:0 0 auto}.lx-actions{display:flex;align-items:center;justify-content:space-between;gap:16px}.lx-worklink{display:flex;align-items:center;gap:6px;border:0;background:none;padding:0;font-size:11.5px;color:#222}.lx-worklink svg{width:14px;height:14px;stroke:#111;fill:none;stroke-width:1.4}.lx-book{border:0;background:#111;color:#fff!important;border-radius:999px;height:44px;padding:0 22px;font-size:12px;font-weight:500}
-    .lx-nav{height:47px;position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-top:1px solid #ededed;border-bottom:1px solid #e8e8e8;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;padding:0 11px}.lx-nav::-webkit-scrollbar{display:none}.lx-nav button{border:0;background:none;padding:0 11px;height:100%;white-space:nowrap;font-size:10.5px;color:#777}.lx-nav button.active{color:#111;font-weight:500}
-    .lx-section{padding:27px 17px 30px;scroll-margin-top:48px}.lx-break{border-top:8px solid #f4f4f4}.lx-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:15px}.lx-head h2{font-size:24px;line-height:1.05;letter-spacing:-.043em;font-weight:500;margin:0}.lx-head p{font-size:11.5px;line-height:1.45;color:#777;margin:5px 0 0}.lx-all{border:0;background:none;border-bottom:1px solid #111;padding:0 0 2px;font-size:10.5px;white-space:nowrap}
-    .lx-filters{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;margin:0 -17px 14px;padding:0 17px}.lx-filters::-webkit-scrollbar{display:none}.lx-filter{border:1px solid #dedede;background:#fff;border-radius:999px;padding:7px 11px;font-size:10px;white-space:nowrap;color:#666}.lx-filter.active{background:#111;border-color:#111;color:#fff}.lx-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.lx-photo{border:0;padding:0;border-radius:13px;overflow:hidden;aspect-ratio:1/1.16;background:#eee}.lx-photo img{width:100%;height:100%;object-fit:cover}.lx-photo[hidden]{display:none}.lx-open-gallery{width:100%;height:42px;margin-top:11px;border:1px solid #d9d9d9;border-radius:999px;background:#fff;font-size:11px}
-    .lx-tabs{display:flex;gap:7px;overflow-x:auto;scrollbar-width:none;margin:0 -17px 15px;padding:0 17px}.lx-tabs::-webkit-scrollbar{display:none}.lx-tabs button{border:1px solid #e0e0e0;background:#fff;border-radius:999px;padding:7px 11px;font-size:10px;white-space:nowrap;color:#666}.lx-tabs button.active{background:#111;color:#fff;border-color:#111}.lx-services{display:grid;gap:9px}.lx-service{border:1px solid #e6e6e6;border-radius:16px;background:#fff;padding:14px;box-shadow:0 4px 18px rgba(0,0,0,.025)}.lx-sname{font-size:13.5px;line-height:1.38;color:#161616;margin-bottom:12px}.lx-smeta{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}.lx-sprice{font-size:12px;color:#555}.lx-duration{display:block;font-size:10px;color:#8a8a8a;margin-top:3px}.lx-reserve{border:0;background:#111;color:#fff!important;border-radius:999px;height:34px;padding:0 13px;font-size:10px}.lx-more{width:100%;height:42px;border:1px solid #d9d9d9;border-radius:999px;background:#fff;margin-top:11px;font-size:11px}
-    .lx-teamrow{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -17px;padding:0 17px 3px}.lx-teamrow::-webkit-scrollbar{display:none}.lx-person{min-width:142px;width:142px;border:0;background:none;padding:0;text-align:left}.lx-personpic{height:178px;border-radius:15px;overflow:hidden;background:linear-gradient(145deg,#e8e8e8,#f5f5f5);position:relative;display:flex;align-items:flex-end;justify-content:center}.lx-personpic svg{width:72px;height:72px;fill:#c5c5c5;margin-bottom:38px}.lx-badge{position:absolute;left:8px;top:8px;background:rgba(255,255,255,.92);border-radius:999px;padding:5px 7px;font-size:9px;color:#333}.lx-pname{font-size:12.5px;margin-top:8px}.lx-prole{font-size:10px;color:#777;margin-top:2px;line-height:1.35}
-    .lx-reviews{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -17px;padding:0 17px 3px}.lx-reviews::-webkit-scrollbar{display:none}.lx-review{min-width:88%;scroll-snap-align:start;border:1px solid #e6e6e6;border-radius:16px;padding:15px;background:#fff}.lx-rhead{display:flex;justify-content:space-between;gap:12px;font-size:11px;margin-bottom:10px}.lx-stars{letter-spacing:1px}.lx-rtext{font-size:12.5px;line-height:1.55;color:#444;margin:0}.lx-yreviews{display:inline-flex;margin-top:14px;font-size:10.5px;border-bottom:1px solid #111;text-decoration:none;padding-bottom:2px}
-    .lx-aboutbox{font-size:13px;line-height:1.65;color:#474747}.lx-aboutbox p{margin:0 0 12px}.lx-facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:17px}.lx-fact{background:#f4f4f4;border-radius:14px;padding:13px}.lx-fact strong{display:block;font-size:16px;font-weight:500}.lx-fact span{display:block;font-size:10px;color:#777;margin-top:3px}
-    .lx-visitcard{border-radius:18px;background:#f5f5f5;padding:15px}.lx-vrow{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid #dedede}.lx-vrow:last-child{border-bottom:0}.lx-vrow svg{width:17px;height:17px;stroke:#111;fill:none;stroke-width:1.4;flex:0 0 auto}.lx-vrow strong{font-size:11.5px;font-weight:500;display:block;margin-bottom:3px}.lx-vrow span{font-size:10.5px;color:#727272;line-height:1.4}.lx-vactions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}.lx-vbtn{height:40px;border-radius:999px;border:1px solid #d6d6d6;background:#fff;font-size:10.5px;display:grid;place-items:center;text-decoration:none}.lx-vbtn.black{background:#111;color:#fff!important;border-color:#111}
-    .lx-footer{padding:25px 17px 105px;text-align:center;color:#888;font-size:9.5px}.lx-footer strong{display:block;color:#222;font-size:12px;font-weight:500;margin-bottom:4px}
-    .lx-bookbar{position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:60;height:60px;border:1px solid #e5e5e5;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);border-radius:18px;box-shadow:0 12px 35px rgba(0,0,0,.14);display:flex;align-items:center;justify-content:space-between;padding:7px 7px 7px 13px;opacity:0;transform:translateY(82px);pointer-events:none;transition:.28s ease}.lx-bookbar.show{opacity:1;transform:none;pointer-events:auto}.lx-bookcopy strong{display:block;font-size:10.5px;font-weight:500}.lx-bookcopy span{display:block;font-size:9px;color:#888;margin-top:2px}.lx-bookbar button{height:45px;border:0;border-radius:999px;background:#111;color:#fff!important;padding:0 19px;font-size:10.5px}
-    .lx-light{position:fixed;inset:0;z-index:110;background:#050505;display:none;flex-direction:column}.lx-light.open{display:flex}.lx-lighttop{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 15px;color:#fff}.lx-lighttitle{font-size:11px}.lx-close{width:38px;height:38px;border:1px solid #555;border-radius:50%;background:#111;color:#fff!important;font-size:19px}.lx-lighttrack{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.lx-lighttrack::-webkit-scrollbar{display:none}.lx-lightslide{min-width:100%;scroll-snap-align:start;display:flex;align-items:center;justify-content:center}.lx-lightslide img{width:100%;max-height:82vh;object-fit:contain}.lx-lightcount{text-align:center;color:#aaa;font-size:10px;padding:12px 0 max(16px,env(safe-area-inset-bottom))}
-  }
-  @media(min-width:768px){#stluxe-luxe-v2{display:none!important}}`;
-  document.head.appendChild(css);
+  const services = [
+    ['nails','Маникюр с покрытием гель-лака OPI, Luxio, EMI','1 700 ₽'],
+    ['nails','Женский педикюр — аппаратный, обрезной или комбинированный','2 000 ₽'],
+    ['nails','Экспресс-педикюр — аппаратный, обрезной или комбинированный','1 500 ₽'],
+    ['nails','Наращивание ногтей гелем + цветное верхнее покрытие','3 000 ₽'],
+    ['hair','Стрижка и укладка — короткие волосы до 12 см','800 ₽'],
+    ['hair','Утюжок — доплата при укладке, короткие волосы','300 ₽'],
+    ['hair','Диффузор — доплата при укладке, короткие волосы','150 ₽'],
+    ['hair','Вечерняя причёска — короткие волосы до 12 см','1 500 ₽'],
+    ['hair','Вечерняя причёска — средние волосы до 30 см','1 500 ₽'],
+    ['hair','Вечерняя причёска — длинные волосы от 31 см','1 500 ₽'],
+    ['hair','Биохимическая завивка Selective — короткие волосы','2 000 ₽'],
+    ['hair','Биохимическая завивка Selective — средние волосы','2 400 ₽'],
+    ['hair','Биохимическая завивка Selective — длинные волосы','2 900 ₽'],
+    ['hair','Колорирование / шатуш / балаяж Londa / Barex — короткие волосы','3 400 ₽'],
+    ['hair','Колорирование / шатуш / балаяж Londa / Barex — средние волосы','3 800 ₽'],
+    ['hair','Колорирование / шатуш / балаяж Londa / Barex — длинные волосы','4 500 ₽'],
+    ['hair','Частичное мелирование до 10 прядей при окрашивании — короткие волосы','700 ₽'],
+    ['hair','Частичное мелирование до 10 прядей при окрашивании — длинные волосы','1 500 ₽'],
+    ['hair','Мелирование на фольге и тонирование Londa / Barex — длинные волосы','3 900 ₽'],
+    ['face','Чистка лица','Цена по записи'],
+    ['face','Аппаратная чистка лица','Цена по записи'],
+    ['face','Гальваническая чистка лица','Цена по записи'],
+    ['face','Пилинг лица','Цена по записи'],
+    ['face','Химический пилинг лица','Цена по записи'],
+    ['face','Гликолевый пилинг','Цена по записи'],
+    ['face','Салициловый пилинг','Цена по записи'],
+    ['brows','Коррекция и окрашивание бровей','Цена по записи'],
+    ['lashes','Окрашивание ресниц','Цена по записи'],
+    ['lashes','Наращивание ресниц','Цена по записи'],
+    ['lashes','Голливудское наращивание ресниц','Цена по записи'],
+    ['other','Перманентный макияж','Цена по записи'],
+    ['depilation','Шугаринг','Цена по записи'],
+    ['depilation','Восковая депиляция','Цена по записи'],
+    ['depilation','Эпиляция','Цена по записи']
+  ];
 
-  const root=document.createElement('div');root.id='stluxe-luxe-v2';
-  root.innerHTML=`<main class="lx">
-    <header class="lx-top" id="lx-top"><a class="lx-logo" href="#lx-top">STLuxe</a><a class="lx-map" href="${YANDEX}" target="_blank">Яндекс Карты <svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></a></header>
-    <section class="lx-hero-gallery"><div class="lx-track" id="lxTrack">${photos.map((p,i)=>`<button class="lx-slide" data-i="${i}"><img src="${p[0]}" alt="${p[2]}"></button>`).join('')}</div><div class="lx-counter" id="lxCount">1/6</div></section>
-    <section class="lx-hero" id="lxHero"><h1 class="lx-title">STLuxe</h1><p class="lx-sub">Салон красоты · волосы, ногти, косметология и бьюти-услуги</p><div class="lx-rating"><svg viewBox="0 0 24 24"><path d="m12 2.8 2.85 5.77 6.37.93-4.61 4.49 1.09 6.34L12 17.33l-5.7 3 1.09-6.34L2.78 9.5l6.37-.93L12 2.8Z"/></svg><span>4,9 <span style="color:#777">(86 отзывов)</span></span></div><div class="lx-hours"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span class="lx-state" id="lxState">Проверяем</span><span id="lxHoursText">— 10:00–20:00</span></div><div class="lx-address"><svg viewBox="0 0 24 24"><path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg><span>Ивантеевка, ул. Победы, 16</span></div><div class="lx-actions"><button class="lx-worklink" id="lxToWorks">Посмотреть работы <svg viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></button><button class="lx-book" data-book>Записаться</button></div></section>
-    <nav class="lx-nav" id="lxNav"><button data-go="lx-portfolio" class="active">Фото</button><button data-go="lx-services">Услуги</button><button data-go="lx-team">Специалисты</button><button data-go="lx-reviews">Отзывы</button><button data-go="lx-about">О салоне</button><button data-go="lx-visit">Визит</button></nav>
-    <section class="lx-section" id="lx-portfolio"><div class="lx-head"><div><h2>Портфолио</h2><p>Работы и пространство STLuxe</p></div></div><div class="lx-filters" id="lxFilters"><button class="lx-filter active" data-cat="all">Все работы</button><button class="lx-filter" data-cat="nails">Ногти</button><button class="lx-filter" data-cat="hair">Волосы</button><button class="lx-filter" data-cat="interior">Салон</button></div><div class="lx-grid" id="lxGrid">${photos.slice(0,4).map((p,i)=>`<button class="lx-photo" data-cat="${p[1]}" data-i="${i}"><img src="${p[0]}" alt="${p[2]}"></button>`).join('')}</div><button class="lx-open-gallery" id="lxOpenGallery">Открыть галерею</button></section>
-    <section class="lx-section lx-break" id="lx-services"><div class="lx-head"><div><h2>Услуги</h2><p>Прайс STLuxe — показываем компактно, без длинной простыни</p></div></div><div class="lx-tabs" id="lxTabs"><button class="active" data-scat="all">Все</button><button data-scat="nails">Ногти</button><button data-scat="hair">Волосы</button><button data-scat="face">Косметология</button><button data-scat="brows">Брови</button><button data-scat="lashes">Ресницы</button><button data-scat="depilation">Депиляция</button></div><div class="lx-services" id="lxServices"></div><button class="lx-more" id="lxMore">Посмотреть ещё</button></section>
-    <section class="lx-section lx-break" id="lx-team"><div class="lx-head"><div><h2>Специалисты</h2><p>Персональные профили заполним после подтверждения состава команды</p></div></div><div class="lx-teamrow"><button class="lx-person"><div class="lx-personpic"><span class="lx-badge">★ —</span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c.5-4.3 2.8-6.5 7-6.5s6.5 2.2 7 6.5Z"/></svg></div><div class="lx-pname">Татьяна</div><div class="lx-prole">Мастер широкого профиля · владелец салона</div></button><button class="lx-person"><div class="lx-personpic"><span class="lx-badge">★ —</span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c.5-4.3 2.8-6.5 7-6.5s6.5 2.2 7 6.5Z"/></svg></div><div class="lx-pname">Алёна</div><div class="lx-prole">Мастер STLuxe · профиль дополняется</div></button><button class="lx-person"><div class="lx-personpic"><span class="lx-badge">★ —</span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c.5-4.3 2.8-6.5 7-6.5s6.5 2.2 7 6.5Z"/></svg></div><div class="lx-pname">Мария</div><div class="lx-prole">Косметолог · профиль дополняется</div></button></div></section>
-    <section class="lx-section lx-break" id="lx-reviews"><div class="lx-head"><div><h2>Отзывы</h2><p>4,9 · 86 отзывов на Яндекс Картах</p></div></div><div class="lx-reviews">${reviews.map(r=>`<article class="lx-review"><div class="lx-rhead"><span>${r[0]}</span><span class="lx-stars">★★★★★</span></div><p class="lx-rtext">${r[1]}</p></article>`).join('')}</div><a class="lx-yreviews" href="${YANDEX}" target="_blank">Все отзывы на Яндекс Картах</a></section>
-    <section class="lx-section lx-break" id="lx-about"><div class="lx-head"><div><h2>О салоне</h2><p>STLuxe · Ивантеевка</p></div></div><div class="lx-aboutbox"><p>STLuxe — салон, где в одном месте собраны услуги для волос, ногтей, бровей, ресниц и косметологии. По отзывам гостей, сюда возвращаются за аккуратной работой, чистотой и спокойной атмосферой.</p><p>В салоне отмечают внимательное отношение к пожеланиям, качественные материалы, чай и кофе для гостей, удобное оборудование и возможность прийти всей семьёй.</p><div class="lx-facts"><div class="lx-fact"><strong>4,9</strong><span>рейтинг Яндекса</span></div><div class="lx-fact"><strong>125</strong><span>оценок</span></div></div></div></section>
-    <section class="lx-section lx-break" id="lx-visit"><div class="lx-head"><div><h2>Визит</h2><p>Всё нужное перед приездом</p></div></div><div class="lx-visitcard"><div class="lx-vrow"><svg viewBox="0 0 24 24"><path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg><div><strong>Адрес</strong><span>Ивантеевка, ул. Победы, 16</span></div></div><div class="lx-vrow"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><div><strong>График</strong><span>Вт–Вс 10:00–20:00 · Понедельник — выходной</span></div></div><div class="lx-vrow"><svg viewBox="0 0 24 24"><path d="M7 4h3l1.2 4-2 1.4a15 15 0 0 0 5.4 5.4l1.4-2L20 14v3c0 1.1-.9 2-2 2C10.8 19 5 13.2 5 6c0-1.1.9-2 2-2Z"/></svg><div><strong>Телефон</strong><span>+7 916 355-22-22</span></div></div><div class="lx-vactions"><a class="lx-vbtn" href="${YANDEX}" target="_blank">Маршрут</a><a class="lx-vbtn black" href="tel:${PHONE}">Позвонить</a></div></div></section>
-    <footer class="lx-footer"><strong>STLuxe</strong>Цифровой офис на TANEM</footer>
-    <div class="lx-bookbar" id="lxBookbar"><div class="lx-bookcopy"><strong>Доступно 70+ услуг</strong><span>Выберите услугу и удобное время</span></div><button data-book>Забронировать</button></div>
-    <div class="lx-light" id="lxLight"><div class="lx-lighttop"><span class="lx-lighttitle">Галерея STLuxe</span><button class="lx-close" id="lxClose">×</button></div><div class="lx-lighttrack" id="lxLightTrack">${photos.map((p,i)=>`<div class="lx-lightslide"><img src="${p[0]}" alt="${p[2]}"></div>`).join('')}</div><div class="lx-lightcount" id="lxLightCount">1 / ${photos.length}</div></div>
-  </main>`;
+  const reviews = [
+    ['мария н.','Атмосфера в салоне благоприятная, красиво, стильно, уютно… Татьяна — мастер своего дела.'],
+    ['Ольга К.','Отличная атмосфера, всё чисто, стерильно, приветливый персонал, всегда предлагают чай или кофе.'],
+    ['Елизавета С.','Отличное обслуживание, все мастера вежливые и отлично выполняют бьюти-услуги! Салон чистый, стильный!'],
+    ['Мама Рита','Прекрасный косметолог Мария. Умеет всё. Препараты качественные, новейшие. Очень советую мастера.']
+  ];
+
+  const icon = (name) => {
+    const paths = {
+      arrowLeft:'<path d="M15 18l-6-6 6-6"/><path d="M9 12h10"/>',
+      share:'<path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M5 11v8h14v-8"/>',
+      heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/>',
+      pin:'<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/>',
+      clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+      chevron:'<path d="M9 18l6-6-6-6"/>',
+      phone:'<path d="M22 16.9v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.9z"/>'
+    };
+    return `<svg viewBox="0 0 24 24" aria-hidden="true">${paths[name] || ''}</svg>`;
+  };
+
+  const style = document.createElement('style');
+  style.id = 'stluxe-fresha-style';
+  style.textContent = `
+    @media(max-width:767px){
+      html,body{margin:0!important;padding:0!important;background:#fff!important;color:#111!important;overflow-x:hidden!important;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif!important;-webkit-font-smoothing:antialiased!important}
+      body>*:not(#stluxe-fresha):not(script):not(style){display:none!important}
+      #stluxe-fresha{display:block!important;width:100%;background:#fff;color:#111}
+      #stluxe-fresha *{box-sizing:border-box}
+      #stluxe-fresha button,#stluxe-fresha a{font:inherit;color:inherit}
+      #stluxe-fresha button{cursor:pointer}
+      #stluxe-fresha svg{display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+      .fr-page{background:#fff;padding-bottom:100px}
+      .fr-top{height:54px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:#fff}
+      .fr-brand{font-size:21px;font-weight:600;letter-spacing:-.045em;text-decoration:none}
+      .fr-yandex{font-size:13px;color:#555;text-decoration:none;border-bottom:1px solid #777;padding-bottom:2px;display:flex;align-items:center;gap:5px}
+      .fr-yandex svg{width:13px;height:13px}
+      .fr-media{position:relative;width:100vw;height:62vw;min-height:250px;max-height:350px;background:#eee;overflow:hidden}
+      .fr-track{height:100%;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+      .fr-track::-webkit-scrollbar{display:none}
+      .fr-slide{min-width:100%;height:100%;border:0;padding:0;background:#eee;scroll-snap-align:start}
+      .fr-slide img{width:100%;height:100%;object-fit:cover;display:block}
+      .fr-media-actions{position:absolute;inset:20px 18px auto;display:flex;justify-content:space-between;pointer-events:none}
+      .fr-media-right{display:flex;gap:10px}
+      .fr-round{pointer-events:auto;width:44px;height:44px;border:1px solid rgba(0,0,0,.08);border-radius:50%;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+      .fr-round svg{width:21px;height:21px;stroke-width:1.9}
+      .fr-counter{position:absolute;right:18px;bottom:24px;min-width:50px;height:36px;padding:0 13px;border-radius:999px;background:rgba(20,20,20,.72);backdrop-filter:blur(8px);display:grid;place-items:center;color:#fff;font-size:14px;font-weight:600;letter-spacing:-.01em}
+      .fr-hero{position:relative;z-index:3;margin-top:-22px;background:#fff;border-radius:30px 30px 0 0;padding:38px 30px 32px}
+      .fr-title{margin:0 0 8px;font-size:38px;line-height:1.02;letter-spacing:-.055em;font-weight:700}
+      .fr-type{margin:0 0 24px;font-size:18px;line-height:1.25;color:#777;font-weight:400}
+      .fr-rating{display:flex;align-items:center;gap:8px;font-size:20px;margin-bottom:27px}
+      .fr-star{width:22px;height:22px;display:grid;place-items:center;color:#f4b400;font-size:25px;line-height:1}
+      .fr-rating strong{font-weight:650}.fr-rating span{color:#777}
+      .fr-hours{display:flex;align-items:center;gap:10px;font-size:17px;line-height:1.35;margin-bottom:26px;color:#777}
+      .fr-hours svg{width:21px;height:21px;flex:0 0 auto}
+      .fr-state{font-weight:500}.fr-state.open{color:#17853d}.fr-state.closed{color:#a96520}
+      .fr-address{display:flex;align-items:center;gap:14px;background:#f4f4f4;border-radius:18px;padding:19px 18px;text-decoration:none;color:#111;font-size:16px;line-height:1.42}
+      .fr-address svg{width:24px;height:24px;flex:0 0 auto;stroke-width:2.1}
+      .fr-section{padding:36px 30px 34px;border-top:1px solid #efefef;scroll-margin-top:20px}
+      .fr-section:first-of-type{border-top:0}
+      .fr-section h2{margin:0 0 19px;font-size:27px;line-height:1.1;letter-spacing:-.045em;font-weight:700}
+      .fr-copy{margin:0;font-size:16px;line-height:1.58;color:#444}
+      .fr-copy + .fr-copy{margin-top:12px}
+      .fr-facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+      .fr-fact{background:#f5f5f5;border-radius:16px;padding:15px}.fr-fact strong{display:block;font-size:17px;font-weight:650}.fr-fact span{display:block;margin-top:3px;font-size:12px;color:#777;line-height:1.35}
+      .fr-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:18px}
+      .fr-head h2{margin:0}.fr-link{border:0;background:none;padding:0 0 2px;border-bottom:1px solid #111;font-size:13px;white-space:nowrap}
+      .fr-filters{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -30px 16px;padding:0 30px}.fr-filters::-webkit-scrollbar{display:none}
+      .fr-filter{border:1px solid #dedede;background:#fff;border-radius:999px;padding:9px 14px;font-size:13px;white-space:nowrap;color:#666}.fr-filter.active{background:#111;color:#fff;border-color:#111}
+      .fr-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.fr-photo{border:0;padding:0;background:#eee;border-radius:16px;overflow:hidden;aspect-ratio:1/1.12}.fr-photo img{width:100%;height:100%;object-fit:cover;display:block}.fr-photo[hidden]{display:none}
+      .fr-services{display:grid;gap:10px}.fr-service{border:1px solid #e7e7e7;border-radius:18px;padding:17px;background:#fff}.fr-service-name{font-size:16px;line-height:1.38;font-weight:500}.fr-service-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-top:17px}.fr-price{font-size:15px;color:#555}.fr-reserve{border:1px solid #111;background:#fff;border-radius:999px;height:38px;padding:0 15px;font-size:13px;font-weight:600}.fr-more{width:100%;height:46px;margin-top:12px;border:1px solid #d8d8d8;border-radius:999px;background:#fff;font-size:14px}
+      .fr-team{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;margin:0 -30px;padding:0 30px 4px}.fr-team::-webkit-scrollbar{display:none}.fr-person{min-width:154px;width:154px;border:0;background:none;padding:0;text-align:left}.fr-person-pic{height:190px;border-radius:17px;background:linear-gradient(145deg,#ececec,#f7f7f7);position:relative;overflow:hidden;display:grid;place-items:center}.fr-person-pic svg{width:78px;height:78px;fill:#c8c8c8;stroke:none}.fr-person-badge{position:absolute;left:9px;top:9px;background:rgba(255,255,255,.94);border-radius:999px;padding:5px 8px;font-size:10px;color:#555}.fr-person-name{font-size:14px;font-weight:600;margin-top:9px}.fr-person-role{font-size:12px;line-height:1.35;color:#777;margin-top:3px}
+      .fr-reviews{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -30px;padding:0 30px 5px}.fr-reviews::-webkit-scrollbar{display:none}.fr-review{min-width:88%;scroll-snap-align:start;border:1px solid #e6e6e6;border-radius:18px;padding:18px}.fr-review-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px;font-size:13px}.fr-review-stars{letter-spacing:1px}.fr-review p{margin:0;font-size:15px;line-height:1.55;color:#444}.fr-yreview{display:inline-block;margin-top:16px;font-size:13px;text-decoration:none;border-bottom:1px solid #111;padding-bottom:2px}
+      .fr-visit{display:grid;gap:0;border-top:1px solid #eee}.fr-visit-row{display:flex;align-items:flex-start;gap:13px;padding:18px 0;border-bottom:1px solid #eee}.fr-visit-row svg{width:21px;height:21px;flex:0 0 auto}.fr-visit-row strong{display:block;font-size:14px;font-weight:600;margin-bottom:4px}.fr-visit-row span{display:block;font-size:14px;color:#666;line-height:1.45}.fr-visit-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.fr-action{height:46px;border-radius:999px;border:1px solid #d9d9d9;background:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:14px}.fr-action.black{background:#111;color:#fff;border-color:#111}
+      .fr-footer{padding:26px 30px 122px;text-align:center;font-size:11px;color:#999}.fr-footer strong{display:block;color:#222;font-size:14px;margin-bottom:4px}
+      .fr-bookbar{position:fixed;left:0;right:0;bottom:0;z-index:60;min-height:84px;padding:12px 20px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.98);backdrop-filter:blur(16px);border-top:1px solid #e8e8e8;display:flex;align-items:center;justify-content:space-between;gap:18px;transform:translateY(120%);transition:transform .25s ease}
+      .fr-bookbar.visible{transform:translateY(0)}.fr-book-copy{font-size:16px;color:#888;white-space:nowrap}.fr-book-button{height:52px;border:0;border-radius:999px;background:#111;color:#fff!important;padding:0 27px;font-size:16px;font-weight:650;white-space:nowrap}
+      .fr-modal{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.45);display:none;align-items:flex-end;padding:10px}.fr-modal.open{display:flex}.fr-sheet{width:100%;max-height:86vh;overflow:auto;background:#fff;border-radius:26px;padding:22px}.fr-sheet-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.fr-sheet h3{margin:0;font-size:23px;letter-spacing:-.035em}.fr-sheet p{font-size:14px;line-height:1.5;color:#666}.fr-close{width:38px;height:38px;border-radius:50%;border:1px solid #ddd;background:#fff;font-size:22px}.fr-sheet-actions{display:grid;gap:10px;margin-top:18px}.fr-sheet-actions a{height:48px;border-radius:999px;display:flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #ddd}.fr-sheet-actions a.black{background:#111;color:#fff;border-color:#111}
+      .fr-gallery{position:fixed;inset:0;z-index:110;background:#050505;display:none;flex-direction:column}.fr-gallery.open{display:flex}.fr-gallery-top{height:64px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;color:#fff}.fr-gallery-top button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:21px}.fr-gallery-count{font-size:13px}.fr-gallery-stage{flex:1;display:flex;align-items:center;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.fr-gallery-stage::-webkit-scrollbar{display:none}.fr-gallery-item{min-width:100%;height:100%;scroll-snap-align:start;display:grid;place-items:center}.fr-gallery-item img{width:100%;max-height:88vh;object-fit:contain}.fr-gallery-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px 16px calc(12px + env(safe-area-inset-bottom));background:#050505}.fr-gallery-tabs::-webkit-scrollbar{display:none}.fr-gallery-tabs button{border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:999px;padding:7px 11px;font-size:11px;white-space:nowrap}.fr-gallery-tabs button.active{background:#fff;color:#111;border-color:#fff}
+    }
+    @media(min-width:768px){#stluxe-fresha{display:none!important}}
+  `;
+  document.head.appendChild(style);
+
+  const root = document.createElement('div');
+  root.id = 'stluxe-fresha';
+  root.innerHTML = `
+    <div class="fr-page">
+      <header class="fr-top">
+        <a class="fr-brand" href="#fr-top">STLuxe</a>
+        <a class="fr-yandex" href="${YANDEX}" target="_blank" rel="noopener">Яндекс Карты ${icon('chevron')}</a>
+      </header>
+
+      <section class="fr-media" id="fr-top">
+        <div class="fr-track" id="frTrack">${photos.map((p,i)=>`<button class="fr-slide" data-index="${i}" type="button"><img src="${p.src}" alt="${p.alt}"></button>`).join('')}</div>
+        <div class="fr-media-actions">
+          <button class="fr-round" id="frBack" type="button" aria-label="Назад">${icon('arrowLeft')}</button>
+          <div class="fr-media-right">
+            <button class="fr-round" id="frShare" type="button" aria-label="Поделиться">${icon('share')}</button>
+            <button class="fr-round" id="frHeart" type="button" aria-label="В избранное">${icon('heart')}</button>
+          </div>
+        </div>
+        <div class="fr-counter" id="frCounter">1/${photos.length}</div>
+      </section>
+
+      <section class="fr-hero" id="frHero">
+        <h1 class="fr-title">STLuxe</h1>
+        <p class="fr-type">Салон красоты</p>
+        <div class="fr-rating"><span class="fr-star">★</span><strong>4,9</strong><span>(86)</span></div>
+        <div class="fr-hours">${icon('clock')}<span><span class="fr-state" id="frState">Закрыто</span> <span id="frStateTail">— открывается в 10:00</span></span></div>
+        <a class="fr-address" href="${YANDEX}" target="_blank" rel="noopener">${icon('pin')}<span>Московская область, Ивантеевка, улица Победы, 16</span></a>
+      </section>
+
+      <section class="fr-section" id="frOverview">
+        <h2>Общие сведения</h2>
+        <p class="fr-copy">STLuxe — салон красоты в Ивантеевке с большим выбором услуг: ногтевой сервис, парикмахерские услуги, косметология, оформление бровей и ресниц, перманентный макияж и депиляция.</p>
+        <div class="fr-facts"><div class="fr-fact"><strong>4,9</strong><span>рейтинг на Яндекс Картах</span></div><div class="fr-fact"><strong>70+</strong><span>услуг и направлений</span></div></div>
+      </section>
+
+      <section class="fr-section" id="frPortfolio">
+        <div class="fr-head"><h2>Портфолио</h2><button class="fr-link" id="frOpenGallery" type="button">Все работы</button></div>
+        <div class="fr-filters" id="frFilters">
+          <button class="fr-filter active" data-filter="all">Все работы</button>
+          <button class="fr-filter" data-filter="nails">Ногти</button>
+          <button class="fr-filter" data-filter="hair">Волосы</button>
+          <button class="fr-filter" data-filter="interior">Салон</button>
+        </div>
+        <div class="fr-grid" id="frGrid">${photos.slice(0,4).map((p,i)=>`<button class="fr-photo" type="button" data-category="${p.cat}" data-index="${i}"><img src="${p.src}" alt="${p.alt}"></button>`).join('')}</div>
+      </section>
+
+      <section class="fr-section" id="frServices">
+        <div class="fr-head"><h2>Услуги</h2></div>
+        <div class="fr-filters" id="frServiceFilters">
+          <button class="fr-filter active" data-service="all">Все</button>
+          <button class="fr-filter" data-service="nails">Ногти</button>
+          <button class="fr-filter" data-service="hair">Волосы</button>
+          <button class="fr-filter" data-service="face">Косметология</button>
+          <button class="fr-filter" data-service="brows">Брови</button>
+          <button class="fr-filter" data-service="lashes">Ресницы</button>
+          <button class="fr-filter" data-service="depilation">Депиляция</button>
+        </div>
+        <div class="fr-services" id="frServicesList"></div>
+        <button class="fr-more" id="frServicesMore" type="button">Посмотреть ещё</button>
+      </section>
+
+      <section class="fr-section" id="frTeam">
+        <h2>Специалисты</h2>
+        <div class="fr-team">
+          ${[
+            ['Nail-мастер','Маникюр · педикюр · наращивание'],
+            ['Парикмахер-колорист','Стрижки · окрашивание · укладки'],
+            ['Косметолог','Уход · чистки · пилинги'],
+            ['Бровист / Lash-мастер','Брови · ресницы'],
+            ['Мастер депиляции','Шугаринг · воск']
+          ].map(([name,role])=>`<button class="fr-person" type="button" data-role="${name}"><span class="fr-person-pic"><span class="fr-person-badge">★ —</span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c.4-4.2 2.8-6.5 7-6.5s6.6 2.3 7 6.5"/></svg></span><span class="fr-person-name">${name}</span><span class="fr-person-role">${role}</span></button>`).join('')}
+        </div>
+      </section>
+
+      <section class="fr-section" id="frReviews">
+        <div class="fr-head"><h2>Отзывы</h2><a class="fr-link" href="${YANDEX}" target="_blank" rel="noopener">Яндекс Карты</a></div>
+        <div class="fr-reviews">${reviews.map(([name,text])=>`<article class="fr-review"><div class="fr-review-top"><strong>${name}</strong><span class="fr-review-stars">★★★★★</span></div><p>${text}</p></article>`).join('')}</div>
+      </section>
+
+      <section class="fr-section" id="frAbout">
+        <h2>О салоне</h2>
+        <p class="fr-copy">В STLuxe собраны несколько направлений красоты в одном месте. Клиент может выбрать услугу по задаче — от маникюра и окрашивания до косметологии, ресниц и депиляции.</p>
+        <p class="fr-copy">На этой версии страницы мы показываем только подтверждённые данные салона. Персональные профили специалистов будут заполнены после получения информации о команде.</p>
+      </section>
+
+      <section class="fr-section" id="frVisit">
+        <h2>Визит</h2>
+        <div class="fr-visit">
+          <div class="fr-visit-row">${icon('pin')}<div><strong>Адрес</strong><span>Московская область, Ивантеевка, улица Победы, 16</span></div></div>
+          <div class="fr-visit-row">${icon('clock')}<div><strong>Часы работы</strong><span>Вт–Вс 10:00–20:00<br>Понедельник — выходной</span></div></div>
+          <div class="fr-visit-row">${icon('phone')}<div><strong>Телефон</strong><span>+7 916 355-22-22</span></div></div>
+        </div>
+        <div class="fr-visit-actions"><a class="fr-action" href="${YANDEX}" target="_blank" rel="noopener">Маршрут</a><a class="fr-action black" href="tel:${PHONE}">Позвонить</a></div>
+      </section>
+
+      <footer class="fr-footer"><strong>STLuxe</strong><span>Цифровой офис на TANEM</span></footer>
+    </div>
+
+    <div class="fr-bookbar" id="frBookbar"><div class="fr-book-copy">Доступно 70+ услуг</div><button class="fr-book-button" id="frBookBtn" type="button">Забронировать</button></div>
+
+    <div class="fr-modal" id="frModal"><div class="fr-sheet"><div class="fr-sheet-top"><div><h3 id="frModalTitle">Запись в STLuxe</h3><p id="frModalText">Онлайн-ссылка салона не указана, поэтому сейчас запись доступна через прямой контакт.</p></div><button class="fr-close" id="frModalClose" type="button">×</button></div><div class="fr-sheet-actions"><a class="black" href="tel:${PHONE}">Позвонить</a><a href="${YANDEX}" target="_blank" rel="noopener">Открыть Яндекс Карты</a></div></div></div>
+
+    <div class="fr-gallery" id="frGallery"><div class="fr-gallery-top"><button id="frGalleryClose" type="button">×</button><span class="fr-gallery-count" id="frGalleryCount">1/${photos.length}</span><span style="width:40px"></span></div><div class="fr-gallery-stage" id="frGalleryStage">${photos.map((p,i)=>`<div class="fr-gallery-item" data-gindex="${i}"><img src="${p.src}" alt="${p.alt}"></div>`).join('')}</div><div class="fr-gallery-tabs" id="frGalleryTabs"><button class="active" data-gfilter="all">Все</button><button data-gfilter="nails">Ногти</button><button data-gfilter="hair">Волосы</button><button data-gfilter="interior">Салон</button></div></div>
+  `;
   document.body.appendChild(root);
 
-  const state=document.getElementById('lxState'), hoursText=document.getElementById('lxHoursText');
-  function updateHours(){const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Europe/Moscow',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());const day=parts.find(x=>x.type==='weekday').value;const h=+parts.find(x=>x.type==='hour').value;const m=+parts.find(x=>x.type==='minute').value;const mins=h*60+m;const open=day!=='Mon'&&mins>=600&&mins<1200;state.textContent=open?'Открыто':'Закрыто';state.className='lx-state '+(open?'open':'closed');hoursText.textContent=day==='Mon'?'— откроется во вторник в 10:00':open?'— сегодня до 20:00':mins<600?'— откроется сегодня в 10:00':'— откроется завтра в 10:00';}
-  updateHours();
+  const track = root.querySelector('#frTrack');
+  const counter = root.querySelector('#frCounter');
+  const slides = [...root.querySelectorAll('.fr-slide')];
+  const updateCounter = () => {
+    const index = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+    counter.textContent = `${Math.min(index + 1, photos.length)}/${photos.length}`;
+  };
+  track.addEventListener('scroll', () => requestAnimationFrame(updateCounter), {passive:true});
+  slides.forEach(slide => slide.addEventListener('click', () => openGallery(Number(slide.dataset.index))));
 
-  const track=document.getElementById('lxTrack'),count=document.getElementById('lxCount');track.addEventListener('scroll',()=>{const i=Math.round(track.scrollLeft/track.clientWidth);count.textContent=`${i+1}/${photos.length}`},{passive:true});
-  function openGallery(i=0){const l=document.getElementById('lxLight'),t=document.getElementById('lxLightTrack');l.classList.add('open');document.body.style.overflow='hidden';requestAnimationFrame(()=>t.scrollLeft=i*t.clientWidth)}
-  document.querySelectorAll('.lx-slide,.lx-photo').forEach(b=>b.addEventListener('click',()=>openGallery(+b.dataset.i||0)));document.getElementById('lxOpenGallery').onclick=()=>openGallery(0);document.getElementById('lxClose').onclick=()=>{document.getElementById('lxLight').classList.remove('open');document.body.style.overflow=''};document.getElementById('lxLightTrack').addEventListener('scroll',e=>{const t=e.currentTarget,i=Math.round(t.scrollLeft/t.clientWidth);document.getElementById('lxLightCount').textContent=`${i+1} / ${photos.length}`},{passive:true});
+  root.querySelector('#frBack').addEventListener('click', () => {
+    if (history.length > 1) history.back(); else window.scrollTo({top:0,behavior:'smooth'});
+  });
+  root.querySelector('#frShare').addEventListener('click', async () => {
+    try { if (navigator.share) await navigator.share({title:'STLuxe',url:location.href}); else await navigator.clipboard.writeText(location.href); } catch(e) {}
+  });
+  root.querySelector('#frHeart').addEventListener('click', e => {
+    e.currentTarget.classList.toggle('saved');
+    e.currentTarget.style.background = e.currentTarget.classList.contains('saved') ? '#111' : 'rgba(255,255,255,.92)';
+    e.currentTarget.style.color = e.currentTarget.classList.contains('saved') ? '#fff' : '#111';
+  });
 
-  document.getElementById('lxToWorks').onclick=()=>document.getElementById('lx-portfolio').scrollIntoView({behavior:'smooth'});document.querySelectorAll('[data-book]').forEach(b=>b.onclick=()=>location.href=`tel:${PHONE}`);
-  document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.go).scrollIntoView({behavior:'smooth'}));
-  const filterBtns=[...document.querySelectorAll('.lx-filter')];filterBtns.forEach(b=>b.onclick=()=>{filterBtns.forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.lx-photo').forEach(p=>p.hidden=b.dataset.cat!=='all'&&p.dataset.cat!==b.dataset.cat)});
+  const state = root.querySelector('#frState');
+  const stateTail = root.querySelector('#frStateTail');
+  const updateOpenState = () => {
+    const now = new Date();
+    const parts = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Moscow',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(now);
+    const day = parts.find(p=>p.type==='weekday')?.value;
+    const hour = Number(parts.find(p=>p.type==='hour')?.value || 0);
+    const minute = Number(parts.find(p=>p.type==='minute')?.value || 0);
+    const minutes = hour * 60 + minute;
+    const isMonday = day === 'Mon';
+    const isOpen = !isMonday && minutes >= 600 && minutes < 1200;
+    state.textContent = isOpen ? 'Открыто' : 'Закрыто';
+    state.className = `fr-state ${isOpen ? 'open' : 'closed'}`;
+    if (isOpen) stateTail.textContent = '— закрывается в 20:00';
+    else if (isMonday) stateTail.textContent = '— открывается во вторник в 10:00';
+    else if (minutes < 600) stateTail.textContent = '— открывается в 10:00';
+    else stateTail.textContent = '— открывается завтра в 10:00';
+  };
+  updateOpenState();
+  setInterval(updateOpenState, 60000);
 
-  let serviceCat='all',expanded=false;const list=document.getElementById('lxServices'),more=document.getElementById('lxMore');
-  function renderServices(){const items=services.filter(s=>serviceCat==='all'||s[0]===serviceCat);const shown=expanded?items:items.slice(0,6);list.innerHTML=shown.map(s=>`<article class="lx-service"><div class="lx-sname">${s[1]}</div><div class="lx-smeta"><div class="lx-sprice">${s[2]}${s[3]?`<span class="lx-duration">${s[3]}</span>`:''}</div><button class="lx-reserve">Забронировать</button></div></article>`).join('');list.querySelectorAll('.lx-reserve').forEach(b=>b.onclick=()=>location.href=`tel:${PHONE}`);more.style.display=items.length>6?'block':'none';more.textContent=expanded?'Свернуть':'Посмотреть ещё';}
-  renderServices();more.onclick=()=>{expanded=!expanded;renderServices()};const tabs=[...document.querySelectorAll('[data-scat]')];tabs.forEach(b=>b.onclick=()=>{tabs.forEach(x=>x.classList.remove('active'));b.classList.add('active');serviceCat=b.dataset.scat;expanded=false;renderServices()});
+  const modal = root.querySelector('#frModal');
+  const modalTitle = root.querySelector('#frModalTitle');
+  const modalText = root.querySelector('#frModalText');
+  const openBooking = (service='') => {
+    modalTitle.textContent = service || 'Запись в STLuxe';
+    modalText.textContent = service ? 'Для этой услуги сейчас доступна запись через прямой контакт салона.' : 'Онлайн-ссылка салона не указана, поэтому сейчас запись доступна через прямой контакт.';
+    modal.classList.add('open'); document.body.style.overflow='hidden';
+  };
+  root.querySelector('#frBookBtn').addEventListener('click', () => openBooking());
+  root.querySelector('#frModalClose').addEventListener('click', () => {modal.classList.remove('open');document.body.style.overflow='';});
+  modal.addEventListener('click', e => {if(e.target===modal){modal.classList.remove('open');document.body.style.overflow='';}});
 
-  const navBtns=[...document.querySelectorAll('[data-go]')],sections=navBtns.map(b=>document.getElementById(b.dataset.go));const bookbar=document.getElementById('lxBookbar'),hero=document.getElementById('lxHero'),about=document.getElementById('lx-about');
-  function onScroll(){const y=scrollY;const heroBottom=hero.offsetTop+hero.offsetHeight;const hideAt=about.offsetTop-innerHeight*.72;bookbar.classList.toggle('show',y>heroBottom-20&&y<hideAt);let active=0;sections.forEach((s,i)=>{if(s.getBoundingClientRect().top<=95)active=i});navBtns.forEach((b,i)=>b.classList.toggle('active',i===active));}
-  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const servicesList = root.querySelector('#frServicesList');
+  const moreBtn = root.querySelector('#frServicesMore');
+  let serviceFilter = 'all';
+  let expanded = false;
+  const renderServices = () => {
+    const filtered = services.filter(s => serviceFilter === 'all' || s[0] === serviceFilter);
+    const shown = expanded ? filtered : filtered.slice(0,6);
+    servicesList.innerHTML = shown.map(s => `<article class="fr-service"><div class="fr-service-name">${s[1]}</div><div class="fr-service-bottom"><span class="fr-price">${s[2]}</span><button class="fr-reserve" type="button" data-book="${s[1].replace(/"/g,'&quot;')}">Забронировать</button></div></article>`).join('');
+    servicesList.querySelectorAll('[data-book]').forEach(btn=>btn.addEventListener('click',()=>openBooking(btn.dataset.book)));
+    moreBtn.style.display = filtered.length > 6 ? 'block' : 'none';
+    moreBtn.textContent = expanded ? 'Свернуть' : 'Посмотреть ещё';
+  };
+  renderServices();
+  moreBtn.addEventListener('click',()=>{expanded=!expanded;renderServices();});
+  root.querySelectorAll('[data-service]').forEach(btn=>btn.addEventListener('click',()=>{
+    root.querySelectorAll('[data-service]').forEach(x=>x.classList.remove('active')); btn.classList.add('active');
+    serviceFilter=btn.dataset.service; expanded=false; renderServices();
+  }));
+
+  root.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{
+    root.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+    const f=btn.dataset.filter; root.querySelectorAll('.fr-photo').forEach(card=>card.hidden=f!=='all'&&photos[Number(card.dataset.index)].cat!==f);
+  }));
+  root.querySelectorAll('.fr-photo').forEach(card=>card.addEventListener('click',()=>openGallery(Number(card.dataset.index))));
+
+  const gallery = root.querySelector('#frGallery');
+  const galleryStage = root.querySelector('#frGalleryStage');
+  const galleryCount = root.querySelector('#frGalleryCount');
+  function openGallery(index=0){
+    gallery.classList.add('open');document.body.style.overflow='hidden';
+    setTimeout(()=>{galleryStage.scrollLeft=index*galleryStage.clientWidth;galleryCount.textContent=`${index+1}/${photos.length}`;},0);
+  }
+  root.querySelector('#frOpenGallery').addEventListener('click',()=>openGallery(0));
+  root.querySelector('#frGalleryClose').addEventListener('click',()=>{gallery.classList.remove('open');document.body.style.overflow='';});
+  galleryStage.addEventListener('scroll',()=>requestAnimationFrame(()=>{
+    const i=Math.round(galleryStage.scrollLeft/Math.max(1,galleryStage.clientWidth));galleryCount.textContent=`${i+1}/${photos.length}`;
+  }),{passive:true});
+  root.querySelectorAll('[data-gfilter]').forEach(btn=>btn.addEventListener('click',()=>{
+    root.querySelectorAll('[data-gfilter]').forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+    const f=btn.dataset.gfilter; const first=photos.findIndex(p=>f==='all'||p.cat===f); if(first>=0)galleryStage.scrollTo({left:first*galleryStage.clientWidth,behavior:'smooth'});
+  }));
+
+  root.querySelectorAll('.fr-person').forEach(card=>card.addEventListener('click',()=>openBooking(card.dataset.role)));
+
+  const bookbar = root.querySelector('#frBookbar');
+  const overview = root.querySelector('#frOverview');
+  const about = root.querySelector('#frAbout');
+  const syncBookbar = () => {
+    const y = window.scrollY;
+    const start = overview.getBoundingClientRect().top + y - 120;
+    const stop = about.getBoundingClientRect().top + y - window.innerHeight * .45;
+    bookbar.classList.toggle('visible', y >= start && y < stop);
+  };
+  window.addEventListener('scroll', syncBookbar, {passive:true});
+  window.addEventListener('resize', syncBookbar);
+  syncBookbar();
 })();
