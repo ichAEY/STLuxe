@@ -1,0 +1,32 @@
+name: Hotfix mobile conflict
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/hotfix-mobile-conflict.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove legacy mobile layer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('  <script defer src="mobile-premium.js?v=2"></script>\n','')
+          s=s.replace('<script defer src="mobile-premium.js?v=2"></script>\n','')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit hotfix
+        run: |
+          git config user.name tanem
+          git config user.email melikyan.mac@gmail.com
+          git add index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Fix blank mobile screen by removing legacy layer"
+            git push
+          fi
