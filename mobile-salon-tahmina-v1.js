@@ -86,13 +86,19 @@
     .tm-icon.phone{border-radius:13px;background:#eee5db}.tm-icon svg{width:20px;height:20px}\
     .tm-hero-photo{height:75vw;min-height:292px;max-height:390px;width:100%;overflow:hidden;background:#eee}\
     .tm-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block}\
-    .tm-hero{position:relative;z-index:4;margin:-38px 0 0;background:#fbf8f4;padding:28px 20px calc(12px + env(safe-area-inset-bottom));border-radius:28px 28px 0 0;box-shadow:0 12px 32px rgba(75,55,39,.06);min-height:calc(100svh - 52px - clamp(292px,75vw,390px) + 38px);display:flex;flex-direction:column}\
-    .tm-hero h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:400;font-size:43px;line-height:1.04;letter-spacing:-.045em;margin:0 0 9px;color:#241b16}\
-    .tm-sub{font-size:17px;line-height:1.5;color:#746d67;font-weight:350;margin:0 0 18px}\
-    .tm-rating{display:flex;align-items:center;gap:9px;background:transparent;border:0;border-radius:0;padding:0;font-size:15px;margin:0 0 17px}\
+    .tm-hero{position:relative;z-index:4;margin:-38px 0 0;background:#fbf8f4;padding:24px 20px calc(88px + env(safe-area-inset-bottom));border-radius:28px 28px 0 0;box-shadow:0 12px 32px rgba(75,55,39,.06);min-height:calc(100svh - 52px - clamp(292px,75vw,390px) + 38px);display:flex;flex-direction:column}\
+    .tm-hero h1{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:37px;line-height:1.02;letter-spacing:-.055em;margin:0 0 5px;color:#171513}\
+    .tm-sub{font-size:16px;line-height:1.35;color:#746d67;font-weight:400;margin:0 0 13px}\
+    .tm-rating{display:flex;align-items:center;gap:8px;background:transparent;border:0;border-radius:0;padding:0;font-size:14px;margin:0 0 13px}\
     .tm-rating .star{color:#cda15d;font-size:19px;line-height:1}.tm-rating .muted{color:#827a73}.tm-divider{width:1px;height:18px;background:#ded4cb}\
-    .tm-meta{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#746d67;line-height:1.45;margin-bottom:12px}.tm-meta svg{width:17px;height:17px;flex:0 0 auto;margin-top:1px}.tm-meta.open svg,.tm-meta.open strong{color:#2f9a63}.tm-meta.closed svg,.tm-meta.closed strong{color:#c57d34}.tm-meta strong{font-weight:500}.tm-location{display:flex;align-items:flex-start;gap:10px;background:#efefed;border-radius:16px;padding:13px 14px;margin:4px 0 28px;font-size:12px;line-height:1.45;color:#5f5a55}.tm-location svg{width:18px;height:18px;flex:0 0 auto;margin-top:0;color:#1f1d1b}\
+    .tm-meta{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#746d67;line-height:1.4;margin-bottom:10px}.tm-meta svg{width:17px;height:17px;flex:0 0 auto;margin-top:1px}.tm-meta.open svg,.tm-meta.open strong{color:#2f9a63}.tm-meta.closed svg,.tm-meta.closed strong{color:#c57d34}.tm-meta strong{font-weight:500}.tm-location{display:flex;align-items:flex-start;gap:10px;background:#efefed;border-radius:16px;padding:13px 14px;margin:2px 0 0;font-size:12px;line-height:1.45;color:#171513;font-weight:500}.tm-location svg{width:18px;height:18px;flex:0 0 auto;margin-top:0;color:#1f1d1b}\
     .tm-primary{width:100%;height:54px;border:0;border-radius:17px;background:#171717!important;color:#fff!important;font-size:16px;font-weight:450;margin-top:auto;flex:0 0 auto}\
+    .tm-service-jump{width:100%;border:0;background:transparent;padding:18px 0 4px;margin-top:auto;font-size:13px;color:#504943;text-align:center;letter-spacing:-.01em}\
+    .tm-service-jump span{display:inline-block;margin-left:5px;font-size:15px}\
+    .tm-bookbar-fixed{position:fixed;left:0;right:0;bottom:0;z-index:150;min-height:76px;padding:10px 18px calc(10px + env(safe-area-inset-bottom));background:rgba(251,248,244,.97);backdrop-filter:blur(18px) saturate(145%);border-top:1px solid rgba(220,211,202,.8);display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 -8px 28px rgba(45,34,25,.06)}\
+    .tm-bookbar-copy{display:flex;align-items:baseline;gap:5px;min-width:0;color:#6f6862}.tm-bookbar-copy strong{font-size:16px;color:#27231f;font-weight:650}.tm-bookbar-copy span{font-size:12px;white-space:nowrap}\
+    .tm-bookbar-button{height:48px;border:0;border-radius:999px;background:#3d3b39!important;color:#fff!important;padding:0 23px;font-size:15px;font-weight:600;white-space:nowrap}\
+    .tm-team-more{margin-top:22px;font-size:12px;color:#5f5750;text-align:center}.tm-team-more span{margin-left:5px}\
     .tm-secondary{width:100%;border:0;background:none;padding:17px 0 0;font-size:14px;color:#2f2925;text-decoration:underline;text-decoration-color:#c9a67b;text-underline-offset:6px}\
     .tm-section{padding:38px 20px 42px}.tm-section.white{background:#fff}.tm-section.soft{background:#f4eee8}\
     .tm-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:20px}\
@@ -104,15 +110,15 @@
     .tm-grid{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:164px 132px 132px;gap:8px}\
     .tm-photo{border:0;padding:0;background:#e8e1da;border-radius:18px;overflow:hidden}.tm-photo img{width:100%;height:100%;object-fit:cover;display:block}.tm-photo:nth-child(1){grid-column:1/3;grid-row:1}.tm-photo:nth-child(2){grid-column:1;grid-row:2/4}.tm-photo:nth-child(3){grid-column:2;grid-row:2}.tm-photo:nth-child(4){grid-column:2;grid-row:3}.tm-photo:nth-child(n+5){display:none}\
     .tm-gallery-btn{width:100%;height:46px;border:1px solid #d8c9bb;border-radius:16px;background:transparent;margin-top:15px;font-size:13px;color:#4f463f}\
-    .tm-services{display:grid;gap:10px}.tm-service{position:relative;min-height:103px;padding:18px 126px 16px 17px;border:1px solid #eee4dc;border-radius:20px;background:#fff;box-shadow:0 8px 26px rgba(91,68,48,.035)}\
-    .tm-service-name{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:20px;line-height:1.16;font-weight:400;color:#2a201a}.tm-service-price{font-size:13px;color:#6f665f;margin-top:14px}.tm-book-small{position:absolute;right:13px;top:50%;transform:translateY(-50%);height:38px;border:0;border-radius:13px;background:#171717!important;color:#fff!important;padding:0 13px;font-size:11px;font-weight:400;white-space:nowrap}\
+    .tm-services{display:grid;gap:10px}.tm-service{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:14px;row-gap:8px;align-items:center;min-height:100px;padding:17px;border:1px solid #eee4dc;border-radius:20px;background:#fff;box-shadow:0 8px 26px rgba(91,68,48,.035)}\
+    .tm-service-name{grid-column:1;grid-row:1;font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:19px;line-height:1.18;font-weight:400;color:#2a201a;min-width:0}.tm-service-price{grid-column:1;grid-row:2;font-size:13px;color:#6f665f;margin-top:0}.tm-book-small{grid-column:2;grid-row:1/3;align-self:center;position:static;transform:none;height:38px;border:0;border-radius:999px;background:#44413f!important;color:#fff!important;padding:0 14px;font-size:11px;font-weight:500;white-space:nowrap}\
     .tm-more{width:100%;height:46px;border:1px solid #d8c9bb;border-radius:16px;background:transparent;margin-top:14px;font-size:13px;color:#4f463f}\
     .tm-team-copy{margin:8px 0 24px;color:#7b736d;font-size:14px;line-height:1.5}.tm-team{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}\
     .tm-person{text-align:center}.tm-avatar{width:92px;height:92px;border-radius:50%;margin:0 auto;background:linear-gradient(145deg,#eee4da,#fff);border:4px solid rgba(255,255,255,.72);box-shadow:0 7px 24px rgba(71,51,34,.08);display:grid;place-items:center;font-family:"Iowan Old Style",Georgia,serif;font-size:32px;color:#a78968}\
     .tm-person-name{font-family:"Iowan Old Style",Georgia,serif;font-size:20px;margin-top:12px;color:#2b211b}.tm-person-role{font-size:10.5px;line-height:1.35;color:#7a726b;margin-top:4px}\
     .tm-reviews-head{display:flex;align-items:center;gap:8px;margin:10px 0 22px;color:#7c746d;font-size:14px}.tm-reviews-head .star{color:#d6a648;font-size:20px}.tm-reviews-head strong{font-size:18px;color:#2b2520;font-weight:500}\
     .tm-review-wrap{overflow:hidden;margin:0 -20px}.tm-reviews{display:flex;gap:11px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 20px 4px}.tm-reviews::-webkit-scrollbar{display:none}\
-    .tm-review{min-width:86%;scroll-snap-align:start;background:#fff;border:1px solid #eee5dc;border-radius:21px;padding:18px}.tm-review-top{display:flex;align-items:center;gap:11px;margin-bottom:14px}.tm-review-avatar{width:38px;height:38px;border-radius:50%;background:#efe5da;display:grid;place-items:center;font-family:"Iowan Old Style",Georgia,serif;font-size:17px;color:#7c654e}.tm-review-name{font-size:13px;font-weight:500;color:#2a2521}.tm-review-source{font-size:10px;color:#a09890;margin-top:2px}.tm-review p{margin:0;font-size:13px;line-height:1.55;color:#5f5852}\
+    .tm-review{min-width:92%;min-height:190px;scroll-snap-align:start;background:#fff;border:1px solid #eee5dc;border-radius:23px;padding:21px}.tm-review-top{display:flex;align-items:center;gap:11px;margin-bottom:14px}.tm-review-avatar{width:38px;height:38px;border-radius:50%;background:#efe5da;display:grid;place-items:center;font-family:"Iowan Old Style",Georgia,serif;font-size:17px;color:#7c654e}.tm-review-name{font-size:13px;font-weight:500;color:#2a2521}.tm-review-source{font-size:10px;color:#a09890;margin-top:2px}.tm-review p{margin:0;font-size:15px;line-height:1.58;color:#514b46}\
     .tm-all-reviews{width:100%;height:46px;border:1px solid #d8c9bb;border-radius:16px;background:transparent;margin-top:16px;font-size:13px}\
     .tm-visit-list{display:grid;gap:0;margin:22px 0}.tm-visit-row{display:grid;grid-template-columns:42px 1fr;gap:11px;align-items:start;padding:14px 0;border-bottom:1px solid #e4d9ce}.tm-visit-icon{width:38px;height:38px;border-radius:13px;background:#eee4da;display:grid;place-items:center}.tm-visit-icon svg{width:19px;height:19px}.tm-visit-row strong{display:block;font-size:13px;font-weight:500;margin:3px 0 3px}.tm-visit-row span{font-size:12px;line-height:1.45;color:#746d66}\
     .tm-map{width:100%;height:250px;border:0;border-radius:20px;background:#e9e1d9;display:block}\
@@ -144,9 +150,9 @@
         <h1>STLuxe</h1>\
         <p class="tm-sub">Салон красоты</p>\
         <div class="tm-rating"><span class="star">★</span><strong>4,9</strong><span class="tm-divider"></span><span class="muted">86 отзывов</span></div>\
-        <div class="tm-meta" id="tmHoursRow">'+icon('clock')+'<span id="tmHoursText">Вт–Вс 10:00–20:00</span></div>\
+        <div class="tm-meta" id="tmHoursRow">'+icon('clock')+'<span id="tmHoursText">Проверяем часы работы…</span></div>\
         <div class="tm-location">'+icon('pin')+'<span>'+ADDRESS+'</span></div>\
-        <button class="tm-primary" id="tmHeroBook" type="button">Записаться</button>\
+        <button class="tm-service-jump" id="tmToServices" type="button">Перейти к услугам <span>↓</span></button>\
       </section>\
 \
       <section class="tm-section soft" id="tmWorks">\
@@ -171,6 +177,7 @@
           <article class="tm-person"><div class="tm-avatar">М</div><div class="tm-person-name">Мария</div><div class="tm-person-role">косметолог</div></article>\
           <article class="tm-person"><div class="tm-avatar">А</div><div class="tm-person-name">Алёна</div><div class="tm-person-role">мастер STLuxe</div></article>\
         </div>\
+        <div class="tm-team-more">Посмотреть всю команду <span>→</span></div>\
       </section>\
 \
       <section class="tm-section white" id="tmReviews">\
@@ -192,6 +199,7 @@
         <div class="tm-final"><h3>Красота начинается<br>с заботы о себе</h3><p>Выберите услугу и свяжитесь с салоном удобным способом.</p><button id="tmFinalBook" type="button">Записаться онлайн</button></div>\
       </section>\
     </main>\
+    <div class="tm-bookbar-fixed" aria-label="Быстрая запись"><div class="tm-bookbar-copy"><strong>70+</strong><span>услуг доступно</span></div><button class="tm-bookbar-button" id="tmBottomBook" type="button">Записаться</button></div>\
     <footer class="tm-footer"><strong>STLuxe</strong><span>Цифровой офис на TANEM</span></footer>\
 \
     <div class="tm-overlay" id="tmBooking"><div class="tm-sheet"><div class="tm-sheet-head"><h3>Запись в STLuxe</h3><button class="tm-close" data-close="tmBooking" type="button">'+icon('close')+'</button></div><p id="tmBookingText">В карточке салона нет подтверждённой ссылки на онлайн-запись. Сейчас можно связаться напрямую.</p><div class="tm-sheet-actions"><a class="black" href="tel:'+PHONE+'">Позвонить</a><a href="'+YANDEX+'" target="_blank" rel="noopener">Открыть Яндекс Карты</a></div></div></div>\
@@ -207,17 +215,25 @@
   }
 
   var strip=root.querySelector('#tmReviewStrip');
-  strip.innerHTML=reviews.slice(0,5).map(function(r){return '<article class="tm-review"><div class="tm-review-top"><div class="tm-review-avatar">'+initials(r[0])+'</div><div><div class="tm-review-name">'+r[0]+'</div><div class="tm-review-source">Яндекс Карты</div></div></div><p>'+r[1]+'</p></article>'}).join('');
+  var loopReviews=reviews.slice(0,5);
+  strip.innerHTML=loopReviews.concat(loopReviews).map(function(r){return '<article class="tm-review"><div class="tm-review-top"><div class="tm-review-avatar">'+initials(r[0])+'</div><div><div class="tm-review-name">'+r[0]+'</div><div class="tm-review-source">Яндекс Карты</div></div></div><p>'+r[1]+'</p></article>'}).join('');
   root.querySelector('#tmReviewAll').innerHTML=reviews.map(function(r){return '<article class="tm-review-all"><strong>'+r[0]+'</strong><p>'+r[1]+'</p></article>'}).join('');
 
-  var reviewIndex=0;
+  var reviewIndex=0,reviewBaseCount=loopReviews.length;
   window.setInterval(function(){
     if(document.hidden || !strip) return;
     var cards=strip.querySelectorAll('.tm-review');
     if(!cards.length) return;
-    reviewIndex=(reviewIndex+1)%cards.length;
+    reviewIndex+=1;
+    if(reviewIndex>=cards.length) reviewIndex=reviewBaseCount;
     try{strip.scrollTo({left:cards[reviewIndex].offsetLeft-20,behavior:'smooth'});}catch(e){strip.scrollLeft=cards[reviewIndex].offsetLeft-20;}
-  },4300);
+    if(reviewIndex>=reviewBaseCount){
+      window.setTimeout(function(){
+        reviewIndex=reviewIndex-reviewBaseCount;
+        try{strip.scrollTo({left:cards[reviewIndex].offsetLeft-20,behavior:'auto'});}catch(e){strip.scrollLeft=cards[reviewIndex].offsetLeft-20;}
+      },720);
+    }
+  },3300);
 
   var activeService='all',expanded=false;
   function renderServices(){
@@ -246,12 +262,12 @@
     if(e.target.classList.contains('tm-overlay')){e.target.classList.remove('open');document.body.style.overflow='';return;}
     var book=e.target.closest('[data-book]'); if(book){root.querySelector('#tmBookingText').textContent='Вы выбрали: '+book.getAttribute('data-book')+'. В карточке салона нет подтверждённой ссылки на онлайн-запись, поэтому сейчас можно связаться напрямую.';openOverlay('tmBooking');return;}
   });
-  root.querySelector('#tmHeroBook').addEventListener('click',function(){root.querySelector('#tmBookingText').textContent='В карточке салона нет подтверждённой ссылки на онлайн-запись. Сейчас можно связаться напрямую.';openOverlay('tmBooking');});
+  root.querySelector('#tmBottomBook').addEventListener('click',function(){root.querySelector('#tmBookingText').textContent='В карточке салона нет подтверждённой ссылки на онлайн-запись. Сейчас можно связаться напрямую.';openOverlay('tmBooking');});
+  root.querySelector('#tmToServices').addEventListener('click',function(){root.querySelector('#tmServices').scrollIntoView({behavior:'smooth',block:'start'});});
   root.querySelector('#tmFinalBook').addEventListener('click',function(){openOverlay('tmBooking');});
   root.querySelector('#tmMenuBtn').addEventListener('click',function(){openOverlay('tmMenu');});
   root.querySelector('#tmAllReviews').addEventListener('click',function(){openOverlay('tmReviewModal');});
   root.querySelector('#tmMenu').addEventListener('click',function(e){var b=e.target.closest('[data-target]');if(!b)return;var id=b.getAttribute('data-target');closeOverlay('tmMenu');window.setTimeout(function(){var el=root.querySelector('#'+id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},80);});
-  root.querySelector('#tmToWorks').addEventListener('click',function(){root.querySelector('#tmWorks').scrollIntoView({behavior:'smooth',block:'start'});});
 
   var workFilter='all';
   function renderPortfolio(){
@@ -291,10 +307,10 @@
       row.classList.remove('open','closed');row.classList.add(open?'open':'closed');
       if(open){txt.innerHTML='<strong>Открыто до 20:00</strong>';return;}
       var next='';
-      if(day==='Mon') next='Откроется во вторник в 10:00';
-      else if(mins<600) next='Откроется сегодня в 10:00';
-      else if(day==='Sun') next='Откроется во вторник в 10:00';
-      else next='Откроется завтра в 10:00';
+      if(day==='Mon') next='откроется во вторник в 10:00';
+      else if(mins<600){txt.innerHTML='<strong>Закрыто до 10:00</strong>';return;}
+      else if(day==='Sun') next='откроется во вторник в 10:00';
+      else next='откроется завтра в 10:00';
       txt.innerHTML='<strong>Закрыто</strong> · '+next;
     }catch(e){txt.textContent='Вт–Вс 10:00–20:00';}
   }
