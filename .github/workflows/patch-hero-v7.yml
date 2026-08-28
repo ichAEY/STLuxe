@@ -1,0 +1,54 @@
+name: Patch STLuxe mobile hero v7
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-hero-v7.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch hero directly in active mobile file
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('mobile-salon-tahmina-v1.js')
+          s=p.read_text()
+          replacements=[
+          ('.tm-header{height:64px;padding:0 20px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;background:#fbf8f4}\\\n', '.tm-header{height:52px;padding:0 18px;display:grid;grid-template-columns:38px 1fr 38px;align-items:center;background:#fbf8f4}\\\n'),
+          ('.tm-brand{text-align:center;font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:31px;letter-spacing:-.035em;font-weight:400}\\\n', '.tm-brand{text-align:center;font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:27px;letter-spacing:-.035em;font-weight:400}\\\n'),
+          ('.tm-icon{width:40px;height:40px;border:0;background:transparent;padding:9px;display:grid;place-items:center}\\\n', '.tm-icon{width:36px;height:36px;border:0;background:transparent;padding:8px;display:grid;place-items:center}\\\n'),
+          ('.tm-icon.phone{border-radius:14px;background:#eee5db}.tm-icon svg{width:22px;height:22px}\\\n', '.tm-icon.phone{border-radius:13px;background:#eee5db}.tm-icon svg{width:20px;height:20px}\\\n'),
+          ('.tm-hero{background:#fbf8f4;padding:30px 22px 34px}\\\n', '.tm-hero{position:relative;z-index:4;margin:-38px 12px 0;background:#fbf8f4;padding:28px 20px 22px;border-radius:28px;box-shadow:0 12px 32px rgba(75,55,39,.06)}\\\n'),
+          ('.tm-hero h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:400;font-size:43px;line-height:1.04;letter-spacing:-.045em;margin:0 0 16px;color:#241b16}\\\n', '.tm-hero h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:400;font-size:43px;line-height:1.04;letter-spacing:-.045em;margin:0 0 9px;color:#241b16}\\\n'),
+          ('.tm-sub{font-size:17px;line-height:1.5;color:#746d67;font-weight:350;margin:0 0 22px}\\\n', '.tm-sub{font-size:17px;line-height:1.5;color:#746d67;font-weight:350;margin:0 0 18px}\\\n'),
+          ('.tm-rating{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid #eee4da;border-radius:18px;padding:11px 14px;font-size:15px;margin-bottom:19px}\\\n', '.tm-rating{display:flex;align-items:center;gap:9px;background:transparent;border:0;border-radius:0;padding:0;font-size:15px;margin:0 0 17px}\\\n'),
+          ('.tm-meta{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#746d67;line-height:1.45;margin-bottom:10px}.tm-meta svg{width:17px;height:17px;flex:0 0 auto;margin-top:1px}.tm-meta.open svg,.tm-meta.open strong{color:#2f9a63}.tm-meta.closed svg,.tm-meta.closed strong{color:#c57d34}.tm-meta strong{font-weight:500}\\\n', '.tm-meta{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#746d67;line-height:1.45;margin-bottom:12px}.tm-meta svg{width:17px;height:17px;flex:0 0 auto;margin-top:1px}.tm-meta.open svg,.tm-meta.open strong{color:#2f9a63}.tm-meta.closed svg,.tm-meta.closed strong{color:#c57d34}.tm-meta strong{font-weight:500}.tm-location{display:flex;align-items:flex-start;gap:10px;background:#efefed;border-radius:16px;padding:13px 14px;margin:4px 0 0;font-size:12px;line-height:1.45;color:#5f5a55}.tm-location svg{width:18px;height:18px;flex:0 0 auto;margin-top:0;color:#1f1d1b}\\\n'),
+          ('.tm-primary{width:100%;height:54px;border:0;border-radius:17px;background:#171717!important;color:#fff!important;font-size:16px;font-weight:450;margin-top:18px}\\\n', '.tm-primary{width:100%;height:54px;border:0;border-radius:17px;background:#171717!important;color:#fff!important;font-size:16px;font-weight:450;margin-top:18px}\\\n'),
+          ('        <h1>Салон красоты<br>для вашего образа</h1>\\\n        <p class="tm-sub">Ногти, волосы, косметология и другие бьюти-услуги в одном месте.</p>\\\n', '        <h1>STLuxe</h1>\\\n        <p class="tm-sub">Салон красоты</p>\\\n'),
+          ('        <div class="tm-meta">'+"'+icon('pin')+'"+'<span>'+"'+ADDRESS+'"+'</span></div>\\\n        <button class="tm-primary" id="tmHeroBook" type="button">Записаться</button>\\\n        <button class="tm-secondary" id="tmToWorks" type="button">Посмотреть работы</button>\\\n', '        <div class="tm-location">'+"'+icon('pin')+'"+'<span>'+"'+ADDRESS+'"+'</span></div>\\\n        <button class="tm-primary" id="tmHeroBook" type="button">Записаться</button>\\\n')
+          ]
+          for old,new in replacements:
+              if old not in s:
+                  print('MISSING:', old[:120])
+              s=s.replace(old,new)
+          p.write_text(s)
+
+          idx=Path('index.html')
+          h=idx.read_text()
+          h=h.replace('mobile-salon-tahmina-v1.js?v=20260828-1600','mobile-salon-tahmina-v1.js?v=20260828-hero7')
+          idx.write_text(h)
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mobile-salon-tahmina-v1.js index.html
+          git commit -m "Refine STLuxe mobile hero layout" || exit 0
+          git push
