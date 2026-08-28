@@ -11,14 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Remove legacy mobile layer
+      - name: Fix duplicate mobile script and force fresh hero
         run: |
           python - <<'PY'
           from pathlib import Path
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
-          s=s.replace('  <script defer src="mobile-premium.js?v=2"></script>\n','')
-          s=s.replace('<script defer src="mobile-premium.js?v=2"></script>\n','')
+          old1='<script defer src="mobile-salon-tahmina-v1.js?v=20260828-hero7"></script>\n'
+          old2='<script defer src="mobile-salon-tahmina-v1.js?v=20260828-1600"></script>\n'
+          fresh='<script defer src="mobile-salon-tahmina-v1.js?v=20260828-1629"></script>\n'
+          s=s.replace(old1,'').replace(old2,'')
+          s=s.replace('</body>',fresh+'</body>')
           p.write_text(s,encoding='utf-8')
           PY
       - name: Commit hotfix
@@ -27,6 +30,6 @@ jobs:
           git config user.email melikyan.mac@gmail.com
           git add index.html
           if ! git diff --cached --quiet; then
-            git commit -m "Fix blank mobile screen by removing legacy layer"
+            git commit -m "Apply full-width STLuxe hero and bottom booking CTA"
             git push
           fi
