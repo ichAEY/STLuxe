@@ -1,0 +1,68 @@
+name: Scrape STLuxe gallery candidates
+
+on:
+  push:
+    paths:
+      - '.github/workflows/scrape-stluxe-gallery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: python -m pip install --quiet requests pillow
+      - name: Scrape Yandex gallery image candidates
+        run: |
+          python - <<'PY'
+          import re, requests
+          from pathlib import Path
+          from PIL import Image
+          from io import BytesIO
+
+          url='https://yandex.com/maps/org/beauty_salon_stluxe/51087098664/gallery/'
+          headers={'User-Agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 Version/17.0 Mobile/15E148 Safari/604.1'}
+          html=requests.get(url,headers=headers,timeout=30).text
+          Path('/tmp/gallery.html').write_text(html,encoding='utf-8')
+          patterns=[
+            r'https://avatars\.mds\.yandex\.net/get-altay/[^"\\]+',
+            r'https:\\/\\/avatars\.mds\.yandex\.net\\/get-altay\\/[^"\\]+'
+          ]
+          urls=[]
+          for pat in patterns:
+            for m in re.findall(pat,html):
+              m=m.replace('\\/','/')
+              m=re.sub(r'/(?:orig|S|M|L|XL|XXL[^" ]*)$','',m)
+              m=m.rstrip('\\')
+              if '/get-altay/' in m and m not in urls:
+                urls.append(m)
+          print('found',len(urls),'unique altay urls')
+          out=Path('assets/images/candidates');out.mkdir(parents=True,exist_ok=True)
+          saved=0
+          for i,u in enumerate(urls[:60],1):
+            for suffix in ['/XXL_height','/orig']:
+              try:
+                r=requests.get(u+suffix,headers=headers,timeout=20)
+                r.raise_for_status()
+                im=Image.open(BytesIO(r.content)).convert('RGB')
+                if im.width<500 or im.height<350: continue
+                im.thumbnail((1400,1400),Image.Resampling.LANCZOS)
+                im.save(out/f'candidate-{i:02d}.webp','WEBP',quality=80,method=6)
+                saved+=1
+                break
+              except Exception as e:
+                continue
+          print('saved',saved)
+          PY
+      - name: Commit candidates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/images/candidates
+          git commit -m "Import STLuxe gallery candidates" || exit 0
+          git push
