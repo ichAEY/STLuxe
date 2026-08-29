@@ -1,0 +1,57 @@
+name: One-time STLuxe ticker after hero
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-ticker-after-hero.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-ticker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Move ticker after mobile hero
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          js = Path('mobile-stluxe-final-v22.js')
+          s = js.read_text()
+
+          old_css = ".tn22-ticker{display:none!important;position:absolute;z-index:7;left:0;right:0;top:682px;height:37px;border-top:1px solid #c9b9a8;border-bottom:1px solid #c9b9a8;overflow:hidden;background:#f4eee6;color:#766a61;align-items:center}.tn22-ticker div{display:flex;width:max-content;animation:tn22Tick 30s linear infinite}.tn22-ticker span{padding-right:0;font:500 10.5px/1 'Cormorant Garamond',Georgia,serif;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}"
+          new_css = ".tn22-ticker{position:relative;z-index:7;width:100%;height:37px;border-top:1px solid #c9b9a8;border-bottom:1px solid #c9b9a8;overflow:hidden;background:#f4eee6;color:#766a61;display:flex;align-items:center}.tn22-ticker div{display:flex;align-items:center;gap:18px;width:max-content;animation:tn22Tick 30s linear infinite}.tn22-ticker span{padding:0;font:500 10.5px/1 'Cormorant Garamond',Georgia,serif;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}"
+          if old_css not in s:
+              raise SystemExit('Expected hidden ticker CSS not found')
+          s = s.replace(old_css, new_css, 1)
+
+          old_html = '<div class="tn22-ticker"><div><span>Красота ✦ Уверенность ✦ Стиль ✦ Красота ✦ Уверенность ✦ Стиль ✦ </span><span>Красота ✦ Уверенность ✦ Стиль ✦ Красота ✦ Уверенность ✦ Стиль ✦ </span></div></div>`;'
+          new_html = '<div class="tn22-ticker"><div><span>✦</span><span>Красота</span><span>✦</span><span>Уверенность</span><span>✦</span><span>Стиль</span><span>✦</span><span>Красота</span><span>✦</span><span>Уверенность</span><span>✦</span><span>Стиль</span><span>✦</span><span>Красота</span><span>✦</span><span>Уверенность</span><span>✦</span><span>Стиль</span><span>✦</span><span>Красота</span><span>✦</span><span>Уверенность</span><span>✦</span><span>Стиль</span></div></div>`;'
+          if old_html not in s:
+              raise SystemExit('Expected ticker HTML not found')
+          s = s.replace(old_html, new_html, 1)
+
+          anchor = "hero.querySelector('.tn22-cta').addEventListener('click',book);"
+          replacement = "const heroTicker=hero.querySelector('.tn22-ticker');if(heroTicker)hero.insertAdjacentElement('afterend',heroTicker);\n" + anchor
+          if anchor not in s:
+              raise SystemExit('Expected hero CTA anchor not found')
+          s = s.replace(anchor, replacement, 1)
+          js.write_text(s)
+
+          index = Path('index.html')
+          h = index.read_text()
+          old_ver = 'mobile-stluxe-final-v22.js?v=20260830-v27-hero'
+          new_ver = 'mobile-stluxe-final-v22.js?v=20260830-v28-ticker'
+          if old_ver not in h:
+              raise SystemExit('Expected script cache key not found')
+          index.write_text(h.replace(old_ver, new_ver, 1))
+          PY
+      - name: Commit ticker placement
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mobile-stluxe-final-v22.js index.html
+          git commit -m "Move mobile ticker below hero"
+          git push
