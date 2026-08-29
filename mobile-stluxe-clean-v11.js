@@ -90,9 +90,9 @@
     #stluxe-clean-v11 .filled-pin{fill:#111;stroke:none}
     #stluxe-clean-v11 .star-svg{fill:#f7b500;stroke:#f7b500}
 
-    .v11-nav{height:52px;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid #e6e6e6;padding:0 16px;gap:24px;white-space:nowrap;position:relative;scroll-behavior:smooth}
+    .v11-nav{height:52px;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid #e6e6e6;padding:0 14px;gap:18px;white-space:nowrap;position:relative;scroll-behavior:smooth}
     .v11-nav::-webkit-scrollbar{display:none}
-    .v11-nav button{position:relative;flex:0 0 auto;border:0;background:transparent;padding:0;color:#8a8a8a;font-size:13.4px;line-height:52px;font-weight:400;letter-spacing:-.01em}
+    .v11-nav button{position:relative;flex:0 0 auto;border:0;background:transparent;padding:0;color:#8a8a8a;font-size:12.6px;line-height:52px;font-weight:400;letter-spacing:-.012em}
     .v11-nav button.active{color:#111}
     .v11-nav button.active:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3.5px;border-radius:5px 5px 0 0;background:#111}
     .v11-nav-sticky{position:fixed;left:0;right:0;top:0;z-index:190;transform:translateY(-105%);transition:transform .24s ease;box-shadow:0 2px 10px rgba(0,0,0,.035)}
@@ -148,7 +148,7 @@
 
     .v11-team-head,.v11-reviews-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:24px}
     .v11-team-head h2,.v11-reviews-head h2{margin:0}
-    .v11-team-all,.v11-reviews-all{border:0;background:transparent;padding:0;font-size:14px;color:#202020;text-decoration:none;white-space:nowrap}
+    .v11-team-all,.v11-reviews-all{border:0;background:transparent;padding:0;font-size:14px;color:#6d4cf6!important;text-decoration:none;white-space:nowrap}
     .v11-team-rail{display:flex;gap:22px;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:0 20px 6px;scroll-snap-type:x proximity}.v11-team-rail::-webkit-scrollbar{display:none}
     .v11-team-card{width:126px;flex:0 0 126px;border:0;background:transparent;padding:0;text-align:center;scroll-snap-align:start}
     .v11-avatar-wrap{position:relative;width:116px;height:116px;margin:0 auto 18px}
