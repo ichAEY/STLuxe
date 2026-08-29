@@ -1,0 +1,34 @@
+name: One-time STLuxe cache bust
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-cache-bust.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update mobile script cache key
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text()
+          old = 'mobile-stluxe-final-v22.js?v=20260830-v23d'
+          new = 'mobile-stluxe-final-v22.js?v=20260830-v24-navfix'
+          if old not in s:
+              raise SystemExit('Expected script reference not found')
+          p.write_text(s.replace(old, new, 1))
+          PY
+      - name: Commit cache-bust change
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Bust cache for STLuxe mobile nav fix"
+          git push
