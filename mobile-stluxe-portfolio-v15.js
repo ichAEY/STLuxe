@@ -47,7 +47,7 @@
     }
     #stluxe-tanem-v13 .tn15-item img{
       display:block;width:100%;height:100%;object-fit:cover;
-      filter:saturate(.76) sepia(.08) brightness(.89) contrast(1.03);
+      filter:saturate(.58) sepia(.12) brightness(.86) contrast(1.04);
     }
     #stluxe-tanem-v13 .tn15-a{grid-column:1;grid-row:1 / span 2}
     #stluxe-tanem-v13 .tn15-b{grid-column:2;grid-row:1}
