@@ -25,7 +25,7 @@
     {title:'Шугаринг / восковая депиляция',price:'Цена по записи',cat:'Депиляция',extra:true}
   ];
 
-  const categories=['Все','Волосы','Ногти','Педикюр','Брови','Косметология','Депиляция'];
+  const categories=['Все','Ногти','Волосы','Педикюр','Брови','Косметология','Депиляция'];
   let active='Все';
   let expanded=false;
 
@@ -53,6 +53,7 @@
     #stluxe-tanem-v13 .tn21-desc{margin-top:7px;font-family:"Manrope",Arial,sans-serif;font-size:9.5px;font-weight:400;line-height:1.45;color:rgba(224,216,207,.58)}
     #stluxe-tanem-v13 .tn21-desc-text.collapsed{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     #stluxe-tanem-v13 .tn21-more{display:inline;margin-left:5px;padding:0!important;border:0!important;background:none!important;color:#cfb18c!important;font-family:"Manrope",Arial,sans-serif!important;font-size:9.5px!important;font-weight:500!important;line-height:1!important;text-decoration:underline;text-underline-offset:2px}
+    #stluxe-tanem-v13 .tn21-more[hidden]{display:none!important}
     #stluxe-tanem-v13 .tn21-price{align-self:center;justify-self:end;text-align:right;font-family:"Cormorant Garamond",Georgia,serif;font-size:16px;font-weight:400;line-height:1.05;color:#e6c39a;white-space:normal}
     #stluxe-tanem-v13 .tn21-all{width:100%;height:46px;margin-top:21px;border-radius:5px!important;border:1px solid rgba(219,190,155,.42)!important;background:rgba(255,255,255,.015)!important;color:#eee4d9!important;display:flex;align-items:center;justify-content:center;gap:12px;box-shadow:none!important;font-family:"Manrope",Arial,sans-serif!important;font-size:11px!important;font-weight:500!important;letter-spacing:.02em}
     #stluxe-tanem-v13 .tn21-all .arrow{font-family:"Cormorant Garamond",Georgia,serif;font-size:20px;line-height:1;transform:translateY(-1px)}
@@ -85,8 +86,31 @@
   }
 
   function row(s,index){
-    const longDesc=s.desc && s.desc.length>54;
-    return `<div class="tn21-row" data-index="${index}"><div class="tn21-main"><div class="tn21-name">${s.title}</div>${s.desc?`<div class="tn21-desc"><span class="tn21-desc-text${longDesc?' collapsed':''}">${s.desc}</span>${longDesc?`<button class="tn21-more" type="button" data-more="${index}">Ещё</button>`:''}</div>`:''}</div><div class="tn21-price">${s.price}</div></div>`;
+    return `<div class="tn21-row" data-index="${index}"><div class="tn21-main"><div class="tn21-name">${s.title}</div>${s.desc?`<div class="tn21-desc"><span class="tn21-desc-text collapsed">${s.desc}</span><button class="tn21-more" type="button" data-more="${index}" hidden>Ещё</button></div>`:''}</div><div class="tn21-price">${s.price}</div></div>`;
+  }
+
+  function bindDescriptions(){
+    list.querySelectorAll('.tn21-more').forEach(btn=>btn.addEventListener('click',()=>{
+      const row=btn.closest('.tn21-row');
+      const text=row&&row.querySelector('.tn21-desc-text');
+      if(text){
+        text.classList.remove('collapsed');
+        btn.remove();
+      }
+    }));
+    requestAnimationFrame(()=>{
+      list.querySelectorAll('.tn21-desc').forEach(box=>{
+        const text=box.querySelector('.tn21-desc-text');
+        const btn=box.querySelector('.tn21-more');
+        if(!text||!btn) return;
+        if(text.scrollHeight>text.clientHeight+1){
+          btn.hidden=false;
+        }else{
+          text.classList.remove('collapsed');
+          btn.remove();
+        }
+      });
+    });
   }
 
   function renderCats(){
@@ -101,13 +125,9 @@
 
   function renderList(){
     list.innerHTML=services.map((s,i)=>serviceVisible(s)?row(s,i):'').join('');
-    list.querySelectorAll('.tn21-more').forEach(btn=>btn.addEventListener('click',()=>{
-      const r=btn.closest('.tn21-row');
-      const t=r && r.querySelector('.tn21-desc-text');
-      if(t){t.classList.remove('collapsed');btn.remove();}
-    }));
-    allBtn.classList.toggle('done',expanded && active==='Все');
-    allBtn.querySelector('span:first-child').textContent=(expanded && active==='Все')?'Все услуги показаны':'Посмотреть все услуги';
+    bindDescriptions();
+    allBtn.classList.toggle('done',expanded&&active==='Все');
+    allBtn.querySelector('span:first-child').textContent=(expanded&&active==='Все')?'Все услуги показаны':'Посмотреть все услуги';
   }
 
   allBtn.addEventListener('click',()=>{
