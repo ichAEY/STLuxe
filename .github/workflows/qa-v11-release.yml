@@ -1,0 +1,84 @@
+name: Run STLuxe v11 release QA
+on:
+  push:
+    paths:
+      - '.github/workflows/qa-v11-release.yml'
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm i playwright >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Verify release
+        run: |
+          mkdir -p qa-v11-release
+          cat > qa-v11-release/shot.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
+          await page.goto('https://ichaey.github.io/STLuxe/?qa=v11-release',{waitUntil:'networkidle',timeout:120000});
+          await page.waitForSelector('#stluxe-clean-v11',{timeout:20000});
+          await page.waitForTimeout(1400);
+          const root=page.locator('#stluxe-clean-v11');
+          const go=async(id)=>{await page.evaluate(id=>document.querySelector('#stluxe-clean-v11 #'+id).scrollIntoView({block:'start'}),id);await page.waitForTimeout(650)};
+          const activeText=()=>root.locator('.v11-nav-sticky button.active').innerText();
+          const assertActiveVisible=async expected=>{const a=root.locator('.v11-nav-sticky button.active');const t=await a.innerText();if(t!==expected)throw new Error('Expected '+expected+', got '+t);const b=await a.boundingBox();if(!b||b.x<0||b.x+b.width>390)throw new Error(expected+' is outside nav viewport: '+JSON.stringify(b));};
+
+          const count=await root.locator('#v11Bookbar .v11-book-count').innerText();
+          if(!count.includes('17 услуг')) throw new Error('Wrong service count: '+count);
+          await page.screenshot({path:'qa-v11-release/top.png'});
+          await page.screenshot({path:'qa-v11-release/full.png',fullPage:true});
+
+          await go('gallery'); await assertActiveVisible('Галерея');
+          await page.screenshot({path:'qa-v11-release/portfolio.png'});
+
+          await go('services'); await assertActiveVisible('Услуги');
+          const reserve=root.locator('.v11-service-book').first();
+          const reserveColor=await reserve.evaluate(el=>getComputedStyle(el).color);
+          if(!reserveColor.includes('255')) throw new Error('Booking text is not white: '+reserveColor);
+          await page.screenshot({path:'qa-v11-release/services.png'});
+
+          await go('team'); await assertActiveVisible('Команда');
+          await page.screenshot({path:'qa-v11-release/team.png'});
+          await root.locator('[data-master="tatiana"]').click(); await page.waitForTimeout(350);
+          await page.screenshot({path:'qa-v11-release/master.png'});
+          await root.locator('#v11MasterClose').click();
+
+          await go('reviews'); await assertActiveVisible('Отзывы');
+          await page.screenshot({path:'qa-v11-release/reviews.png'});
+
+          await go('visit'); await assertActiveVisible('Визит');
+          const bookTransform=await root.locator('#v11Bookbar').evaluate(el=>getComputedStyle(el).transform);
+          await page.screenshot({path:'qa-v11-release/visit.png'});
+
+          await go('gallery');
+          await root.locator('.v11-open-gallery').click(); await page.waitForTimeout(300);
+          const galleryActive=root.locator('#v11GalleryTabs button.active');
+          const galleryColor=await galleryActive.evaluate(el=>getComputedStyle(el).color);
+          if(!galleryColor.includes('255')) throw new Error('Gallery active text is not white: '+galleryColor);
+          await page.screenshot({path:'qa-v11-release/gallery-modal.png'});
+          await browser.close();
+          JS
+          node qa-v11-release/shot.mjs
+      - name: Commit screenshots
+        run: |
+          rm -f qa-v11-release/shot.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add qa-v11-release
+          git commit -m 'Capture STLuxe v11 release QA'
+          git push
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stluxe-v11-release-qa
+          path: qa-v11-release/*.png
+          retention-days: 1
