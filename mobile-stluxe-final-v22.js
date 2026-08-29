@@ -202,7 +202,7 @@ vFrame.addEventListener('touchend',e=>{if(e.changedTouches.length===1&&viewerSca
 // GALLERY
 const gallery=$('#tn13Gallery');let galleryCat='Салон';
 function renderGallery(){const items=GALLERY[galleryCat]||[];gallery.innerHTML=`<div class="tn22-gallery"><div class="tn22-gallery-top"><button class="tn22-gallery-back" type="button">←</button><div class="tn22-gallery-title"><strong>Галерея</strong><span>STLuxe</span></div><div></div></div><div class="tn22-gallery-tabs">${Object.keys(GALLERY).map(c=>`<button class="tn22-gallery-tab${c===galleryCat?' active':''}" type="button" data-gcat="${c}">${c}</button>`).join('')}</div><div class="tn22-gallery-grid${galleryCat==='Салон'?' salon':''}">${items.length?items.map((x,i)=>`<button class="tn22-gallery-tile" type="button" data-gi="${i}"><img src="${x.src}" alt="${x.alt}"></button>`).join(''):'<div class="tn23-gallery-empty">Фото ресниц пока не добавлены</div>'}</div></div>`;gallery.querySelector('.tn22-gallery-back').onclick=closeGallery;gallery.querySelectorAll('[data-gcat]').forEach(b=>b.onclick=()=>{galleryCat=b.dataset.gcat;renderGallery()});gallery.querySelectorAll('[data-gi]').forEach(b=>b.onclick=()=>openViewer(items,+b.dataset.gi));}
-function openGallery(cat='Салон'){galleryCat=GALLERY[cat]?cat:'Салон';renderGallery();gallery.classList.add('open');document.body.style.overflow='hidden'}function closeGallery(){gallery.classList.remove('open');document.body.style.overflow=''}
+function openGallery(cat='Салон'){galleryCat=Object.prototype.hasOwnProperty.call(GALLERY,cat)?cat:'Салон';renderGallery();gallery.classList.add('open');document.body.style.overflow='hidden'}function closeGallery(){gallery.classList.remove('open');document.body.style.overflow=''}
 
 
 
