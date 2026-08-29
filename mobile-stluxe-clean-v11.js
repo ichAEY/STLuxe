@@ -439,7 +439,7 @@
     });
   }
   $$('.v11-nav button[data-nav]').forEach(btn=>btn.addEventListener('click',()=>{
-    const el=document.getElementById(btn.dataset.nav);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+    const el=root.querySelector('#'+btn.dataset.nav);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
   }));
 
   const stickyNav=$('.v11-nav-sticky');const bookbar=$('#v11Bookbar');const overview=$('#overview');const visit=$('#visit');
@@ -448,7 +448,7 @@
     ticking=false;
     const marker=64;
     let current='overview';
-    sectionIds.forEach(id=>{const el=document.getElementById(id);if(el && el.getBoundingClientRect().top<=marker+18) current=id;});
+    sectionIds.forEach(id=>{const el=root.querySelector('#'+id);if(el && el.getBoundingClientRect().top<=marker+18) current=id;});
     syncNavTo(current);
     const overviewBottom=overview.getBoundingClientRect().bottom;
     stickyNav.classList.toggle('show',overviewBottom<=0);
