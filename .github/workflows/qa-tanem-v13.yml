@@ -1,0 +1,48 @@
+name: QA STLuxe TANEM v13
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm i playwright >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Capture TANEM mobile
+        run: |
+          mkdir -p qa-tanem-v13
+          cat > shot.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
+          await page.goto('https://ichaey.github.io/STLuxe/?qa=tanem-v13',{waitUntil:'networkidle',timeout:120000});
+          await page.waitForSelector('#stluxe-tanem-v13',{timeout:20000});
+          await page.waitForTimeout(1900);
+          const root=page.locator('#stluxe-tanem-v13');
+          await page.screenshot({path:'qa-tanem-v13/top.png',fullPage:false});
+          await page.screenshot({path:'qa-tanem-v13/full.png',fullPage:true});
+          for (const [id,name] of [['tn13Portfolio','portfolio'],['tn13Services','services'],['tn13Team','team'],['tn13Reviews','reviews'],['tn13Visit','visit']]) {
+            await root.locator('#'+id).evaluate(el=>window.scrollTo(0,el.getBoundingClientRect().top+window.scrollY-10));
+            await page.waitForTimeout(300);
+            await page.screenshot({path:`qa-tanem-v13/${name}.png`,fullPage:false});
+          }
+          await root.locator('[data-master="tatiana"]').click();
+          await page.waitForTimeout(250);
+          await page.screenshot({path:'qa-tanem-v13/master.png',fullPage:false});
+          await browser.close();
+          JS
+          node shot.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stluxe-tanem-v13-qa
+          path: qa-tanem-v13
+          retention-days: 1
