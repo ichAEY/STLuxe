@@ -1,0 +1,38 @@
+name: Fix STLuxe v11 mobile nav tracking
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-v11-mobile-nav.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Scope mobile nav to v11 root
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('mobile-stluxe-clean-v11.js')
+          s=p.read_text()
+          old1="const el=document.getElementById(btn.dataset.nav);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});"
+          new1="const el=root.querySelector('#'+btn.dataset.nav);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});"
+          old2="sectionIds.forEach(id=>{const el=document.getElementById(id);if(el && el.getBoundingClientRect().top<=marker+18) current=id;});"
+          new2="sectionIds.forEach(id=>{const el=root.querySelector('#'+id);if(el && el.getBoundingClientRect().top<=marker+18) current=id;});"
+          if old1 not in s or old2 not in s:
+              raise SystemExit('Expected navigation code not found')
+          s=s.replace(old1,new1).replace(old2,new2)
+          p.write_text(s)
+          PY
+      - name: Syntax check
+        run: node --check mobile-stluxe-clean-v11.js
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mobile-stluxe-clean-v11.js
+          git commit -m 'Fix v11 mobile section tracking'
+          git push
