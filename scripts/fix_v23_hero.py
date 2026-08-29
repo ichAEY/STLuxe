@@ -2,8 +2,8 @@ from pathlib import Path
 import re
 p=Path('mobile-stluxe-final-v22.js')
 s=p.read_text()
-old_css=".tn22-media img{width:100%;height:100%;object-fit:cover;display:block;filter:none!important}"
-new_css=".tn22-media img{width:100%;height:100%;object-fit:cover;display:block;filter:none!important;pointer-events:none;-webkit-user-drag:none;user-select:none}"
+old_css=".tn22-slide img{width:100%;height:100%;object-fit:cover;filter:none!important}"
+new_css=".tn22-slide img{width:100%;height:100%;object-fit:cover;filter:none!important;pointer-events:none;-webkit-user-drag:none;user-select:none}"
 if old_css not in s:
     raise SystemExit('hero image css marker missing')
 s=s.replace(old_css,new_css,1)
