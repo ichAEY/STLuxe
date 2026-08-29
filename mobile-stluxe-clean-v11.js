@@ -453,7 +453,7 @@
     const overviewBottom=overview.getBoundingClientRect().bottom;
     stickyNav.classList.toggle('show',overviewBottom<=0);
     const visitTop=visit.getBoundingClientRect().top;
-    const passedMain=overviewBottom<=window.innerHeight-80;
+    const passedMain=overviewBottom<=0;
     const inVisit=visitTop<=window.innerHeight-90;
     bookbar.classList.toggle('show',passedMain && !inVisit);
     bookbar.classList.toggle('hide',inVisit);
