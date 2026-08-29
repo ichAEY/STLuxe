@@ -1,0 +1,82 @@
+name: Finalize STLuxe clean mobile v11 QA
+on:
+  push:
+    paths:
+      - '.github/workflows/qa-clean-v11-final.yml'
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm i playwright >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Capture and assert mobile states
+        run: |
+          mkdir -p qa-v11-final
+          cat > qa-v11-final/shot.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
+          await page.goto('https://ichaey.github.io/STLuxe/?qa=v11-final2',{waitUntil:'networkidle',timeout:120000});
+          await page.waitForSelector('#stluxe-clean-v11',{timeout:20000});
+          await page.waitForTimeout(1500);
+          const root=page.locator('#stluxe-clean-v11');
+          const count=await root.locator('#v11Bookbar .v11-book-count').innerText();
+          if(!count.includes('17 услуг')) throw new Error('Wrong service count: '+count);
+          await page.screenshot({path:'qa-v11-final/top.png',fullPage:false});
+          await page.screenshot({path:'qa-v11-final/full.png',fullPage:true});
+
+          await root.locator('#services').scrollIntoViewIfNeeded(); await page.waitForTimeout(500);
+          const reserve=root.locator('.v11-service-book').first();
+          const reserveColor=await reserve.evaluate(el=>getComputedStyle(el).color);
+          if(!reserveColor.includes('255')) throw new Error('Service booking text is not white: '+reserveColor);
+          await page.screenshot({path:'qa-v11-final/services.png',fullPage:false});
+
+          await root.locator('#team').scrollIntoViewIfNeeded(); await page.waitForTimeout(600);
+          const activeTeam=root.locator('.v11-nav-sticky button.active');
+          if((await activeTeam.innerText())!=='Команда') throw new Error('Sticky nav did not activate Team: '+await activeTeam.innerText());
+          const teamBox=await activeTeam.boundingBox();
+          if(!teamBox || teamBox.x<0 || teamBox.x+teamBox.width>390) throw new Error('Active Team nav item is outside viewport');
+          await page.screenshot({path:'qa-v11-final/team.png',fullPage:false});
+
+          await root.locator('[data-master="tatiana"]').click(); await page.waitForTimeout(400);
+          await page.screenshot({path:'qa-v11-final/master.png',fullPage:false});
+          await root.locator('#v11MasterClose').click();
+
+          await root.locator('#reviews').scrollIntoViewIfNeeded(); await page.waitForTimeout(600);
+          const activeReviews=root.locator('.v11-nav-sticky button.active');
+          if((await activeReviews.innerText())!=='Отзывы') throw new Error('Sticky nav did not activate Reviews: '+await activeReviews.innerText());
+          const reviewBox=await activeReviews.boundingBox();
+          if(!reviewBox || reviewBox.x<0 || reviewBox.x+reviewBox.width>390) throw new Error('Active Reviews nav item is outside viewport');
+          await page.screenshot({path:'qa-v11-final/reviews.png',fullPage:false});
+
+          await root.locator('#gallery').scrollIntoViewIfNeeded(); await page.waitForTimeout(400);
+          await root.locator('.v11-open-gallery').click(); await page.waitForTimeout(350);
+          await page.screenshot({path:'qa-v11-final/gallery.png',fullPage:false});
+          const activeGallery=root.locator('#v11GalleryTabs button.active');
+          const galleryColor=await activeGallery.evaluate(el=>getComputedStyle(el).color);
+          if(!galleryColor.includes('255')) throw new Error('Gallery active text is not white: '+galleryColor);
+          await browser.close();
+          JS
+          node qa-v11-final/shot.mjs
+      - name: Commit QA screenshots
+        run: |
+          rm -f qa-v11-final/shot.mjs
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add qa-v11-final
+          git commit -m 'Capture final STLuxe v11 mobile QA'
+          git push
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stluxe-v11-final-qa
+          path: qa-v11-final/*.png
+          retention-days: 1
