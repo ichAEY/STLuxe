@@ -1,0 +1,46 @@
+name: QA consolidated STLuxe mobile v22
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm i playwright >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Capture mobile v22
+        run: |
+          mkdir -p qa-v22
+          cat > qa.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
+          await page.goto('https://ichaey.github.io/STLuxe/?qa=v22',{waitUntil:'networkidle',timeout:120000});
+          await page.waitForSelector('.tn22-card',{timeout:30000});
+          const sections=[['hero','#tn13Top'],['portfolio','#tn13Portfolio'],['services','#tn13Services'],['team','#tn13Team'],['reviews','#tn13Reviews'],['visit','#tn13Visit']];
+          for(const [name,sel] of sections){await page.locator(sel).screenshot({path:`qa-v22/${name}.png`});}
+          await page.locator('.tn22-media').click();
+          await page.waitForSelector('#tn13Gallery.open');
+          await page.locator('#tn13Gallery').screenshot({path:'qa-v22/gallery.png'});
+          await page.locator('.tn22-gallery-back').click();
+          await page.locator('[data-mid="tatiana"]').click();
+          await page.waitForSelector('.tn22-master-page.open');
+          await page.locator('.tn22-master-page').screenshot({path:'qa-v22/master-tatiana.png'});
+          console.log('services count text',await page.locator('#tn13Sticky strong').textContent());
+          await browser.close();
+          JS
+          node qa.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stluxe-mobile-v22-qa
+          path: qa-v22
+          retention-days: 1
