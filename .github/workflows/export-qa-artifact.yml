@@ -1,0 +1,19 @@
+name: Export STLuxe QA artifact
+
+on:
+  push:
+    paths:
+      - '.github/workflows/export-qa-artifact.yml'
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stluxe-v10-qa
+          path: qa/*.png
+          if-no-files-found: error
+          retention-days: 1
