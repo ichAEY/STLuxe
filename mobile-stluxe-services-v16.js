@@ -56,15 +56,19 @@
       margin:0;text-align:center;font:500 35px/.98 "Cormorant Garamond",Georgia,serif;letter-spacing:-.035em;color:#171513;
     }
     #stluxe-tanem-v13 .tn16-tabs{
-      display:flex;align-items:center;gap:9px;margin:29px 0 27px;overflow-x:auto;scrollbar-width:none;padding:0 4px;
+      display:flex;align-items:center;gap:12px;margin:29px 0 27px;overflow:hidden;padding:0 4px;
     }
-    #stluxe-tanem-v13 .tn16-tabs::-webkit-scrollbar{display:none}
     #stluxe-tanem-v13 .tn16-tab{
-      flex:0 0 auto;height:31px;padding:0 13px;border:1px solid #ddcbb9!important;border-radius:8px!important;
+      flex:0 0 auto;height:31px;padding:0!important;border:1px solid #ddcbb9!important;border-radius:8px!important;
       background:rgba(255,255,255,.30)!important;color:#3d3935!important;
       font-family:"Manrope",Arial,sans-serif!important;font-size:11.5px!important;font-weight:400!important;line-height:1!important;
       box-shadow:none!important;white-space:nowrap;
     }
+    #stluxe-tanem-v13 .tn16-tab:nth-child(1){width:41px}
+    #stluxe-tanem-v13 .tn16-tab:nth-child(2){width:51px}
+    #stluxe-tanem-v13 .tn16-tab:nth-child(3){width:60px}
+    #stluxe-tanem-v13 .tn16-tab:nth-child(4){width:52px}
+    #stluxe-tanem-v13 .tn16-tab:nth-child(5){width:87px}
     #stluxe-tanem-v13 .tn16-tab.active{background:#eadbc9!important;border-color:#eadbc9!important;color:#211e1b!important}
     #stluxe-tanem-v13 .tn16-list{display:grid;gap:9px}
     #stluxe-tanem-v13 .tn16-card{
@@ -116,7 +120,11 @@
   let current='all';
   let expanded=false;
 
-  function filtered(){return current==='all'?services:services.filter(s=>s.cat===current)}
+  function filtered(){
+    if(current!=='all') return services.filter(s=>s.cat===current);
+    const featured=[services[0],services[1],services[4],services[8],services[11]];
+    return featured.concat(services.filter(s=>!featured.includes(s)));
+  }
   function render(){
     const items=filtered();
     const visible=expanded?items:items.slice(0,5);
