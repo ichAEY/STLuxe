@@ -24,13 +24,13 @@
     #stluxe-tanem-v13 #tn13Team .tn18-wrap{width:100%;min-height:693px;padding:40px 30px 22px}
     #stluxe-tanem-v13 #tn13Team .tn18-kicker{margin:0;font-family:"Manrope",Arial,sans-serif;font-size:10px;font-weight:500;line-height:1;letter-spacing:.42em;color:#746c66;text-transform:uppercase}
     #stluxe-tanem-v13 #tn13Team .tn18-title{margin:23px 0 0;font-family:"Cormorant Garamond",Georgia,serif;font-size:39px;font-weight:500;line-height:.95;letter-spacing:-.028em;color:#171513}
-    #stluxe-tanem-v13 #tn13Team .tn18-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;row-gap:29px;margin-top:37px}
+    #stluxe-tanem-v13 #tn13Team .tn18-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;row-gap:17px;margin-top:29px}
     #stluxe-tanem-v13 #tn13Team .tn18-master{min-width:0;padding:0!important;border:0!important;background:transparent!important;color:#171513!important;text-align:center!important;box-shadow:none!important}
     #stluxe-tanem-v13 #tn13Team .tn18-portrait{width:100%;aspect-ratio:153/162;border-radius:50% / 46%;display:grid;place-items:center;overflow:hidden;background:radial-gradient(circle at 46% 38%,#d9d1c9 0 20%,#c8beb5 54%,#b6aaa0 100%);border:1px solid rgba(61,51,45,.06)}
     #stluxe-tanem-v13 #tn13Team .tn18-portrait span{font-family:"Cormorant Garamond",Georgia,serif;font-size:54px;font-weight:500;line-height:1;color:rgba(55,46,41,.72);transform:translateY(-2px)}
     #stluxe-tanem-v13 #tn13Team .tn18-name{display:block!important;margin-top:13px!important;font-family:"Cormorant Garamond",Georgia,serif!important;font-size:20px!important;font-weight:500!important;line-height:1!important;letter-spacing:-.015em!important;color:#1c1917!important}
     #stluxe-tanem-v13 #tn13Team .tn18-role{display:block!important;margin-top:6px!important;min-height:23px;font-family:"Manrope",Arial,sans-serif!important;font-size:10px!important;font-weight:400!important;line-height:1.3!important;color:#857b74!important}
-    #stluxe-tanem-v13 #tn13Team .tn18-all{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:37px;font-family:"Cormorant Garamond",Georgia,serif;font-size:17px;font-weight:500;line-height:1;color:#191614}
+    #stluxe-tanem-v13 #tn13Team .tn18-all{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:25px;font-family:"Cormorant Garamond",Georgia,serif;font-size:17px;font-weight:500;line-height:1;color:#191614}
     #stluxe-tanem-v13 #tn13Team .tn18-all i{font-style:normal;font-size:27px;line-height:.7;transform:translateY(-1px)}
     @media(max-width:360px){
       #stluxe-tanem-v13 #tn13Team .tn18-wrap{padding-left:24px;padding-right:24px}
