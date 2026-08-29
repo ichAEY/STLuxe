@@ -9,7 +9,6 @@
   if(footer) footer.style.display='none';
 
   const PHONE='+79163552222';
-  const YANDEX='https://yandex.com/maps/org/beauty_salon_stluxe/51087098664/';
   const bookSheet=root.querySelector('#tn13BookSheet');
 
   const style=document.createElement('style');
@@ -20,14 +19,14 @@
     #stluxe-tanem-v13 #tn13Visit .tn20-wrap{width:100%;min-height:693px;padding:40px 30px 0;display:flex;flex-direction:column}
     #stluxe-tanem-v13 #tn13Visit .tn20-kicker{margin:0;font-family:"Manrope",Arial,sans-serif;font-size:10px;font-weight:500;line-height:1;letter-spacing:.42em;text-transform:uppercase;color:#746c66}
     #stluxe-tanem-v13 #tn13Visit .tn20-title{margin:23px 0 0;font-family:"Cormorant Garamond",Georgia,serif;font-size:46px;font-weight:500;line-height:.93;letter-spacing:-.035em;color:#171513}
-    #stluxe-tanem-v13 #tn13Visit .tn20-info{display:grid;gap:22px;margin-top:34px}
+    #stluxe-tanem-v13 #tn13Visit .tn20-info{display:grid;gap:19px;margin-top:34px}
     #stluxe-tanem-v13 #tn13Visit .tn20-row{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;align-items:start}
     #stluxe-tanem-v13 #tn13Visit .tn20-icon{width:18px;height:18px;color:#8f837a;transform:translateY(1px)}
     #stluxe-tanem-v13 #tn13Visit .tn20-icon svg{width:100%;height:100%;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
     #stluxe-tanem-v13 #tn13Visit .tn20-main{font-family:"Cormorant Garamond",Georgia,serif;font-size:17px;font-weight:500;line-height:1.25;color:#22201d}
     #stluxe-tanem-v13 #tn13Visit .tn20-sub{display:block;margin-top:3px;font-family:"Manrope",Arial,sans-serif;font-size:10px;font-weight:400;line-height:1.35;color:#847b75}
-    #stluxe-tanem-v13 #tn13Visit .tn20-map{width:100%;height:162px;border:0;border-radius:12px;margin-top:26px;background:#e7e2dc;filter:grayscale(.78) sepia(.08) saturate(.6) contrast(.92);overflow:hidden}
-    #stluxe-tanem-v13 #tn13Visit .tn20-actions{display:grid;gap:12px;margin-top:26px}
+    #stluxe-tanem-v13 #tn13Visit .tn20-map{width:100%;height:162px;border:0;border-radius:12px;margin-top:16px;background:#e7e2dc;filter:grayscale(.78) sepia(.08) saturate(.6) contrast(.92);overflow:hidden}
+    #stluxe-tanem-v13 #tn13Visit .tn20-actions{display:grid;gap:12px;margin-top:22px}
     #stluxe-tanem-v13 #tn13Visit .tn20-btn{height:49px;border-radius:6px!important;display:flex;align-items:center;justify-content:center;text-decoration:none!important;font-family:"Cormorant Garamond",Georgia,serif!important;font-size:18px!important;font-weight:500!important;line-height:1!important;box-shadow:none!important}
     #stluxe-tanem-v13 #tn13Visit .tn20-call{border:1px solid rgba(51,44,39,.24)!important;background:transparent!important;color:#201c19!important}
     #stluxe-tanem-v13 #tn13Visit .tn20-book{border:1px solid #10100f!important;background:#10100f!important;color:#f5eee6!important}
