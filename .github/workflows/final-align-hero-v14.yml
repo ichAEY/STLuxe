@@ -1,0 +1,38 @@
+name: Final align hero v14
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  align:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply final measured alignment
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('mobile-stluxe-hero-v14.js')
+          s=p.read_text()
+          changes=[
+            ('filter:grayscale(.55) sepia(.14) saturate(.75) brightness(.72) contrast(1.08)','filter:grayscale(.68) sepia(.18) saturate(.70) brightness(.70) contrast(1.10)'),
+            ('top:338px;left:21px;right:21px;height:291px;padding:25px 20px 19px','top:343px;left:21px;right:21px;height:291px;padding:20px 20px 19px'),
+            ('font:500 47px/.90 "Cormorant Garamond",Georgia,serif;letter-spacing:.155em;text-indent:.155em','font:500 49px/.88 "Cormorant Garamond",Georgia,serif;letter-spacing:.18em;text-indent:.18em'),
+            ('letter-spacing:.34em;text-indent:.34em','letter-spacing:.38em;text-indent:.38em'),
+            ('background:#c9b49e','background:#bfa589')
+          ]
+          for a,b in changes:
+            if a in s:s=s.replace(a,b,1)
+          p.write_text(s)
+          q=Path('index.html');x=q.read_text();x=x.replace('mobile-stluxe-hero-v14.js?v=20260829-hero3','mobile-stluxe-hero-v14.js?v=20260829-hero4');q.write_text(x)
+          PY
+          node --check mobile-stluxe-hero-v14.js
+      - name: Commit if changed
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mobile-stluxe-hero-v14.js index.html
+          git commit -m "Final pixel alignment for first block"
+          git push
