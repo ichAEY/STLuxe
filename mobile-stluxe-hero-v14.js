@@ -28,14 +28,14 @@
     #stluxe-tanem-v13 .tn14-menu a span{color:#a48a80;font:600 8px/1 "Manrope",Arial,sans-serif;letter-spacing:.12em}
 
     #stluxe-tanem-v13 .tn14-photo{position:absolute;z-index:1;top:52px;left:0;width:100%;height:372px;border:0!important;padding:0!important;margin:0!important;background:#2b241f;overflow:hidden;border-radius:0!important}
-    #stluxe-tanem-v13 .tn14-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 50%;filter:grayscale(.55) sepia(.14) saturate(.75) brightness(.72) contrast(1.08)}
+    #stluxe-tanem-v13 .tn14-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 50%;filter:grayscale(.68) sepia(.18) saturate(.70) brightness(.70) contrast(1.10)}
     #stluxe-tanem-v13 .tn14-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,13,10,.03),rgba(32,22,16,.12));pointer-events:none}
 
-    #stluxe-tanem-v13 .tn14-card{position:absolute;z-index:8;top:338px;left:21px;right:21px;height:291px;padding:25px 20px 19px;border-radius:13px;background:rgba(249,246,241,.985);box-shadow:0 10px 28px rgba(47,37,31,.10);text-align:center;color:#171513}
-    #stluxe-tanem-v13 .tn14-title{margin:0;font:500 47px/.90 "Cormorant Garamond",Georgia,serif;letter-spacing:.155em;text-indent:.155em;text-transform:uppercase;color:#171513}
-    #stluxe-tanem-v13 .tn14-subtitle{margin-top:12px;font-size:10.5px;line-height:1;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;color:#635d58;font-weight:500}
+    #stluxe-tanem-v13 .tn14-card{position:absolute;z-index:8;top:343px;left:21px;right:21px;height:291px;padding:20px 20px 19px;border-radius:13px;background:rgba(249,246,241,.985);box-shadow:0 10px 28px rgba(47,37,31,.10);text-align:center;color:#171513}
+    #stluxe-tanem-v13 .tn14-title{margin:0;font:500 49px/.88 "Cormorant Garamond",Georgia,serif;letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:#171513}
+    #stluxe-tanem-v13 .tn14-subtitle{margin-top:12px;font-size:10.5px;line-height:1;letter-spacing:.38em;text-indent:.38em;text-transform:uppercase;color:#635d58;font-weight:500}
     #stluxe-tanem-v13 .tn14-ornament{display:flex;align-items:center;justify-content:center;gap:8px;margin:15px auto 14px;color:#bda388;height:10px}
-    #stluxe-tanem-v13 .tn14-ornament:before,#stluxe-tanem-v13 .tn14-ornament:after{content:"";display:block;width:45px;height:1px;background:#c9b49e}
+    #stluxe-tanem-v13 .tn14-ornament:before,#stluxe-tanem-v13 .tn14-ornament:after{content:"";display:block;width:45px;height:1px;background:#bfa589}
     #stluxe-tanem-v13 .tn14-ornament i{font-style:normal;font-size:15px;line-height:1;transform:translateY(-1px)}
     #stluxe-tanem-v13 .tn14-copy{margin:0 auto;width:270px;max-width:100%;font-size:14px;line-height:1.38;font-weight:400;letter-spacing:-.012em;color:#33302d}
     #stluxe-tanem-v13 .tn14-cta{display:flex;width:246px;max-width:100%;height:49px;margin:18px auto 0;align-items:center;justify-content:center;border:0!important;border-radius:8px!important;background:#101010!important;color:#fff!important;font-family:"Manrope",Arial,sans-serif!important;font-size:15px!important;font-weight:400!important;text-decoration:none;box-shadow:none!important}
