@@ -36,20 +36,15 @@
       margin:0!important;
       padding:0!important;
       background:
-        radial-gradient(circle at 18% 28%,rgba(121,101,80,.12),transparent 27%),
-        radial-gradient(circle at 78% 68%,rgba(105,88,70,.10),transparent 31%),
+        radial-gradient(circle at 18% 28%,rgba(121,101,80,.10),transparent 29%),
+        radial-gradient(circle at 78% 68%,rgba(105,88,70,.08),transparent 33%),
+        radial-gradient(circle at 48% 48%,rgba(255,255,255,.018),transparent 55%),
         linear-gradient(180deg,#11100e 0%,#12110f 100%)!important;
       color:#f3eee7!important;
       overflow:hidden!important;
       position:relative!important;
     }
-    #stluxe-tanem-v13 #tn13Services:before{
-      content:"";position:absolute;inset:0;pointer-events:none;opacity:.32;
-      background-image:
-        repeating-radial-gradient(circle at 20% 35%,rgba(255,255,255,.018) 0 1px,transparent 1px 4px),
-        linear-gradient(100deg,transparent 0 28%,rgba(255,255,255,.014) 43%,transparent 58% 100%);
-      mix-blend-mode:screen;
-    }
+    #stluxe-tanem-v13 #tn13Services:before{display:none!important}
     #stluxe-tanem-v13 .tn17-wrap{
       width:100%;min-height:693px;padding:38px 27px 0;position:relative;z-index:1;
     }
@@ -58,7 +53,7 @@
     }
     #stluxe-tanem-v13 .tn17-kicker{
       font-family:"Manrope",Arial,sans-serif;font-size:12px;font-weight:400;line-height:1;
-      letter-spacing:.07em;color:rgba(243,238,231,.62);white-space:nowrap;
+      letter-spacing:.07em;color:rgba(243,238,231,.62);white-space:nowrap;transform:translateY(-7px);
     }
     #stluxe-tanem-v13 .tn17-full{
       width:163px;height:34px;border:1px solid rgba(243,238,231,.42)!important;border-radius:4px!important;
@@ -72,7 +67,7 @@
       margin:10px 0 0;font-family:"Cormorant Garamond",Georgia,serif;font-size:40px;font-weight:400;
       line-height:.93;letter-spacing:-.025em;color:#f5efe8;
     }
-    #stluxe-tanem-v13 .tn17-list{margin-top:25px}
+    #stluxe-tanem-v13 .tn17-list{margin-top:7px}
     #stluxe-tanem-v13 .tn17-row{
       height:74px;display:grid;grid-template-columns:minmax(0,1fr) 82px 90px;gap:8px;align-items:center;
       border-bottom:1px solid rgba(243,238,231,.16);
@@ -137,12 +132,12 @@
     document.body.style.overflow='hidden';
   }
 
-  function row(s,extraRow=false,index=0){
+  function row(s,extraRow=false){
     return `<div class="tn17-row${extraRow?' tn17-extra':''}"><div class="tn17-name">${s.title}</div><div class="tn17-price">${s.price}</div><button class="tn17-book" type="button" data-service="${s.title}" aria-label="Записаться на ${s.title}">Записаться</button></div>`;
   }
 
   function render(){
-    list.innerHTML=featured.map((s,i)=>row(s,false,i)).join('')+extra.map((s,i)=>row(s,true,featured.length+i)).join('');
+    list.innerHTML=featured.map(s=>row(s,false)).join('')+extra.map(s=>row(s,true)).join('');
     list.querySelectorAll('.tn17-book').forEach(btn=>btn.addEventListener('click',()=>openBook(btn.dataset.service)));
   }
 
