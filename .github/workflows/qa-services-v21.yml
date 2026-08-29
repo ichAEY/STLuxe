@@ -1,0 +1,38 @@
+name: QA TANEM services v21
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm i playwright >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Capture services
+        run: |
+          mkdir -p qa-services-v21
+          cat > qa.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
+          await page.goto('https://ichaey.github.io/STLuxe/?qa=services-v21',{waitUntil:'networkidle',timeout:120000});
+          await page.waitForSelector('#tn13Services .tn21-wrap',{timeout:20000});
+          await page.locator('#tn13Services').screenshot({path:'qa-services-v21/services.png'});
+          console.log(await page.locator('#tn13Services').boundingBox());
+          await browser.close();
+          JS
+          node qa.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stluxe-services-v21-qa
+          path: qa-services-v21
+          retention-days: 1
