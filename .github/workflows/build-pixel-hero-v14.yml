@@ -1,0 +1,125 @@
+name: Build pixel matched TANEM salon hero v14
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build v14 from current TANEM salon
+        run: |
+          cp mobile-stluxe-tanem-v13.js mobile-stluxe-tanem-v14.js
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('mobile-stluxe-tanem-v14.js')
+          s=p.read_text()
+
+          # Disable the intro for a direct, reference-matched first frame.
+          s=s.replace('.tn13-intro{position:fixed;', '.tn13-intro{display:none!important;position:fixed;', 1)
+
+          hero_css=r'''
+    .tn13-hero{position:relative;height:694px;min-height:694px;background:#f5f0e9;overflow:hidden}
+    .tn13-hero>.tn13-shell{display:contents}
+    .tn13-topbar{position:absolute;z-index:45;left:0;right:0;top:0;height:52px;min-height:52px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border:0;background:#f8f4ee}
+    .tn13-brand{font:500 24px/1 "Cormorant Garamond",Georgia,serif;letter-spacing:.15em;text-decoration:none;color:#171513!important;text-transform:uppercase}
+    .tn13-menu-wrap{position:relative}
+    .tn13-menu-btn{width:30px;height:30px;border:0;border-radius:0;background:transparent;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:5px;padding:0;backdrop-filter:none}
+    .tn13-menu-btn span{display:block;width:22px;height:1px;border-radius:0;background:#171513;transition:.24s ease}
+    .tn13-menu-btn.open span:first-child{transform:translateY(6px) rotate(45deg)}.tn13-menu-btn.open span:nth-child(2){opacity:0}.tn13-menu-btn.open span:last-child{transform:translateY(-6px) rotate(-45deg)}
+    .tn13-menu{top:38px;right:0}
+
+    .tn13-ref-photo{position:absolute;z-index:1;top:52px;left:0;width:100%;height:372px;border:0;padding:0;background:#2b241f;overflow:hidden}
+    .tn13-ref-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 50%}
+    .tn13-ref-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,13,10,.02),rgba(18,13,10,.08));pointer-events:none}
+
+    .tn13-ref-card{position:absolute;z-index:8;top:338px;left:21px;right:21px;height:291px;padding:25px 20px 19px;border-radius:13px;background:rgba(249,246,241,.985);box-shadow:0 10px 28px rgba(47,37,31,.10);text-align:center;color:#171513}
+    .tn13-ref-title{margin:0;font:500 45px/.92 "Cormorant Garamond",Georgia,serif;letter-spacing:.135em;text-indent:.135em;text-transform:uppercase}
+    .tn13-ref-subtitle{margin-top:13px;font-size:10.5px;line-height:1;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;color:#635d58;font-weight:500}
+    .tn13-ref-ornament{display:flex;align-items:center;justify-content:center;gap:8px;margin:15px auto 14px;color:#c1ad98;height:10px}
+    .tn13-ref-ornament:before,.tn13-ref-ornament:after{content:"";display:block;width:45px;height:1px;background:#d3c4b5}
+    .tn13-ref-ornament i{font-style:normal;font-size:15px;line-height:1;transform:translateY(-1px)}
+    .tn13-ref-copy{margin:0 auto;width:270px;max-width:100%;font-size:14px;line-height:1.38;font-weight:400;letter-spacing:-.012em;color:#33302d}
+    .tn13-ref-cta{display:flex;width:242px;max-width:100%;height:49px;margin:20px auto 0;align-items:center;justify-content:center;border:0;border-radius:8px;background:#101010;color:#fff!important;font-size:15px;font-weight:400;text-decoration:none}
+    .tn13-ref-link{display:inline-block;margin-top:17px;padding-bottom:1px;border-bottom:1px solid #25211f;color:#25211f!important;font-size:12.5px;line-height:1.15;text-decoration:none}
+
+    .tn13-ref-ticker{position:absolute;z-index:7;left:0;right:0;top:645px;height:36px;border-top:1px solid #c9b9a8;border-bottom:1px solid #c9b9a8;overflow:hidden;background:#f4eee6;color:#766a61;display:flex;align-items:center}
+    .tn13-ref-ticker-track{display:flex;width:max-content;align-items:center;animation:tn13RefTicker 30s linear infinite}
+    .tn13-ref-ticker-track span{flex:0 0 auto;padding-right:22px;font-family:"Cormorant Garamond",Georgia,serif;font-size:10.5px;line-height:1;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap}
+    @keyframes tn13RefTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* Old v13 hero pieces are intentionally suppressed in this reference-matched version. */
+    .tn13-hero-content,.tn13-visual,.tn13-hero-bottom{display:none!important}
+          '''
+
+          pattern=r'    \.tn13-hero\{.*?    \.tn13-stats\{.*?\}\.tn13-stat\{.*?\}\.tn13-stat strong\{.*?\}\.tn13-stat span\{.*?\}\n'
+          s2,n=re.subn(pattern,hero_css+'\n',s,count=1,flags=re.S)
+          if n!=1:
+              raise SystemExit(f'hero css replacement count={n}')
+          s=s2
+
+          hero_html=r'''    <header class="tn13-hero" id="tn13Top">
+      <div class="tn13-shell">
+        <div class="tn13-topbar">
+          <a class="tn13-brand" href="#tn13Top">TANEM</a>
+          <div class="tn13-menu-wrap">
+            <button class="tn13-menu-btn" id="tn13MenuBtn" type="button" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+            <nav class="tn13-menu" id="tn13Menu">
+              <a href="#tn13Portfolio"><span>01</span>Портфолио</a>
+              <a href="#tn13Services"><span>02</span>Услуги и цены</a>
+              <a href="#tn13Team"><span>03</span>Команда</a>
+              <a href="#tn13Reviews"><span>04</span>Отзывы</a>
+              <a href="#tn13Visit"><span>05</span>Визит и запись</a>
+            </nav>
+          </div>
+        </div>
+
+        <button class="tn13-ref-photo" type="button" data-gallery="salon" aria-label="Открыть галерею салона">
+          <img src="assets/images/salon-reception.webp" alt="Интерьер салона STLuxe">
+        </button>
+
+        <div class="tn13-ref-card">
+          <h1 class="tn13-ref-title">STLuxe</h1>
+          <div class="tn13-ref-subtitle">Салон красоты</div>
+          <div class="tn13-ref-ornament" aria-hidden="true"><i>✦</i></div>
+          <p class="tn13-ref-copy">Место, где стиль становится<br>вашей естественной красотой.</p>
+          <button class="tn13-ref-cta" type="button" data-book>Записаться онлайн</button>
+          <a class="tn13-ref-link" href="#tn13Portfolio">Смотреть работы</a>
+        </div>
+
+        <div class="tn13-ref-ticker" aria-hidden="true">
+          <div class="tn13-ref-ticker-track">
+            <span>Красота ✦ Уверенность ✦ Стиль ✦ Красота ✦ Уверенность ✦ Стиль ✦ </span>
+            <span>Красота ✦ Уверенность ✦ Стиль ✦ Красота ✦ Уверенность ✦ Стиль ✦ </span>
+          </div>
+        </div>
+      </div>
+    </header>'''
+          s2,n=re.subn(r'    <header class="tn13-hero" id="tn13Top">.*?    </header>',hero_html,s,count=1,flags=re.S)
+          if n!=1:
+              raise SystemExit(f'hero html replacement count={n}')
+          s=s2
+          p.write_text(s)
+          PY
+          node --check mobile-stluxe-tanem-v14.js
+
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='<script defer src="mobile-stluxe-tanem-v13.js?v=20260829-0418"></script>'
+          new='<script defer src="mobile-stluxe-tanem-v14.js?v=20260829-hero1"></script>'
+          if old not in s:
+              raise SystemExit('active v13 script tag not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Commit v14
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mobile-stluxe-tanem-v14.js index.html
+          git commit -m "Build pixel matched first hero v14"
+          git push
