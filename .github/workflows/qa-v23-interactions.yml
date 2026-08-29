@@ -1,0 +1,122 @@
+name: QA STLuxe v23 interactions
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm i playwright >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Run interaction assertions
+        run: |
+          cat > qa-v23.mjs <<'JS'
+          import { chromium } from 'playwright';
+          const assert=(cond,msg)=>{if(!cond)throw new Error(msg)};
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
+          await page.goto('https://ichaey.github.io/STLuxe/?qa=v23b-interactions',{waitUntil:'networkidle',timeout:120000});
+          await page.waitForSelector('.tn23-section-nav',{timeout:30000});
+
+          // Hero: no autoplay; swipe changes slide.
+          const activeAlt=()=>page.locator('.tn22-slide.active img').getAttribute('alt');
+          const heroBefore=await activeAlt();
+          await page.waitForTimeout(6100);
+          const heroAfterWait=await activeAlt();
+          assert(heroBefore===heroAfterWait,`hero auto-switched: ${heroBefore} -> ${heroAfterWait}`);
+          const box=await page.locator('.tn22-media').boundingBox();
+          assert(box,'hero media missing');
+          await page.mouse.move(box.x+box.width*.8,box.y+box.height*.5);
+          await page.mouse.down();
+          await page.mouse.move(box.x+box.width*.2,box.y+box.height*.5,{steps:8});
+          await page.mouse.up();
+          await page.waitForTimeout(250);
+          const heroAfterSwipe=await activeAlt();
+          assert(heroAfterSwipe!==heroBefore,'hero swipe did not change photo');
+
+          // Tap opens salon gallery. Salon is 2 columns and lashes exists.
+          await page.locator('.tn22-media').click({position:{x:box.width*.5,y:box.height*.5}});
+          await page.waitForSelector('#tn13Gallery.open');
+          const salonCols=await page.locator('.tn22-gallery-grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
+          assert(salonCols===2,`salon gallery not 2 columns: ${salonCols}`);
+          await page.getByRole('button',{name:'Ресницы',exact:true}).click();
+          assert(await page.locator('.tn23-gallery-empty').isVisible(),'lashes empty state not visible');
+          await page.getByRole('button',{name:'Салон',exact:true}).click();
+          await page.locator('.tn22-gallery-tile').first().click();
+          await page.waitForSelector('.tn22-viewer.open');
+          assert(await page.locator('.tn22-expand').count()===0,'old expand button still exists');
+          assert(await page.locator('.tn22-view-close').isVisible(),'viewer close missing');
+          await page.locator('.tn22-view-close').click();
+          await page.locator('.tn22-gallery-back').click();
+
+          // Services: manicure first, no button overflow, fixed menu works.
+          await page.locator('#tn13Services').scrollIntoViewIfNeeded();
+          await page.waitForTimeout(400);
+          const firstCat=(await page.locator('.tn22-tab').first().textContent())?.trim();
+          assert(firstCat==='Маникюр',`first category is ${firstCat}`);
+          const serviceButtons=page.locator('.tn22-book-mini:visible');
+          for(let i=0;i<await serviceButtons.count();i++){
+            const b=await serviceButtons.nth(i).boundingBox();
+            assert(b && b.x>=0 && b.x+b.width<=390.5,`booking button ${i} overflows: ${JSON.stringify(b)}`);
+          }
+          await page.locator('.tn23-cat-menu').click();
+          assert(await page.locator('.tn23-cat-pop.open').isVisible(),'category menu did not open');
+          await page.locator('.tn23-cat-menu').click();
+          await page.waitForTimeout(250);
+          const activeNav=(await page.locator('.tn23-section-nav button.active').textContent())?.trim();
+          assert(activeNav==='Услуги',`sticky nav active is ${activeNav}`);
+
+          // Master is one long profile: four downward sections, no tabs.
+          await page.locator('#tn13Team').scrollIntoViewIfNeeded();
+          await page.locator('[data-mid="tatiana"]').click();
+          await page.waitForSelector('.tn22-master-page.open');
+          assert(await page.locator('.tn22-master-tabs').count()===0,'master tabs still exist in opened profile');
+          assert(await page.locator('.tn23-master-section').count()===4,'master does not have four stacked sections');
+          const masterText=await page.locator('.tn22-master-body').innerText();
+          for(const label of ['О мастере','Услуги','Портфолио','Отзывы']) assert(masterText.includes(label),`master section missing: ${label}`);
+          await page.locator('.tn22-back').click();
+
+          // Reviews: rows move independently, first pauses while second keeps moving; resumes after 800 ms.
+          await page.locator('#tn13Reviews').scrollIntoViewIfNeeded();
+          await page.waitForTimeout(600);
+          const tracks=page.locator('[data-track]');
+          assert(await tracks.count()===3,'review tracks count != 3');
+          const transformX=async loc=>loc.evaluate(el=>new DOMMatrixReadOnly(getComputedStyle(el).transform).m41);
+          const first=tracks.nth(0),second=tracks.nth(1);
+          const fb=await first.boundingBox();assert(fb,'first review track missing');
+          const x1=await transformX(first),x2=await transformX(second);
+          await page.mouse.move(fb.x+120,fb.y+50);await page.mouse.down();
+          await page.waitForTimeout(450);
+          const x1Paused=await transformX(first),x2Moving=await transformX(second);
+          assert(Math.abs(x1Paused-x1)<1.5,`first review row did not pause: ${x1} -> ${x1Paused}`);
+          assert(Math.abs(x2Moving-x2)>1.5,'second review row stopped with first');
+          await page.mouse.move(fb.x+175,fb.y+50,{steps:5});
+          const xDragged=await transformX(first);
+          assert(Math.abs(xDragged-x1Paused)>20,'first review row did not drag');
+          await page.mouse.up();
+          const releaseX=await transformX(first);
+          await page.waitForTimeout(450);
+          const beforeResume=await transformX(first);
+          assert(Math.abs(beforeResume-releaseX)<1.5,'first review row resumed before 0.8 sec');
+          await page.waitForTimeout(550);
+          const afterResume=await transformX(first);
+          assert(Math.abs(afterResume-beforeResume)>1.0,'first review row did not resume after 0.8 sec');
+
+          // Footer: old duplicate hidden, new TANEM footer exists.
+          const oldFooter=page.locator('#stluxe-tanem-v13 > .tn13-footer');
+          if(await oldFooter.count()) assert(await oldFooter.evaluate(el=>getComputedStyle(el).display)==='none','old duplicate footer visible');
+          assert(await page.locator('.tn22-footer').count()===1,'new TANEM footer missing or duplicated');
+
+          console.log(JSON.stringify({heroBefore,heroAfterWait,heroAfterSwipe,firstCat,activeNav,serviceButtons:await serviceButtons.count(),reviewTracks:await tracks.count()},null,2));
+          await browser.close();
+          JS
+          node qa-v23.mjs
