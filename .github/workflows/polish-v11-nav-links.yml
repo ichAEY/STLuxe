@@ -1,0 +1,41 @@
+name: Polish STLuxe v11 nav density and links
+on:
+  push:
+    paths:
+      - '.github/workflows/polish-v11-nav-links.yml'
+permissions:
+  contents: write
+jobs:
+  polish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Polish navigation and Fresha link accents
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('mobile-stluxe-clean-v11.js')
+          s=p.read_text()
+          old='.v11-nav{height:52px;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid #e6e6e6;padding:0 16px;gap:24px;white-space:nowrap;position:relative;scroll-behavior:smooth}'
+          new='.v11-nav{height:52px;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid #e6e6e6;padding:0 14px;gap:18px;white-space:nowrap;position:relative;scroll-behavior:smooth}'
+          old2='.v11-nav button{position:relative;flex:0 0 auto;border:0;background:transparent;padding:0;color:#8a8a8a;font-size:13.4px;line-height:52px;font-weight:400;letter-spacing:-.01em}'
+          new2='.v11-nav button{position:relative;flex:0 0 auto;border:0;background:transparent;padding:0;color:#8a8a8a;font-size:12.6px;line-height:52px;font-weight:400;letter-spacing:-.012em}'
+          old3='.v11-team-all,.v11-reviews-all{border:0;background:transparent;padding:0;font-size:14px;color:#202020;text-decoration:none;white-space:nowrap}'
+          new3='.v11-team-all,.v11-reviews-all{border:0;background:transparent;padding:0;font-size:14px;color:#6d4cf6!important;text-decoration:none;white-space:nowrap}'
+          for a,b in [(old,new),(old2,new2),(old3,new3)]:
+              if a not in s:
+                  raise SystemExit('Expected CSS fragment not found')
+              s=s.replace(a,b)
+          p.write_text(s)
+          PY
+      - name: Syntax check
+        run: node --check mobile-stluxe-clean-v11.js
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mobile-stluxe-clean-v11.js
+          git commit -m 'Polish v11 menu density and accent links'
+          git push
