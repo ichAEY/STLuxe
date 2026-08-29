@@ -24,7 +24,7 @@ jobs:
           const assert=(cond,msg)=>{if(!cond)throw new Error(msg)};
           const browser=await chromium.launch({headless:true});
           const page=await browser.newPage({viewport:{width:390,height:844},deviceScaleFactor:1,isMobile:true,hasTouch:true});
-          await page.goto('https://ichaey.github.io/STLuxe/?qa=v23b-interactions',{waitUntil:'networkidle',timeout:120000});
+          await page.goto('https://ichaey.github.io/STLuxe/?qa=v23d-interactions',{waitUntil:'networkidle',timeout:120000});
           await page.waitForSelector('.tn23-section-nav',{timeout:30000});
 
           // Hero: no autoplay; swipe changes slide.
@@ -58,9 +58,9 @@ jobs:
           await page.locator('.tn22-view-close').click();
           await page.locator('.tn22-gallery-back').click();
 
-          // Services: manicure first, no button overflow, fixed menu works.
-          await page.locator('#tn13Services').scrollIntoViewIfNeeded();
-          await page.waitForTimeout(400);
+          // Services: manicure first, no button overflow, fixed menu and sticky nav work.
+          await page.evaluate(()=>document.getElementById('tn13Services')?.scrollIntoView({block:'start'}));
+          await page.waitForTimeout(700);
           const firstCat=(await page.locator('.tn22-tab').first().textContent())?.trim();
           assert(firstCat==='Маникюр',`first category is ${firstCat}`);
           const serviceButtons=page.locator('.tn22-book-mini:visible');
@@ -76,7 +76,8 @@ jobs:
           assert(activeNav==='Услуги',`sticky nav active is ${activeNav}`);
 
           // Master is one long profile: four downward sections, no tabs.
-          await page.locator('#tn13Team').scrollIntoViewIfNeeded();
+          await page.evaluate(()=>document.getElementById('tn13Team')?.scrollIntoView({block:'start'}));
+          await page.waitForTimeout(300);
           await page.locator('[data-mid="tatiana"]').click();
           await page.waitForSelector('.tn22-master-page.open');
           assert(await page.locator('.tn22-master-tabs').count()===0,'master tabs still exist in opened profile');
@@ -86,7 +87,7 @@ jobs:
           await page.locator('.tn22-back').click();
 
           // Reviews: rows move independently, first pauses while second keeps moving; resumes after 800 ms.
-          await page.locator('#tn13Reviews').scrollIntoViewIfNeeded();
+          await page.evaluate(()=>document.getElementById('tn13Reviews')?.scrollIntoView({block:'start'}));
           await page.waitForTimeout(600);
           const tracks=page.locator('[data-track]');
           assert(await tracks.count()===3,'review tracks count != 3');
