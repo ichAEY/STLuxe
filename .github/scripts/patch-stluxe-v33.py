@@ -23,10 +23,13 @@ if n != 1:
     raise SystemExit('ticker css not found')
 
 # Remove ticker markup from the hero and its DOM relocation.
-s, n = re.subn(r"<div class=\\\"tn22-ticker\\\"><div>.*?</div></div>`;", "`;", s, count=1, flags=re.S)
+s, n = re.subn(r'<div class="tn22-ticker"><div>.*?</div></div>`;', '`;', s, count=1, flags=re.S)
 if n != 1:
     raise SystemExit('ticker markup not found')
-s = s.replace("const heroTicker=hero.querySelector('.tn22-ticker');if(heroTicker)hero.insertAdjacentElement('afterend',heroTicker);\n", "", 1)
+relocation = "const heroTicker=hero.querySelector('.tn22-ticker');if(heroTicker)hero.insertAdjacentElement('afterend',heroTicker);\n"
+if relocation not in s:
+    raise SystemExit('ticker relocation not found')
+s = s.replace(relocation, "", 1)
 
 # 2) Services: selected pill must always have readable white text.
 old_active = ".tn31-cat.active{background:#171513;color:#fff;border-color:#171513}"
