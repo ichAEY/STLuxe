@@ -1,0 +1,27 @@
+name: Rollback STLuxe v34
+
+on:
+  push:
+    paths:
+      - '.github/workflows/rollback-v34.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Revert v34 only
+        run: python .github/scripts/rollback-stluxe-v34.py
+      - name: Validate JS
+        run: node --check mobile-stluxe-final-v22.js
+      - name: Commit rollback
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mobile-stluxe-final-v22.js index.html
+          git diff --cached --quiet && exit 1 || true
+          git commit -m "Rollback STLuxe v34 to previous design"
+          git push
