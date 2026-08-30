@@ -1,0 +1,27 @@
+name: One-time STLuxe v34
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-v34.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply focused v34 patch
+        run: python .github/scripts/patch-stluxe-v34.py
+      - name: Validate JS
+        run: node --check mobile-stluxe-final-v22.js
+      - name: Commit focused changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mobile-stluxe-final-v22.js index.html
+          git diff --cached --quiet && exit 1 || true
+          git commit -m "Refine STLuxe hero seam and service pricing v34"
+          git push
