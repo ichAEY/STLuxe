@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Apply STLuxe v42 patch
-        run: python .github/scripts/patch-stluxe-v42.py
+        run: python .github/scripts/patch-stluxe-v42b.py
       - name: Validate JavaScript
         run: |
           node --check mobile-stluxe-final-v22.js
@@ -23,8 +23,8 @@ jobs:
         run: |
           grep -q "Мастер 1" mobile-stluxe-final-v22.js
           grep -q "Пока нет фото" mobile-stluxe-final-v22.js
-          grep -q "из \${String(viewerItems.length)" mobile-stluxe-final-v22.js
           grep -q "tn42-viewer-canvas" mobile-stluxe-final-v22.js
+          grep -q "openViewer(PORTFOLIO" mobile-stluxe-final-v22.js
           grep -q "20260831-v42-structure-gallery" index.html
           grep -q "20260831-v42-about-card" index.html
       - name: Commit v42
