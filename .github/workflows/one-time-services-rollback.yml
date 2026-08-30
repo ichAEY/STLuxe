@@ -1,0 +1,65 @@
+name: One-time STLuxe services rollback
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-services-rollback.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rollback-services:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore older mobile services block only
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('mobile-stluxe-final-v22.js')
+          s = p.read_text()
+
+          old_css = """#tn13Services{margin:0!important;padding:0!important;background:#403732!important;color:#f4ede4!important;overflow:hidden!important}.tn22-services{padding:44px 20px 38px}.tn22-services .tn22-kicker{color:#cabdb1}.tn22-services h2{font-size:42px;color:#f6efe6;white-space:nowrap}.tn22-tabs{margin:28px 0 0;display:flex;overflow-x:auto;scrollbar-width:none;border:1px solid rgba(245,235,224,.14);border-radius:14px;background:rgba(255,255,255,.035);padding:0 8px}.tn22-tabs::-webkit-scrollbar{display:none}.tn22-tab{flex:0 0 auto;height:44px;padding:0 15px;border:0;background:none;color:#cfc3b8;font:500 11px/1 'Manrope',Arial,sans-serif;white-space:nowrap;position:relative}.tn22-tab+.tn22-tab:before{content:'';position:absolute;left:0;top:12px;bottom:12px;width:1px;background:rgba(255,255,255,.08)}.tn22-tab.active{color:#fff}.tn22-tab.active:after{content:'';position:absolute;left:14px;right:14px;bottom:6px;height:1px;background:#dfc3a0}.tn22-service-list{margin-top:18px;border-top:1px solid rgba(255,255,255,.12)}.tn22-service{display:grid;grid-template-columns:minmax(0,1fr) 104px;gap:12px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.12);align-items:center}.tn22-service-name{font:500 16px/1.16 'Cormorant Garamond',Georgia,serif;color:#fff}.tn22-service-desc{margin-top:7px;font:400 10px/1.48 'Manrope',Arial,sans-serif;color:#bfb3aa}.tn22-service-desc .clip{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.tn22-more{border:0;background:none;color:#e5c9a7;padding:0 0 0 5px;font-size:10px;text-decoration:underline;text-underline-offset:2px}.tn22-service-side{text-align:right}.tn22-price{font:500 16px/1 'Cormorant Garamond',Georgia,serif;color:#ecd1ad}.tn22-book-mini{width:104px;height:31px;margin-top:9px;padding:0 4px;border:1px solid rgba(238,214,185,.35);border-radius:8px;background:#171411;color:#fff!important;font:500 9.5px/1 'Manrope',Arial,sans-serif;white-space:nowrap}.tn22-show-services{width:100%;height:46px;margin-top:20px;border:1px solid rgba(238,214,185,.32);border-radius:10px;background:rgba(255,255,255,.025);color:#f4e9df;font:500 11px/1 'Manrope',Arial,sans-serif}"""
+
+          css_pattern = r"#tn13Services\{.*?\n\n#tn13Team\{"
+          m = re.search(css_pattern, s, flags=re.S)
+          if not m:
+              raise SystemExit('Services CSS block not found')
+          s = s[:m.start()] + old_css + "\n\n#tn13Team{" + s[m.end():]
+
+          old_js = """// SERVICES
+const serv=$('#tn13Services'); const CATS=['Волосы','Маникюр','Педикюр','Наращивание','Детям','Мужчинам'];let serviceCat='Волосы',serviceExpanded={};
+serv.innerHTML=`<div class=\"tn22-services\"><p class=\"tn22-kicker\">Услуги</p><h2>Наши услуги</h2><div class=\"tn22-tabs\"></div><div class=\"tn22-service-list\"></div><button class=\"tn22-show-services\" type=\"button\"></button></div>`;
+const tabs=serv.querySelector('.tn22-tabs'),slist=serv.querySelector('.tn22-service-list'),sMore=serv.querySelector('.tn22-show-services');
+function serviceRow(s,i){return `<div class=\"tn22-service\"><div><div class=\"tn22-service-name\">${s.title}</div>${s.desc?`<div class=\"tn22-service-desc\"><span class=\"clip\">${s.desc}</span><button class=\"tn22-more\" type=\"button\" data-desc=\"${i}\" hidden>Ещё</button></div>`:''}</div><div class=\"tn22-service-side\"><div class=\"tn22-price\">${s.price}</div><button class=\"tn22-book-mini\" type=\"button\" data-book-service>Забронировать</button></div></div>`;}
+function bindDesc(){slist.querySelectorAll('[data-desc]').forEach(b=>b.onclick=()=>{const wrap=b.parentElement,txt=wrap.querySelector('.clip');txt.classList.remove('clip');b.remove()});requestAnimationFrame(()=>slist.querySelectorAll('.tn22-service-desc').forEach(w=>{const t=w.querySelector('span'),b=w.querySelector('button');if(!b)return;if(t.scrollHeight>t.clientHeight+1)b.hidden=false;else{t.classList.remove('clip');b.remove()}}));slist.querySelectorAll('[data-book-service]').forEach(b=>b.onclick=book)}
+function renderServices(){tabs.innerHTML=CATS.map(c=>`<button class=\"tn22-tab${c===serviceCat?' active':''}\" type=\"button\" data-scat=\"${c}\">${c}</button>`).join('');tabs.querySelectorAll('[data-scat]').forEach(b=>b.onclick=()=>{serviceCat=b.dataset.scat;renderServices();requestAnimationFrame(()=>b.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}))});const arr=SERVICES.filter(s=>s.cat===serviceCat),expanded=!!serviceExpanded[serviceCat],shown=expanded?arr:arr.slice(0,7);slist.innerHTML=shown.map(serviceRow).join('');bindDesc();sMore.hidden=arr.length<=7||expanded;sMore.textContent=`Показать все услуги · ${arr.length}`;sMore.onclick=()=>{serviceExpanded[serviceCat]=true;renderServices()}}
+renderServices();
+
+"""
+
+          js_pattern = r"// SERVICES\n.*?(?=// TEAM \+ TEAM SHEET)"
+          m = re.search(js_pattern, s, flags=re.S)
+          if not m:
+              raise SystemExit('Services JS block not found')
+          s = s[:m.start()] + old_js + s[m.end():]
+          p.write_text(s)
+
+          index = Path('index.html')
+          h = index.read_text()
+          old_ver = 'mobile-stluxe-final-v22.js?v=20260830-v28-ticker'
+          new_ver = 'mobile-stluxe-final-v22.js?v=20260830-v29-services-old'
+          if old_ver not in h:
+              raise SystemExit('Expected cache key not found')
+          index.write_text(h.replace(old_ver, new_ver, 1))
+          PY
+      - name: Commit services rollback
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mobile-stluxe-final-v22.js index.html
+          git commit -m "Restore older STLuxe mobile services block"
+          git push
