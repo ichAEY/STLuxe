@@ -1,0 +1,38 @@
+name: One-time STLuxe v46 theme
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-v46-theme.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  switch-theme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Switch reversible theme layer
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text()
+          old='<script defer src="mobile-stluxe-theme-v45.js?v=20260831-v45-textured-neutral"></script>'
+          new='<script defer src="mobile-stluxe-theme-v46.js?v=20260831-v46-violet-glow"></script>'
+          if old not in s:
+              raise SystemExit('v45 theme script marker not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Validate
+        run: |
+          node --check mobile-stluxe-theme-v46.js
+          grep -q 'mobile-stluxe-theme-v46.js?v=20260831-v46-violet-glow' index.html
+      - name: Commit switch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Switch STLuxe to violet glow theme v46"
+          git push
