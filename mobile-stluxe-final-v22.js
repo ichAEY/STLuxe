@@ -85,27 +85,58 @@ console.assert(SERVICES.length===190,'STLuxe services count',SERVICES.length);
 
 const GALLERY={
 'Салон':[
- {src:'assets/images/salon-reception.webp',alt:'Интерьер STLuxe'},
- {src:'assets/images/salon-nail-zone.webp',alt:'Зона салона STLuxe'}
+ {src:'salon.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon2.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon3.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon4.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon6.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon7.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon8.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon9.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon10.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon11.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon12.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon13.webp',alt:'Интерьер салона STLuxe'},
+ {src:'assets/images/salon-reception.webp',alt:'Интерьер STLuxe'}
 ],
 'Ногти':[
+ {src:'nails.webp',alt:'Маникюр STLuxe'},
+ {src:'nails2.webp',alt:'Маникюр STLuxe'},
+ {src:'nails3.webp',alt:'Маникюр STLuxe'},
+ {src:'nails4.webp',alt:'Маникюр STLuxe'},
+ {src:'nails5.webp',alt:'Маникюр STLuxe'},
+ {src:'nails6.webp',alt:'Маникюр STLuxe'},
+ {src:'nails7.webp',alt:'Маникюр STLuxe'},
+ {src:'nails8.webp',alt:'Маникюр STLuxe'},
+ {src:'nails9.webp',alt:'Маникюр STLuxe'},
+ {src:'nails10.webp',alt:'Маникюр STLuxe'},
+ {src:'nails11.webp',alt:'Маникюр STLuxe'},
+ {src:'nails12.webp',alt:'Маникюр STLuxe'},
  {src:'assets/images/nails-pink.webp',alt:'Маникюр STLuxe'},
  {src:'assets/images/nails-green.webp',alt:'Дизайн ногтей STLuxe'},
  {src:'assets/images/nails-light.webp',alt:'Маникюр STLuxe'}
 ],
 'Волосы':[
- {src:'assets/images/hair-style.webp',alt:'Работа с волосами STLuxe'},
- {src:'assets/images/hair-style.webp',alt:'Укладка волос STLuxe'}
+ {src:'hair.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair2.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair3.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair4.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair5.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair6.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair7.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair8.webp',alt:'Работа с волосами STLuxe'}
 ],
-'Ресницы':[]};
+'Ресницы':[
+ {src:'res.webp',alt:'Работа с ресницами STLuxe'}
+]};
 const PORTFOLIO=[
- {src:'assets/images/hair-style.webp',alt:'Работа с волосами STLuxe'},
- {src:'assets/images/nails-light.webp',alt:'Маникюр STLuxe'},
- {src:'assets/images/nails-green.webp',alt:'Дизайн ногтей STLuxe'},
- {src:'assets/images/nails-pink.webp',alt:'Маникюр STLuxe'},
- {src:'assets/images/salon-nail-zone.webp',alt:'Интерьер STLuxe'},
- {src:'assets/images/salon-reception.webp',alt:'Салон STLuxe'},
- {src:'assets/images/hair-style.webp',alt:'Укладка STLuxe'}
+ {src:'hair.webp',alt:'Работа с волосами STLuxe'},
+ {src:'nails2.webp',alt:'Маникюр STLuxe'},
+ {src:'res.webp',alt:'Работа с ресницами STLuxe'},
+ {src:'hair5.webp',alt:'Работа с волосами STLuxe'},
+ {src:'nails7.webp',alt:'Маникюр STLuxe'},
+ {src:'hair8.webp',alt:'Работа с волосами STLuxe'},
+ {src:'nails10.webp',alt:'Маникюр STLuxe'}
 ];
 const REVIEW_DATA=[
 ['мария н.','Очень уютная атмосфера; отдельно благодарит Татьяну за быстрый, качественный маникюр и возможность воплотить любой дизайн.'],
