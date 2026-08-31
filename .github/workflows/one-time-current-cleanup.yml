@@ -1,0 +1,123 @@
+name: One-time STLuxe current cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-current-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build one current mobile bundle
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          base = Path('mobile-stluxe-tanem-v13.js').read_text()
+          final = Path('mobile-stluxe-final-v22.js').read_text()
+          about = Path('mobile-stluxe-about-v38.js').read_text()
+
+          old_text = '<span>Записаться онлайн</span>'
+          old_handler = "hero.querySelector('.tn22-cta').addEventListener('click',book);"
+          if old_text not in final:
+              raise SystemExit('Hero booking label not found')
+          if old_handler not in final:
+              raise SystemExit('Hero booking handler not found')
+
+          final = final.replace(old_text, '<span>Записаться</span>', 1)
+          final = final.replace(
+              old_handler,
+              "hero.querySelector('.tn22-cta').addEventListener('click',()=>{window.location.href='tel:'+PHONE});",
+              1,
+          )
+
+          bundle = (
+              "/* STLuxe current mobile bundle. Structural modules consolidated 2026-08-31. */\n\n"
+              + base.rstrip() + "\n\n"
+              + final.rstrip() + "\n\n"
+              + about.rstrip() + "\n"
+          )
+          Path('mobile-stluxe-current.js').write_text(bundle)
+
+          idx = Path('index.html')
+          html = idx.read_text()
+          old_block = re.compile(
+              r'<script defer src="mobile-stluxe-tanem-v13\.js\?v=[^"]+"></script>\s*'
+              r'<script defer src="mobile-stluxe-final-v22\.js\?v=[^"]+"></script>\s*'
+              r'<script defer src="mobile-stluxe-about-v38\.js\?v=[^"]+"></script>\s*'
+              r'<script defer src="mobile-stluxe-theme-v47\.js\?v=[^"]+"></script>\s*'
+              r'<script defer src="mobile-stluxe-theme-v48\.js\?v=[^"]+"></script>\s*'
+              r'<script defer src="mobile-stluxe-theme-v49\.js\?v=[^"]+"></script>\s*'
+              r'<script defer src="mobile-stluxe-theme-v50\.js\?v=[^"]+"></script>\s*'
+              r'<script defer src="mobile-stluxe-theme-v51\.js\?v=[^"]+"></script>'
+          )
+          replacement = (
+              '<script defer src="mobile-stluxe-current.js?v=20260831-current-clean"></script>\n'
+              '<script defer src="mobile-stluxe-theme-current.js?v=20260831-current-clean"></script>'
+          )
+          html2, count = old_block.subn(replacement, html, count=1)
+          if count != 1:
+              raise SystemExit(f'Active script block replacement count={count}')
+          idx.write_text(html2)
+          PY
+
+      - name: Remove obsolete attempts and build debris
+        run: |
+          rm -f \
+            mobile-fresha-v3.js \
+            mobile-fresha-v4-patch.js \
+            mobile-fresha-v5.js \
+            mobile-luxe-v2.js \
+            mobile-premium.js \
+            mobile-salon-tahmina-v1.js \
+            mobile-stluxe-clean-v10.js \
+            mobile-stluxe-clean-v11.js \
+            mobile-stluxe-hero-v14.js \
+            mobile-stluxe-portfolio-v15.js \
+            mobile-stluxe-reviews-v19.js \
+            mobile-stluxe-services-v16.js \
+            mobile-stluxe-services-v17.js \
+            mobile-stluxe-services-v21.js \
+            mobile-stluxe-team-v18.js \
+            mobile-stluxe-visit-v20.js \
+            mobile-stluxe-theme-v44.js \
+            mobile-stluxe-theme-v45.js \
+            mobile-stluxe-theme-v46.js \
+            mobile-stluxe-theme-v47.js \
+            mobile-stluxe-theme-v48.js \
+            mobile-stluxe-theme-v49.js \
+            mobile-stluxe-theme-v50.js \
+            mobile-stluxe-theme-v51.js \
+            mobile-stluxe-tanem-v13.js \
+            mobile-stluxe-final-v22.js \
+            mobile-stluxe-about-v38.js \
+            safari-v3-deploy.txt
+          rm -f .deploy-* .trigger-*
+          rm -rf qa qa-v11-release scripts
+
+      - name: Validate current site bundle
+        run: |
+          node --check mobile-stluxe-current.js
+          node --check mobile-stluxe-theme-current.js
+          grep -q '<span>Записаться</span>' mobile-stluxe-current.js
+          grep -q "window.location.href='tel:'+PHONE" mobile-stluxe-current.js
+          ! grep -q '<span>Записаться онлайн</span>' mobile-stluxe-current.js
+          grep -q 'mobile-stluxe-current.js?v=20260831-current-clean' index.html
+          grep -q 'mobile-stluxe-theme-current.js?v=20260831-current-clean' index.html
+          test "$(grep -o 'mobile-stluxe-[^\"]*\.js' index.html | sort -u | wc -l)" -eq 2
+          for f in salon.webp salon2.webp salon3.webp salon4.webp salon6.webp salon7.webp salon8.webp salon9.webp salon10.webp salon11.webp salon12.webp salon13.webp res.webp hair.webp hair2.webp hair3.webp hair4.webp hair5.webp hair6.webp hair7.webp hair8.webp nails.webp nails2.webp nails3.webp nails4.webp nails5.webp nails6.webp nails7.webp nails8.webp nails9.webp nails10.webp nails11.webp nails12.webp assets/images/stluxe-about-logo.webp; do test -f "$f" || exit 1; done
+
+      - name: Commit clean current version
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Consolidate STLuxe into current mobile version"
+          git push
