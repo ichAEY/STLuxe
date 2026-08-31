@@ -1,0 +1,113 @@
+name: One-time STLuxe v52 gallery assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-v52-gallery-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild gallery and portfolio from uploaded images
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p=Path('mobile-stluxe-final-v22.js')
+          s=p.read_text()
+          start=s.index('const GALLERY={')
+          end=s.index('const REVIEW_DATA=[',start)
+          block="""const GALLERY={
+'Салон':[
+ {src:'salon.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon2.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon3.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon4.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon5.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon6.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon7.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon8.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon9.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon10.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon11.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon12.webp',alt:'Интерьер салона STLuxe'},
+ {src:'salon13.webp',alt:'Интерьер салона STLuxe'},
+ {src:'assets/images/salon-reception.webp',alt:'Интерьер STLuxe'},
+ {src:'assets/images/salon-nail-zone.webp',alt:'Зона салона STLuxe'}
+],
+'Ногти':[
+ {src:'nails.webp',alt:'Маникюр STLuxe'},
+ {src:'nails2.webp',alt:'Маникюр STLuxe'},
+ {src:'nails3.webp',alt:'Маникюр STLuxe'},
+ {src:'nails4.webp',alt:'Маникюр STLuxe'},
+ {src:'nails5.webp',alt:'Маникюр STLuxe'},
+ {src:'nails6.webp',alt:'Маникюр STLuxe'},
+ {src:'nails7.webp',alt:'Маникюр STLuxe'},
+ {src:'nails8.webp',alt:'Маникюр STLuxe'},
+ {src:'nails9.webp',alt:'Маникюр STLuxe'},
+ {src:'nails10.webp',alt:'Маникюр STLuxe'},
+ {src:'nails11.webp',alt:'Маникюр STLuxe'},
+ {src:'nails12.webp',alt:'Маникюр STLuxe'},
+ {src:'assets/images/nails-pink.webp',alt:'Маникюр STLuxe'},
+ {src:'assets/images/nails-green.webp',alt:'Дизайн ногтей STLuxe'},
+ {src:'assets/images/nails-light.webp',alt:'Маникюр STLuxe'}
+],
+'Волосы':[
+ {src:'hair.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair2.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair3.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair4.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair5.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair6.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair7.webp',alt:'Работа с волосами STLuxe'},
+ {src:'hair8.webp',alt:'Работа с волосами STLuxe'}
+],
+'Ресницы':[
+ {src:'res.webp',alt:'Работа с ресницами STLuxe'}
+]};
+const PORTFOLIO=[
+ {src:'hair.webp',alt:'Работа с волосами STLuxe'},
+ {src:'nails2.webp',alt:'Маникюр STLuxe'},
+ {src:'res.webp',alt:'Работа с ресницами STLuxe'},
+ {src:'hair5.webp',alt:'Работа с волосами STLuxe'},
+ {src:'nails7.webp',alt:'Маникюр STLuxe'},
+ {src:'hair8.webp',alt:'Работа с волосами STLuxe'},
+ {src:'nails10.webp',alt:'Маникюр STLuxe'}
+];
+"""
+          p.write_text(s[:start]+block+s[end:])
+
+          idx=Path('index.html')
+          h=idx.read_text()
+          h=re.sub(r'mobile-stluxe-final-v22\.js\?v=[^\"]+', 'mobile-stluxe-final-v22.js?v=20260831-v52-gallery-assets', h, count=1)
+          idx.write_text(h)
+          PY
+      - name: Validate gallery distribution
+        run: |
+          node --check mobile-stluxe-final-v22.js
+          python - <<'PY'
+          from pathlib import Path
+          s=Path('mobile-stluxe-final-v22.js').read_text()
+          gallery=s[s.index('const GALLERY={'):s.index('const REVIEW_DATA=[')]
+          expected=['hair.webp']+[f'hair{i}.webp' for i in range(2,9)]+['nails.webp']+[f'nails{i}.webp' for i in range(2,13)]+['res.webp']+['salon.webp']+[f'salon{i}.webp' for i in range(2,14)]
+          missing=[x for x in expected if x not in gallery]
+          if missing: raise SystemExit('Missing uploaded images: '+','.join(missing))
+          if "assets/images/hair-style.webp" in gallery: raise SystemExit('Legacy duplicate hair-style still present')
+          portfolio=gallery[gallery.index('const PORTFOLIO=['):]
+          if 'salon.webp' in portfolio or 'salon-' in portfolio: raise SystemExit('Salon image leaked into portfolio')
+          print('gallery ok: 15 salon, 15 nails, 8 hair, 1 lashes; portfolio has no salon')
+          PY
+          grep -q 'mobile-stluxe-final-v22.js?v=20260831-v52-gallery-assets' index.html
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mobile-stluxe-final-v22.js index.html
+          git commit -m "Use uploaded STLuxe photos in gallery and portfolio"
+          git push
