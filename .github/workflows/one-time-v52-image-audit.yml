@@ -12,28 +12,28 @@ jobs:
       - uses: actions/checkout@v4
       - name: Audit new and legacy images
         run: |
-          python -m pip install --quiet pillow
+          python -m pip install --quiet pillow opencv-python-headless
           python - <<'PY'
           from PIL import Image
           from pathlib import Path
+          import cv2, numpy as np
 
-          new = [Path('hair.webp')] + [Path(f'hair{i}.webp') for i in range(2,9)] \
-              + [Path('nails.webp')] + [Path(f'nails{i}.webp') for i in range(2,13)] \
-              + [Path('res.webp')] \
-              + [Path('salon.webp')] + [Path(f'salon{i}.webp') for i in range(2,14)]
-          old = [
-              Path('assets/images/hair-style.webp'),
-              Path('assets/images/nails-green.webp'),
-              Path('assets/images/nails-light.webp'),
-              Path('assets/images/nails-pink.webp'),
-              Path('assets/images/salon-nail-zone.webp'),
-              Path('assets/images/salon-reception.webp'),
-          ]
+          groups={
+            'hair':[Path('hair.webp')]+[Path(f'hair{i}.webp') for i in range(2,9)],
+            'nails':[Path('nails.webp')]+[Path(f'nails{i}.webp') for i in range(2,13)],
+            'lashes':[Path('res.webp')],
+            'salon':[Path('salon.webp')]+[Path(f'salon{i}.webp') for i in range(2,14)],
+          }
+          old_by_group={
+            'hair':[Path('assets/images/hair-style.webp')],
+            'nails':[Path('assets/images/nails-green.webp'),Path('assets/images/nails-light.webp'),Path('assets/images/nails-pink.webp')],
+            'salon':[Path('assets/images/salon-nail-zone.webp'),Path('assets/images/salon-reception.webp')],
+          }
+          new=sum(groups.values(),[])
+          old=sum(old_by_group.values(),[])
 
           def dhash(path, size=16):
-              im = Image.open(path).convert('L').resize((size+1,size))
-              px=list(im.getdata())
-              bits=[]
+              im = Image.open(path).convert('L').resize((size+1,size)); px=list(im.getdata()); bits=[]
               for y in range(size):
                   row=y*(size+1)
                   for x in range(size): bits.append(px[row+x] > px[row+x+1])
@@ -41,8 +41,7 @@ jobs:
               for b in bits: h=(h<<1)|int(b)
               return h
           def ahash(path, size=16):
-              im=Image.open(path).convert('L').resize((size,size))
-              px=list(im.getdata()); avg=sum(px)/len(px); h=0
+              im=Image.open(path).convert('L').resize((size,size)); px=list(im.getdata()); avg=sum(px)/len(px); h=0
               for p in px: h=(h<<1)|int(p>avg)
               return h
           def dist(a,b): return (a^b).bit_count()
@@ -53,8 +52,8 @@ jobs:
           for p in allp:
               im=Image.open(p)
               print(f'{p}\t{im.width}x{im.height}\t{im.mode}\t{p.stat().st_size} bytes')
-          print('\n=== OLD vs NEW near-duplicates (dHash<=24 or aHash<=24; 256 bits) ===')
-          found=False
+
+          print('\n=== HASH NEAR DUPLICATES ===')
           for o in old:
               if o not in hashes: continue
               best=[]
@@ -63,17 +62,41 @@ jobs:
                   dd=dist(hashes[o][0],hashes[n][0]); ad=dist(hashes[o][1],hashes[n][1])
                   best.append((min(dd,ad),dd,ad,n))
               best.sort()
-              print(f'OLD {o}:')
-              for _,dd,ad,n in best[:5]:
-                  flag='  <== NEAR' if dd<=24 or ad<=24 else ''
-                  print(f'  {n}: d={dd}, a={ad}{flag}')
-                  if flag: found=True
-          print('\n=== NEW vs NEW possible duplicates (dHash<=18 or aHash<=18) ===')
-          for i,a in enumerate(new):
-              if a not in hashes: continue
-              for b in new[i+1:]:
-                  if b not in hashes: continue
-                  dd=dist(hashes[a][0],hashes[b][0]); ad=dist(hashes[a][1],hashes[b][1])
-                  if dd<=18 or ad<=18:
-                      print(f'{a} <-> {b}: d={dd}, a={ad}')
+              print(f'OLD {o}: ' + ', '.join(f'{n}(d={dd},a={ad})' for _,dd,ad,n in best[:4]))
+
+          sift=cv2.SIFT_create(nfeatures=2500)
+          matcher=cv2.BFMatcher(cv2.NORM_L2)
+          cache={}
+          def feats(p):
+              if p not in cache:
+                  img=cv2.imread(str(p),cv2.IMREAD_GRAYSCALE)
+                  if max(img.shape)>1200:
+                      scale=1200/max(img.shape); img=cv2.resize(img,None,fx=scale,fy=scale)
+                  kp,des=sift.detectAndCompute(img,None); cache[p]=(kp,des)
+              return cache[p]
+          def score(a,b):
+              ka,da=feats(a); kb,db=feats(b)
+              if da is None or db is None or len(da)<4 or len(db)<4: return (0,0,0)
+              pairs=matcher.knnMatch(da,db,k=2)
+              good=[m for m,n in pairs if m.distance < .72*n.distance]
+              if len(good)<4: return (len(good),0,0)
+              src=np.float32([ka[m.queryIdx].pt for m in good]).reshape(-1,1,2)
+              dst=np.float32([kb[m.trainIdx].pt for m in good]).reshape(-1,1,2)
+              H,mask=cv2.findHomography(src,dst,cv2.RANSAC,5.0)
+              inliers=int(mask.sum()) if mask is not None else 0
+              ratio=inliers/max(1,min(len(ka),len(kb)))
+              return (len(good),inliers,ratio)
+
+          print('\n=== SIFT duplicate candidates (same category + old/new) ===')
+          pairs=[]
+          for g,arr in groups.items():
+              oldarr=old_by_group.get(g,[])
+              combo=arr+oldarr
+              for i,a in enumerate(combo):
+                  for b in combo[i+1:]:
+                      good,inl,ratio=score(a,b)
+                      if inl>=12 or good>=35:
+                          pairs.append((inl,good,ratio,a,b))
+          for inl,good,ratio,a,b in sorted(pairs,reverse=True):
+              print(f'{a} <-> {b}: good={good}, inliers={inl}, ratio={ratio:.4f}')
           PY
