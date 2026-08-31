@@ -1,0 +1,79 @@
+name: One-time STLuxe v52 image audit
+
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-v52-image-audit.yml'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit new and legacy images
+        run: |
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+
+          new = [Path('hair.webp')] + [Path(f'hair{i}.webp') for i in range(2,9)] \
+              + [Path('nails.webp')] + [Path(f'nails{i}.webp') for i in range(2,13)] \
+              + [Path('res.webp')] \
+              + [Path('salon.webp')] + [Path(f'salon{i}.webp') for i in range(2,14)]
+          old = [
+              Path('assets/images/hair-style.webp'),
+              Path('assets/images/nails-green.webp'),
+              Path('assets/images/nails-light.webp'),
+              Path('assets/images/nails-pink.webp'),
+              Path('assets/images/salon-nail-zone.webp'),
+              Path('assets/images/salon-reception.webp'),
+          ]
+
+          def dhash(path, size=16):
+              im = Image.open(path).convert('L').resize((size+1,size))
+              px=list(im.getdata())
+              bits=[]
+              for y in range(size):
+                  row=y*(size+1)
+                  for x in range(size): bits.append(px[row+x] > px[row+x+1])
+              h=0
+              for b in bits: h=(h<<1)|int(b)
+              return h
+          def ahash(path, size=16):
+              im=Image.open(path).convert('L').resize((size,size))
+              px=list(im.getdata()); avg=sum(px)/len(px); h=0
+              for p in px: h=(h<<1)|int(p>avg)
+              return h
+          def dist(a,b): return (a^b).bit_count()
+
+          allp=[p for p in new+old if p.exists()]
+          hashes={p:(dhash(p),ahash(p)) for p in allp}
+          print('=== FILES ===')
+          for p in allp:
+              im=Image.open(p)
+              print(f'{p}\t{im.width}x{im.height}\t{im.mode}\t{p.stat().st_size} bytes')
+          print('\n=== OLD vs NEW near-duplicates (dHash<=24 or aHash<=24; 256 bits) ===')
+          found=False
+          for o in old:
+              if o not in hashes: continue
+              best=[]
+              for n in new:
+                  if n not in hashes: continue
+                  dd=dist(hashes[o][0],hashes[n][0]); ad=dist(hashes[o][1],hashes[n][1])
+                  best.append((min(dd,ad),dd,ad,n))
+              best.sort()
+              print(f'OLD {o}:')
+              for _,dd,ad,n in best[:5]:
+                  flag='  <== NEAR' if dd<=24 or ad<=24 else ''
+                  print(f'  {n}: d={dd}, a={ad}{flag}')
+                  if flag: found=True
+          print('\n=== NEW vs NEW possible duplicates (dHash<=18 or aHash<=18) ===')
+          for i,a in enumerate(new):
+              if a not in hashes: continue
+              for b in new[i+1:]:
+                  if b not in hashes: continue
+                  dd=dist(hashes[a][0],hashes[b][0]); ad=dist(hashes[a][1],hashes[b][1])
+                  if dd<=18 or ad<=18:
+                      print(f'{a} <-> {b}: d={dd}, a={ad}')
+          PY
