@@ -223,3 +223,116 @@ document.head.appendChild(style);
 const meta=document.querySelector('meta[name="theme-color"]');
 if(meta)meta.setAttribute('content','#fafafa');
 })();
+
+(function(){
+'use strict';
+if(!window.matchMedia||!window.matchMedia('(max-width:767px)').matches)return;
+
+const PRICE_PAGES=Array.from({length:7},(_,i)=>`stluxe_price_page_${i+1}.webp`);
+const PRICE_NAMES=['Парикмахерские услуги','Осветление и окрашивание','Уход за волосами','Мужские и детские','Маникюр','Педикюр','Наращивание ногтей'];
+let priceMode=false,paintingPrice=false;
+
+const featureStyle=document.createElement('style');
+featureStyle.id='stluxe-price-feature';
+featureStyle.textContent=`
+@media(max-width:767px){
+#tn13Services .stl-price-card{position:relative;overflow:hidden;margin-top:28px;padding:24px 22px 22px;border:1px solid rgba(255,255,255,.12);border-radius:15px;background:radial-gradient(210px 160px at 104% 4%,rgba(143,85,181,.20),transparent 70%),rgba(255,255,255,.025);box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}
+#tn13Services .stl-price-card:after{content:'';position:absolute;right:-62px;top:18px;width:190px;height:150px;pointer-events:none;opacity:.52;background:radial-gradient(ellipse at 30% 50%,rgba(141,78,169,.27),transparent 58%),radial-gradient(ellipse at 66% 36%,rgba(111,61,130,.20),transparent 55%);transform:rotate(-18deg);filter:blur(2px)}
+#tn13Services .stl-price-title{position:relative;z-index:1;margin:0;color:#f7f3f8;font:500 40px/.95 'Cormorant Garamond',Georgia,serif;letter-spacing:-.03em}
+#tn13Services .stl-price-copy{position:relative;z-index:1;margin:10px 0 0;color:#aFA7b2;font:400 11.5px/1.45 'Manrope',Arial,sans-serif}
+#tn13Services .stl-price-actions{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 104px;gap:10px;margin-top:20px}
+#tn13Services .stl-price-open,#tn13Services .stl-price-pdf{height:62px;border-radius:13px;font:500 13px/1 'Manrope',Arial,sans-serif;display:flex;align-items:center;justify-content:center;gap:10px}
+#tn13Services .stl-price-open{border:1px solid rgba(190,139,211,.30);background:linear-gradient(135deg,#8d45b4,#77369d);color:#fff!important;box-shadow:0 10px 28px rgba(82,39,100,.25)}
+#tn13Services .stl-price-pdf{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.035);color:#eee8f0!important}
+#tn13Services .stl-price-open svg,#tn13Services .stl-price-pdf svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#tn13Services .stl-price-open .stl-price-arrow{font-size:23px;line-height:1;margin-left:2px}
+#tn13Gallery.stl-price-mode .tn22-gallery-grid{grid-template-columns:1fr!important;gap:14px!important;margin-top:18px!important}
+#tn13Gallery .stl-price-tile{position:relative;display:block;width:100%;padding:0;border:0;border-radius:12px;overflow:hidden;background:#f5efe8!important;box-shadow:0 10px 30px rgba(0,0,0,.18)!important;aspect-ratio:auto!important}
+#tn13Gallery .stl-price-tile img{display:block;width:100%;height:auto!important;object-fit:contain!important;background:#f8f4ef}
+#tn13Gallery .stl-price-badge{position:absolute;right:10px;bottom:10px;min-width:42px;height:28px;padding:0 9px;border-radius:999px;background:rgba(29,26,32,.82);backdrop-filter:blur(8px);color:#fff;display:flex;align-items:center;justify-content:center;font:500 10px/1 'Manrope',Arial,sans-serif}
+#tn13Gallery .stl-price-caption{position:absolute;left:10px;bottom:10px;max-width:68%;padding:7px 9px;border-radius:9px;background:rgba(29,26,32,.78);backdrop-filter:blur(8px);color:#eee8f0;font:500 9px/1.25 'Manrope',Arial,sans-serif}
+.stl-price-viewer{position:fixed;z-index:260;inset:0;display:none;align-items:center;justify-content:center;padding:54px 16px 52px;background:rgba(17,14,19,.95);backdrop-filter:blur(10px)}
+.stl-price-viewer.open{display:flex}
+.stl-price-viewer img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;background:#f8f4ef;box-shadow:0 20px 70px rgba(0,0,0,.36)}
+.stl-price-viewer .stl-pv-close{position:absolute;top:max(12px,env(safe-area-inset-top));right:14px;width:42px;height:42px;border:1px solid rgba(255,255,255,.18);border-radius:50%;background:rgba(255,255,255,.07);color:#fff;font-size:25px}
+.stl-price-viewer .stl-pv-nav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:58px;border:0;background:rgba(28,24,31,.64);color:#fff;font-size:35px;border-radius:12px}
+.stl-price-viewer .stl-pv-prev{left:4px}.stl-price-viewer .stl-pv-next{right:4px}
+.stl-price-viewer .stl-pv-count{position:absolute;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.09);color:#fff;font:500 11px/1 'Manrope',Arial,sans-serif}
+}
+`;
+document.head.appendChild(featureStyle);
+
+const EYE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>';
+const DOWNLOAD='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14"/></svg>';
+
+function ensureViewer(){
+  let viewer=document.querySelector('.stl-price-viewer');
+  if(viewer)return viewer;
+  viewer=document.createElement('div');viewer.className='stl-price-viewer';
+  viewer.innerHTML='<button class="stl-pv-close" type="button" aria-label="Закрыть">×</button><button class="stl-pv-nav stl-pv-prev" type="button" aria-label="Предыдущая">‹</button><img alt="Прайс STLuxe"><button class="stl-pv-nav stl-pv-next" type="button" aria-label="Следующая">›</button><div class="stl-pv-count"></div>';
+  document.body.appendChild(viewer);
+  let index=0;const img=viewer.querySelector('img'),count=viewer.querySelector('.stl-pv-count');
+  const paint=()=>{img.src=PRICE_PAGES[index];img.alt=`Прайс STLuxe, страница ${index+1}`;count.textContent=`${index+1} / ${PRICE_PAGES.length}`};
+  viewer.openAt=i=>{index=Math.max(0,Math.min(PRICE_PAGES.length-1,i));paint();viewer.classList.add('open');document.body.style.overflow='hidden'};
+  viewer.querySelector('.stl-pv-close').onclick=()=>{viewer.classList.remove('open');if(!document.querySelector('#tn13Gallery.open'))document.body.style.overflow=''};
+  viewer.querySelector('.stl-pv-prev').onclick=()=>{index=(index-1+PRICE_PAGES.length)%PRICE_PAGES.length;paint()};
+  viewer.querySelector('.stl-pv-next').onclick=()=>{index=(index+1)%PRICE_PAGES.length;paint()};
+  return viewer;
+}
+
+function renderPriceGallery(){
+  const gallery=document.querySelector('#tn13Gallery');if(!gallery||!gallery.classList.contains('open'))return;
+  const tabs=gallery.querySelector('.tn22-gallery-tabs'),grid=gallery.querySelector('.tn22-gallery-grid');if(!tabs||!grid)return;
+  paintingPrice=true;
+  let tab=tabs.querySelector('[data-stl-price-tab]');
+  if(!tab){tab=document.createElement('button');tab.type='button';tab.className='tn22-gallery-tab';tab.dataset.stlPriceTab='1';tab.textContent='Прайс';tabs.appendChild(tab)}
+  tab.onclick=()=>{priceMode=true;renderPriceGallery()};
+  tabs.querySelectorAll('[data-gcat]').forEach(b=>{if(!b.dataset.stlPriceBound){b.dataset.stlPriceBound='1';b.addEventListener('click',()=>{priceMode=false})}});
+  tabs.querySelectorAll('.tn22-gallery-tab').forEach(b=>b.classList.toggle('active',b===tab));
+  gallery.classList.add('stl-price-mode');grid.classList.remove('salon');grid.classList.add('stl-price-grid');
+  grid.innerHTML=PRICE_PAGES.map((src,i)=>`<button class="stl-price-tile" type="button" data-stl-price-index="${i}"><img src="${src}" loading="${i?'lazy':'eager'}" alt="Прайс STLuxe, страница ${i+1}"><span class="stl-price-caption">${PRICE_NAMES[i]}</span><span class="stl-price-badge">${i+1} / 7</span></button>`).join('');
+  grid.querySelectorAll('[data-stl-price-index]').forEach(b=>b.onclick=()=>ensureViewer().openAt(+b.dataset.stlPriceIndex));
+  requestAnimationFrame(()=>{tab.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});paintingPrice=false});
+}
+
+function ensurePriceTab(){
+  const gallery=document.querySelector('#tn13Gallery');if(!gallery||!gallery.classList.contains('open'))return;
+  const tabs=gallery.querySelector('.tn22-gallery-tabs');if(!tabs)return;
+  let tab=tabs.querySelector('[data-stl-price-tab]');
+  if(!tab){tab=document.createElement('button');tab.type='button';tab.className='tn22-gallery-tab';tab.dataset.stlPriceTab='1';tab.textContent='Прайс';tabs.appendChild(tab)}
+  tab.onclick=()=>{priceMode=true;renderPriceGallery()};
+  tabs.querySelectorAll('[data-gcat]').forEach(b=>{if(!b.dataset.stlPriceBound){b.dataset.stlPriceBound='1';b.addEventListener('click',()=>{priceMode=false;gallery.classList.remove('stl-price-mode')})}});
+  if(priceMode)renderPriceGallery();
+}
+
+function openPriceGallery(){
+  priceMode=true;
+  const gallery=document.querySelector('#tn13Gallery');
+  const openGalleryButton=document.querySelector('.tn22-port-all');
+  if(openGalleryButton)openGalleryButton.click();
+  else if(gallery){gallery.classList.add('open');document.body.style.overflow='hidden'}
+  requestAnimationFrame(()=>requestAnimationFrame(renderPriceGallery));
+}
+
+function printPrice(){
+  const w=window.open('','_blank');if(!w)return;
+  const pages=PRICE_PAGES.map(src=>`<img src="${src}" alt="Прайс STLuxe">`).join('');
+  w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>Прайс STLuxe</title><style>html,body{margin:0;background:#fff}img{display:block;width:100%;height:auto;page-break-after:always}img:last-child{page-break-after:auto}@page{margin:0}</style></head><body>${pages}<script>window.onload=function(){setTimeout(function(){window.print()},250)}<\/script></body></html>`);
+  w.document.close();
+}
+
+function initPriceFeature(){
+  const services=document.querySelector('#tn13Services .tn31-services');
+  if(!services){setTimeout(initPriceFeature,80);return}
+  if(!services.querySelector('.stl-price-card')){
+    const card=document.createElement('section');card.className='stl-price-card';
+    card.innerHTML=`<h3 class="stl-price-title">Полный прайс</h3><p class="stl-price-copy">Можно открыть и сохранить полный прайс</p><div class="stl-price-actions"><button class="stl-price-open" type="button">${EYE}<span>Смотреть прайс</span><span class="stl-price-arrow">→</span></button><button class="stl-price-pdf" type="button">${DOWNLOAD}<span>PDF</span></button></div>`;
+    const more=services.querySelector('.tn31-service-more');if(more)more.insertAdjacentElement('afterend',card);else services.appendChild(card);
+    card.querySelector('.stl-price-open').onclick=openPriceGallery;card.querySelector('.stl-price-pdf').onclick=printPrice;
+  }
+  const gallery=document.querySelector('#tn13Gallery');
+  if(gallery&&!gallery.dataset.stlPriceObserved){gallery.dataset.stlPriceObserved='1';new MutationObserver(()=>{if(!paintingPrice)requestAnimationFrame(ensurePriceTab)}).observe(gallery,{childList:true,subtree:true})}
+}
+
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initPriceFeature,{once:true});else initPriceFeature();
+})();
