@@ -345,14 +345,14 @@
     const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){document.querySelectorAll('.nav-chip').forEach(x=>x.classList.toggle('active',x.dataset.target===entry.target.id))}})},{rootMargin:'-25% 0px -65% 0px'});
     watched.forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el)});
 
-    function openBooking(service=''){const modal=document.getElementById('bookingModal');document.getElementById('bookingText').textContent=service?`Вы выбрали: ${service}. Онлайн-ссылка салона не указана, поэтому сейчас запись ведём через прямой контакт.`:'Онлайн-ссылка салона в карточке не указана, поэтому сейчас запись ведём через прямой контакт.';modal.classList.add('open');document.body.style.overflow='hidden'}
+    function openBooking(service=''){const modal=document.getElementById('bookingModal');document.getElementById('bookingText').textContent=service?`Вы выбрали: ${service}. Онлайн-ссылка салона не указана, поэтому сейчас запись ведём через прямой контакт.`:'Онлайн-ссылка салона не указана, поэтому сейчас запись ведём через прямой контакт.';modal.classList.add('open');document.body.style.overflow='hidden'}
     function openRole(title,services){document.getElementById('roleTitle').textContent=title;document.getElementById('roleServices').innerHTML=services.split('|').map(s=>`<div class="role-service">${s}</div>`).join('');document.getElementById('roleModal').classList.add('open');document.body.style.overflow='hidden'}
     function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow=''}
     function closeOnBackdrop(e,id){if(e.target.id===id)closeModal(id)}
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLightbox();document.querySelectorAll('.modal.open').forEach(x=>x.classList.remove('open'));document.body.style.overflow=''}});
   </script>
-<script defer src="mobile-stluxe-current.js?v=20260831-current-clean"></script>
-<script defer src="mobile-stluxe-theme-current.js?v=20260831-current-clean"></script>
+<script defer src="mobile-stluxe-current.js?v=20260907-photo-price-zoom2"></script>
+<script defer src="mobile-stluxe-theme-current.js?v=20260907-photo-price-zoom2"></script>
 
 
 
