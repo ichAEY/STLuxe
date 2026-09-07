@@ -245,7 +245,7 @@ base.onload=()=>{
   bindPriceTiles();
 
   const pricing=document.createElement('script');
-  pricing.src='mobile-stluxe-pricing-current.js?v=20260907-full-price-v1';
+  pricing.src='mobile-stluxe-pricing-grouped.js?v=20260907-grouped-price-v2';
   document.head.appendChild(pricing);
 };
 base.onerror=()=>console.error('STLuxe theme base failed to load');
