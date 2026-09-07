@@ -2,6 +2,25 @@
 'use strict';
 if(!window.matchMedia||!window.matchMedia('(max-width:767px)').matches)return;
 
+function applyContentFixes(){
+  const portfolioButton=document.querySelector('#tn13Portfolio .tn22-port-all');
+  if(portfolioButton&&portfolioButton.textContent.trim()!=='Открыть галерею →'){
+    portfolioButton.innerHTML='Открыть галерею <span>→</span>';
+  }
+
+  document.querySelectorAll('#tn13Services .tn31-service-row').forEach(row=>{
+    const name=(row.querySelector('.tn31-service-name')?.textContent||'').trim();
+    const detail=row.querySelector('.tn31-service-detail');
+    if((name==='Стрижка простая / модельная'||name==='Стрижка мужская')&&detail&&(detail.textContent||'').trim()==='Мужская'){
+      detail.remove();
+    }
+  });
+}
+
+const contentObserver=new MutationObserver(applyContentFixes);
+contentObserver.observe(document.documentElement,{childList:true,subtree:true});
+applyContentFixes();
+
 const SALON_IMAGES=[
   {src:'stluxe_reception.webp',alt:'Ресепшен STLuxe'},
   {src:'stluxe_interior.webp',alt:'Интерьер STLuxe'},
