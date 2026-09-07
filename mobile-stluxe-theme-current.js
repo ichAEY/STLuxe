@@ -212,6 +212,29 @@ base.onload=()=>{
       paintPrice(priceIndex+1);
     },true);
 
+    let swipeStartX=null;
+    let swipeStartY=null;
+    p.viewer.addEventListener('touchstart',e=>{
+      if(!priceViewerActive||e.touches.length!==1){swipeStartX=null;swipeStartY=null;return;}
+      swipeStartX=e.touches[0].clientX;
+      swipeStartY=e.touches[0].clientY;
+    },{capture:true,passive:true});
+
+    p.viewer.addEventListener('touchend',e=>{
+      if(!priceViewerActive||swipeStartX===null||swipeStartY===null||!e.changedTouches.length)return;
+      const dx=e.changedTouches[0].clientX-swipeStartX;
+      const dy=e.changedTouches[0].clientY-swipeStartY;
+      swipeStartX=null;
+      swipeStartY=null;
+      if(Math.abs(dx)<55||Math.abs(dx)<=Math.abs(dy)*1.15)return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      if(dx>0)paintPrice(priceIndex+1);
+      else paintPrice(priceIndex-1);
+    },{capture:true,passive:false});
+
+    p.viewer.addEventListener('touchcancel',()=>{swipeStartX=null;swipeStartY=null;},{capture:true,passive:true});
+
     if(p.close)p.close.addEventListener('click',()=>{priceViewerActive=false},true);
     p.viewer.addEventListener('click',e=>{if(e.target===p.viewer)priceViewerActive=false},true);
 
