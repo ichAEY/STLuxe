@@ -318,7 +318,7 @@ base.onload=()=>{
   document.head.appendChild(pricing);
 
   const heroGallery=document.createElement('script');
-  heroGallery.src='mobile-stluxe-hero-gallery.js?v=20260907-hero-controls-v3';
+  heroGallery.src='mobile-stluxe-hero-gallery.js?v=20260907-gallery-polish-v4';
   document.head.appendChild(heroGallery);
 };
 base.onerror=()=>console.error('STLuxe theme base failed to load');
