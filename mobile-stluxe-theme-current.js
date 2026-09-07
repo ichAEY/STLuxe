@@ -71,6 +71,18 @@ base.onload=()=>{
       100%{left:132%}
     }
     @media(prefers-reduced-motion:reduce){#tn13Services .stl-price-open:after{animation:none!important}}
+
+    /* Keep gallery categories available while scrolling */
+    #tn13Gallery .tn22-gallery-tabs{
+      position:-webkit-sticky!important;
+      position:sticky!important;
+      top:8px!important;
+      z-index:45!important;
+      background:rgba(36,33,39,.96)!important;
+      -webkit-backdrop-filter:blur(14px) saturate(135%)!important;
+      backdrop-filter:blur(14px) saturate(135%)!important;
+      box-shadow:0 8px 24px rgba(0,0,0,.16)!important;
+    }
   }
   `;
   document.head.appendChild(tweakStyle);
