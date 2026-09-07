@@ -99,24 +99,24 @@ base.onload=()=>{
     }
     #tn13Visit .tn22-footer{
       height:auto!important;
-      min-height:96px!important;
-      padding:17px 24px 18px!important;
+      min-height:92px!important;
+      padding:15px 24px 16px!important;
       display:flex!important;
       flex-direction:column!important;
       align-items:center!important;
       justify-content:center!important;
-      gap:8px!important;
+      gap:5px!important;
       text-align:center!important;
     }
     #tn13Visit .stl-tanem-mark{
-      width:34px!important;
-      height:34px!important;
+      width:31px!important;
+      height:31px!important;
       border:1px solid rgba(255,255,255,.34)!important;
-      border-radius:10px!important;
+      border-radius:9px!important;
       display:grid!important;
       place-items:center!important;
       color:#fff!important;
-      font:600 22px/1 'Cormorant Garamond',Georgia,serif!important;
+      font:600 20px/1 'Cormorant Garamond',Georgia,serif!important;
     }
     #tn13Visit .stl-tanem-credit{
       max-width:none!important;
@@ -125,6 +125,11 @@ base.onload=()=>{
       color:rgba(255,255,255,.72)!important;
       font:500 10px/1.2 'Manrope',Arial,sans-serif!important;
       letter-spacing:.04em!important;
+    }
+    #tn13Visit .stl-tanem-credit strong{
+      color:rgba(255,255,255,.92)!important;
+      font-size:11.5px!important;
+      font-weight:600!important;
     }
   }
   `;
@@ -149,7 +154,7 @@ base.onload=()=>{
     const footer=document.querySelector('#tn13Visit .tn22-footer');
     if(!footer||footer.dataset.stlTanemCredit==='1')return;
     footer.dataset.stlTanemCredit='1';
-    footer.innerHTML='<span class="stl-tanem-mark">T</span><span class="stl-tanem-credit">Создано в TANEM.ru</span>';
+    footer.innerHTML='<span class="stl-tanem-mark">T</span><span class="stl-tanem-credit">Создано в <strong>TANEM.ru</strong></span>';
   }
 
   function ensureStickyGalleryTabs(){
