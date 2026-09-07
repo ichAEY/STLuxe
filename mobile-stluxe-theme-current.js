@@ -72,16 +72,31 @@ base.onload=()=>{
     }
     @media(prefers-reduced-motion:reduce){#tn13Services .stl-price-open:after{animation:none!important}}
 
-    /* Keep gallery categories available while scrolling */
-    #tn13Gallery .tn22-gallery-tabs{
+    /* Carry a piece of the gallery background together with the category row */
+    #tn13Gallery .stl-gallery-tabs-sticky{
       position:-webkit-sticky!important;
       position:sticky!important;
-      top:8px!important;
+      top:0!important;
       z-index:45!important;
-      background:rgba(36,33,39,.96)!important;
+      margin:26px -18px 0!important;
+      padding:8px 18px 18px!important;
+      background:rgba(36,33,39,.98)!important;
       -webkit-backdrop-filter:blur(14px) saturate(135%)!important;
       backdrop-filter:blur(14px) saturate(135%)!important;
-      box-shadow:0 8px 24px rgba(0,0,0,.16)!important;
+      box-shadow:0 9px 24px rgba(0,0,0,.14)!important;
+    }
+    #tn13Gallery .stl-gallery-tabs-sticky .tn22-gallery-tabs{
+      position:relative!important;
+      top:auto!important;
+      z-index:auto!important;
+      margin-top:0!important;
+      background:rgba(255,255,255,.025)!important;
+      -webkit-backdrop-filter:none!important;
+      backdrop-filter:none!important;
+      box-shadow:none!important;
+    }
+    #tn13Gallery .stl-gallery-tabs-sticky + .tn22-gallery-grid{
+      margin-top:0!important;
     }
   }
   `;
@@ -101,6 +116,17 @@ base.onload=()=>{
     if(pdf)pdf.remove();
   };
   applyTweak();
+
+  function ensureStickyGalleryTabs(){
+    const gallery=document.querySelector('#tn13Gallery');
+    if(!gallery)return;
+    const tabs=gallery.querySelector('.tn22-gallery-tabs');
+    if(!tabs||tabs.parentElement?.classList.contains('stl-gallery-tabs-sticky'))return;
+    const wrap=document.createElement('div');
+    wrap.className='stl-gallery-tabs-sticky';
+    tabs.parentNode.insertBefore(wrap,tabs);
+    wrap.appendChild(tabs);
+  }
 
   const PRICE_PAGES=Array.from({length:7},(_,i)=>({
     src:`stluxe_price_page_${i+1}.webp`,
@@ -175,6 +201,7 @@ base.onload=()=>{
   }
 
   function bindPriceTiles(){
+    ensureStickyGalleryTabs();
     bindNativeControls();
     document.querySelectorAll('[data-stl-price-index]').forEach(tile=>{
       if(tile.dataset.stlNativeViewer==='1')return;
