@@ -353,6 +353,41 @@
   </script>
 <script defer src="mobile-stluxe-current.js?v=20260907-photo-price-zoom2"></script>
 <script defer src="mobile-stluxe-theme-current.js?v=20260907-hero-gallery-v1"></script>
+<script>
+(function(){
+  function applyFinalFixes(){
+    const portfolioButton=document.querySelector('#tn13Portfolio .tn22-port-all');
+    if(portfolioButton&&portfolioButton.textContent.trim()!=='Открыть галерею →'){
+      portfolioButton.innerHTML='Открыть галерею <span>→</span>';
+    }
+    document.querySelectorAll('#tn13Services .tn31-service-row').forEach(row=>{
+      const name=(row.querySelector('.tn31-service-name')?.textContent||'').trim();
+      const detail=row.querySelector('.tn31-service-detail');
+      if((name==='Стрижка простая / модельная'||name==='Стрижка мужская')&&detail&&(detail.textContent||'').trim()==='Мужская')detail.remove();
+    });
+  }
+  const observer=new MutationObserver(applyFinalFixes);
+  observer.observe(document.documentElement,{childList:true,subtree:true});
+  applyFinalFixes();
+
+  let heroTries=0;
+  function ensureHeroV2(){
+    const hero=document.querySelector('#tn13Top');
+    if(hero?.dataset.stlHeroGallery==='2')return;
+    if(hero?.dataset.stlHeroGallery==='1'||heroTries>40){
+      if(document.querySelector('script[data-stl-hero-v2]'))return;
+      const script=document.createElement('script');
+      script.dataset.stlHeroV2='1';
+      script.src='mobile-stluxe-hero-gallery.js?v=20260907-hero-controls-v2';
+      document.head.appendChild(script);
+      return;
+    }
+    heroTries++;
+    setTimeout(ensureHeroV2,80);
+  }
+  ensureHeroV2();
+})();
+</script>
 
 
 
