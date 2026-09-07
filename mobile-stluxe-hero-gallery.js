@@ -2,25 +2,6 @@
 'use strict';
 if(!window.matchMedia||!window.matchMedia('(max-width:767px)').matches)return;
 
-function applyContentFixes(){
-  const portfolioButton=document.querySelector('#tn13Portfolio .tn22-port-all');
-  if(portfolioButton&&portfolioButton.textContent.trim()!=='Открыть галерею →'){
-    portfolioButton.innerHTML='Открыть галерею <span>→</span>';
-  }
-
-  document.querySelectorAll('#tn13Services .tn31-service-row').forEach(row=>{
-    const name=(row.querySelector('.tn31-service-name')?.textContent||'').trim();
-    const detail=row.querySelector('.tn31-service-detail');
-    if((name==='Стрижка простая / модельная'||name==='Стрижка мужская')&&detail&&(detail.textContent||'').trim()==='Мужская'){
-      detail.remove();
-    }
-  });
-}
-
-const contentObserver=new MutationObserver(applyContentFixes);
-contentObserver.observe(document.documentElement,{childList:true,subtree:true});
-applyContentFixes();
-
 const SALON_IMAGES=[
   {src:'stluxe_reception.webp',alt:'Ресепшен STLuxe'},
   {src:'stluxe_interior.webp',alt:'Интерьер STLuxe'},
@@ -39,9 +20,20 @@ const SALON_IMAGES=[
   {src:'assets/images/salon-reception.webp',alt:'Интерьер STLuxe'}
 ];
 
-const navStyle=document.createElement('style');
-navStyle.id='stluxe-hero-gallery-nav';
-navStyle.textContent=`
+const REVIEW_DATES={
+  'мария н.':'16 марта 2025',
+  'ольга к.':'5 февраля 2026',
+  'оксана семина':'13 июня 2025',
+  'мама рита':'6 мая 2025',
+  'галина б.':'20 октября 2024',
+  'юлия логинова':'12 сентября 2024',
+  'олеся полянская':'28 февраля 2025',
+  'наталья яровая':'17 мая 2024'
+};
+
+const polishStyle=document.createElement('style');
+polishStyle.id='stluxe-gallery-final-polish';
+polishStyle.textContent=`
 @media(max-width:767px){
   .tn22-media .stl-hero-nav{
     position:absolute;
@@ -63,9 +55,195 @@ navStyle.textContent=`
   .tn22-media .stl-hero-prev{left:7px}
   .tn22-media .stl-hero-next{right:7px}
   .tn22-media .stl-hero-nav:active{opacity:1;transform:translateY(-50%) scale(.94)}
+
+  .tn23-section-nav{
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    touch-action:pan-x!important;
+    overscroll-behavior-x:contain!important;
+    overscroll-behavior-y:none!important;
+    -webkit-overflow-scrolling:touch!important;
+  }
+  .tn23-section-nav button{touch-action:manipulation!important}
+
+  #tn13Gallery{
+    overscroll-behavior:contain!important;
+    -webkit-overflow-scrolling:touch!important;
+    touch-action:pan-y!important;
+  }
+  #tn13Gallery .tn22-gallery-tabs{
+    overflow-y:hidden!important;
+    touch-action:pan-x!important;
+    overscroll-behavior-x:contain!important;
+  }
+
+  .tn22-viewer-frame .stl-viewer-gallery-btn{
+    position:absolute;
+    z-index:8;
+    left:50%;
+    bottom:-88px;
+    transform:translateX(-50%);
+    width:min(100%,300px);
+    height:46px;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:13px;
+    background:rgba(255,255,255,.10);
+    -webkit-backdrop-filter:blur(12px);
+    backdrop-filter:blur(12px);
+    color:#fff!important;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    font:600 12px/1 'Manrope',Arial,sans-serif!important;
+    letter-spacing:.01em;
+  }
+  .tn22-viewer-frame .stl-viewer-gallery-btn:active{background:rgba(255,255,255,.16)}
+  .tn22-viewer-frame .stl-viewer-gallery-btn[hidden]{display:none!important}
+
+  .tn30-review-card .stl-review-details{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-top:4px;
+    min-height:13px;
+    font:500 9px/1.1 'Manrope',Arial,sans-serif!important;
+    color:#8b858d!important;
+    white-space:nowrap;
+  }
+  .tn30-review-card .stl-review-stars{
+    color:#d9aa42!important;
+    font-size:10px!important;
+    letter-spacing:.07em;
+  }
+  .tn30-review-card .stl-review-dot{opacity:.45}
 }
 `;
-if(!document.getElementById(navStyle.id))document.head.appendChild(navStyle);
+if(!document.getElementById(polishStyle.id))document.head.appendChild(polishStyle);
+
+function applyContentFixes(){
+  const portfolioButton=document.querySelector('#tn13Portfolio .tn22-port-all');
+  if(portfolioButton&&portfolioButton.textContent.trim()!=='Открыть галерею →'){
+    portfolioButton.innerHTML='Открыть галерею <span>→</span>';
+  }
+
+  document.querySelectorAll('#tn13Services .tn31-service-row').forEach(row=>{
+    const name=(row.querySelector('.tn31-service-name')?.textContent||'').trim();
+    const detail=row.querySelector('.tn31-service-detail');
+    if((name==='Стрижка простая / модельная'||name==='Стрижка мужская')&&detail&&(detail.textContent||'').trim()==='Мужская')detail.remove();
+  });
+
+  document.querySelectorAll('#tn13Reviews .tn30-review-card').forEach(card=>{
+    const name=(card.querySelector('.tn30-review-name')?.textContent||'').trim();
+    const meta=card.querySelector('.tn30-review-meta');
+    if(!meta||meta.parentElement?.querySelector('.stl-review-details'))return;
+    const date=REVIEW_DATES[name.toLowerCase()]||'';
+    const details=document.createElement('span');
+    details.className='stl-review-details';
+    details.innerHTML=`<span class="stl-review-stars" aria-label="5 из 5">★★★★★</span>${date?`<span class="stl-review-dot">•</span><span>${date}</span>`:'<span class="stl-review-dot">•</span><span>Яндекс Карты</span>'}`;
+    meta.insertAdjacentElement('afterend',details);
+  });
+
+  bindViewerGalleryButton();
+  stabilizeGallery();
+}
+
+function categoryFromSrc(src){
+  const value=String(src||'').toLowerCase();
+  if(value.includes('salon')||value.includes('reception')||value.includes('interior'))return 'Салон';
+  if(value.includes('hair'))return 'Волосы';
+  if(value.includes('lash'))return 'Ресницы';
+  return 'Ногти';
+}
+
+function closeStandaloneViewers(){
+  document.querySelectorAll('.tn22-viewer.open').forEach(viewer=>{
+    const close=viewer.querySelector('.tn22-view-close');
+    if(close)close.click();
+    else viewer.classList.remove('open');
+  });
+}
+
+function openGalleryCategory(category){
+  closeStandaloneViewers();
+  const gallery=document.querySelector('#tn13Gallery');
+  const selectCategory=()=>{
+    const currentGallery=document.querySelector('#tn13Gallery');
+    if(!currentGallery)return;
+    const tab=[...currentGallery.querySelectorAll('[data-gcat]')].find(el=>(el.dataset.gcat||'')===category);
+    if(tab&&!tab.classList.contains('active'))tab.click();
+    currentGallery.scrollTop=0;
+    document.body.style.overflow='hidden';
+  };
+
+  if(gallery?.classList.contains('open')){
+    selectCategory();
+    return;
+  }
+
+  const galleryButton=document.querySelector('#tn13Portfolio .tn22-port-all');
+  if(galleryButton){
+    galleryButton.click();
+    requestAnimationFrame(()=>requestAnimationFrame(selectCategory));
+  }
+}
+
+function bindViewerGalleryButton(){
+  document.querySelectorAll('.tn22-viewer').forEach(viewer=>{
+    if(viewer.classList.contains('stl-hero-viewer'))return;
+    const frame=viewer.querySelector('.tn22-viewer-frame');
+    const image=viewer.querySelector('.tn22-viewer-img');
+    if(!frame||!image)return;
+
+    let button=frame.querySelector('.stl-viewer-gallery-btn');
+    if(!button){
+      button=document.createElement('button');
+      button.type='button';
+      button.className='stl-viewer-gallery-btn';
+      button.innerHTML='<span>Открыть галерею</span><span aria-hidden="true">→</span>';
+      frame.appendChild(button);
+      button.addEventListener('click',e=>{
+        e.preventDefault();
+        e.stopPropagation();
+        openGalleryCategory(categoryFromSrc(image.getAttribute('src')||image.src));
+      });
+    }
+
+    const sync=()=>{
+      const src=image.getAttribute('src')||'';
+      const price=/stluxe_price_page_/i.test(src);
+      const galleryOpen=!!document.querySelector('#tn13Gallery.open');
+      button.hidden=price||galleryOpen||!viewer.classList.contains('open');
+    };
+
+    if(!viewer.dataset.stlGalleryButtonWatch){
+      viewer.dataset.stlGalleryButtonWatch='1';
+      new MutationObserver(sync).observe(viewer,{attributes:true,attributeFilter:['class']});
+      new MutationObserver(sync).observe(image,{attributes:true,attributeFilter:['src']});
+      const gallery=document.querySelector('#tn13Gallery');
+      if(gallery)new MutationObserver(sync).observe(gallery,{attributes:true,attributeFilter:['class']});
+    }
+    sync();
+  });
+}
+
+function stabilizeGallery(){
+  const gallery=document.querySelector('#tn13Gallery');
+  if(!gallery||gallery.dataset.stlStableGallery==='1')return;
+  gallery.dataset.stlStableGallery='1';
+  new MutationObserver(()=>{
+    const open=gallery.classList.contains('open');
+    if(open){
+      document.body.style.overflow='hidden';
+    }else if(!document.querySelector('.tn22-viewer.open,.tn22-master-page.open')){
+      document.body.style.overflow='';
+    }
+  }).observe(gallery,{attributes:true,attributeFilter:['class']});
+}
+
+const contentObserver=new MutationObserver(applyContentFixes);
+contentObserver.observe(document.documentElement,{childList:true,subtree:true});
+applyContentFixes();
 
 let attempts=0;
 function boot(){
@@ -75,21 +253,8 @@ function boot(){
     if(attempts++<160)setTimeout(boot,60);
     return;
   }
-  if(hero.dataset.stlHeroGallery==='3')return;
-  hero.dataset.stlHeroGallery='3';
-
-  function openSalonGallery(){
-    try{
-      const pointerId=9876;
-      oldMedia.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerId,clientX:100,clientY:100,pointerType:'touch',isPrimary:true}));
-      oldMedia.dispatchEvent(new PointerEvent('pointerup',{bubbles:true,pointerId,clientX:100,clientY:100,pointerType:'touch',isPrimary:true}));
-    }catch(_){
-      const gallery=document.querySelector('#tn13Gallery');
-      const salonTab=[...document.querySelectorAll('#tn13Gallery [data-gcat]')].find(el=>(el.dataset.gcat||'')==='Салон');
-      if(salonTab)salonTab.click();
-      if(gallery){gallery.classList.add('open');document.body.style.overflow='hidden';}
-    }
-  }
+  if(hero.dataset.stlHeroGallery==='4')return;
+  hero.dataset.stlHeroGallery='4';
 
   const media=document.createElement('div');
   media.className=oldMedia.className;
@@ -104,6 +269,7 @@ function boot(){
   const heroPrev=media.querySelector('.stl-hero-prev');
   const heroNext=media.querySelector('.stl-hero-next');
   let heroIndex=0;
+
   function setHero(index){
     heroIndex=(index+slides.length)%slides.length;
     slides.forEach((el,i)=>el.classList.toggle('active',i===heroIndex));
@@ -138,10 +304,15 @@ function boot(){
       setHero(heroIndex+(dx<0?1:-1));
       return;
     }
-    if(!moved)openSalonGallery();
+    if(!moved)openGalleryCategory('Салон');
   });
   media.addEventListener('pointercancel',()=>{pointerId=null;moved=false;});
-  media.addEventListener('keydown',e=>{if(e.target===media&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openSalonGallery();}});
+  media.addEventListener('keydown',e=>{
+    if(e.target===media&&(e.key==='Enter'||e.key===' ')){
+      e.preventDefault();
+      openGalleryCategory('Салон');
+    }
+  });
 }
 boot();
 })();
