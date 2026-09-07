@@ -29,6 +29,9 @@ function ensureStyle(){
       color:#f3efed!important;
       letter-spacing:-.01em!important;
     }
+    #tn13Services .stl-grouped-service.stl-has-variants .tn31-service-name{
+      max-width:100%!important;
+    }
     #tn13Services .stl-grouped-service .tn31-service-detail{
       display:block!important;
       margin-top:8px!important;
@@ -266,12 +269,19 @@ function polishSticky(){
       }).observe(el,{childList:true,characterData:true,subtree:true});
     }
   });
+
+  const sticky=document.querySelector('#tn13Sticky');
+  const button=sticky?.querySelector('button');
+  if(button&&button.dataset.stlDirectCall!=='1'){
+    button.dataset.stlDirectCall='1';
+    button.onclick=()=>{window.location.href='tel:+79163552222';};
+  }
 }
 
 function unifyRows(){
   ensureStyle();
   document.querySelectorAll('#tn13Services .stl-grouped-service').forEach(row=>{
-    if(row.dataset.stlUnifiedPrice==='4')return;
+    if(row.dataset.stlUnifiedPrice==='5')return;
     const copy=row.querySelector('.tn31-service-copy');
     const side=row.querySelector('.tn31-service-side');
     if(!copy||!side)return;
@@ -283,6 +293,7 @@ function unifyRows(){
     const singlePrice=side.querySelector('.tn31-service-price');
     const variants=copy.querySelector('.stl-price-variants');
     const title=copy.querySelector('.tn31-service-name');
+    row.classList.toggle('stl-has-variants',!!variants);
 
     if(singlePrice&&!variants&&title&&!copy.querySelector('.stl-single-head')){
       const head=document.createElement('div');
@@ -297,7 +308,7 @@ function unifyRows(){
 
     polishNote(copy);
     side.querySelectorAll('.tn31-service-book').forEach(btn=>btn.remove());
-    row.dataset.stlUnifiedPrice='4';
+    row.dataset.stlUnifiedPrice='5';
   });
   polishSticky();
 }
