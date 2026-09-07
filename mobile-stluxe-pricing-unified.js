@@ -64,27 +64,28 @@ function ensureStyle(){
     }
     #tn13Services .stl-grouped-service .stl-price-note{
       display:block!important;
-      margin-top:11px!important;
+      margin-top:7px!important;
       color:rgba(243,239,237,.58)!important;
       font:400 11px/1.45 'Manrope',Arial,sans-serif!important;
     }
     #tn13Services .stl-grouped-service .stl-price-note.stl-surcharge-note{
-      margin-top:15px!important;
-      padding-top:12px!important;
-      border-top:1px solid rgba(255,255,255,.09)!important;
-      text-align:center!important;
+      margin-top:8px!important;
+      padding-top:0!important;
+      border-top:0!important;
+      text-align:left!important;
     }
     #tn13Services .stl-surcharge-brand{
-      display:block!important;
-      color:#f3efed!important;
-      font:500 13px/1.35 'Manrope',Arial,sans-serif!important;
+      display:inline!important;
+      color:rgba(243,239,237,.72)!important;
+      font:500 11.5px/1.35 'Manrope',Arial,sans-serif!important;
     }
     #tn13Services .stl-surcharge-price{
-      display:block!important;
-      margin-top:5px!important;
+      display:inline!important;
+      margin:0 0 0 7px!important;
       color:#fff!important;
-      font:650 15px/1.15 'Manrope',Arial,sans-serif!important;
+      font:600 12px/1.35 'Manrope',Arial,sans-serif!important;
       letter-spacing:.01em!important;
+      white-space:nowrap!important;
     }
     #tn13Services .stl-grouped-service .tn31-service-side{
       display:none!important;
@@ -117,6 +118,8 @@ function ensureStyle(){
       #tn13Services .stl-single-price{font-size:20px!important}
       #tn13Services .stl-grouped-service .stl-price-variant{font-size:12.5px!important}
       #tn13Services .stl-grouped-service .stl-price-variant b{font-size:18px!important}
+      #tn13Services .stl-surcharge-brand{font-size:10.8px!important}
+      #tn13Services .stl-surcharge-price{font-size:11.4px!important}
     }
   }
   `;
@@ -142,7 +145,20 @@ function polishTitle(copy){
   }else if(raw==='Кератиновое восстановление Brazilian Blowout'){
     title.textContent='Кератиновое восстановление';
     addBrandDetail(copy,'Brazilian Blowout');
+  }else if(raw.startsWith('Дизайн — френч')&&raw.toLowerCase().includes('кошачий глаз')){
+    title.textContent='Дизайн — френч, лунки и кошачий глаз';
   }
+}
+
+function replaceSlashSeparators(text){
+  return String(text||'').replace(/\s+\/\s+/g,' | ');
+}
+
+function polishSeparators(copy){
+  copy.querySelectorAll('.tn31-service-name,.tn31-service-detail,.stl-price-variant span,.stl-price-variant b').forEach(el=>{
+    const next=replaceSlashSeparators(el.textContent);
+    if(next!==el.textContent)el.textContent=next;
+  });
 }
 
 function polishNote(copy){
@@ -151,29 +167,51 @@ function polishNote(copy){
   const text=(note.textContent||'').trim();
   const i=text.indexOf(':');
   if(i>0&&text.slice(i+1).includes('+')){
-    const brand=text.slice(0,i).trim();
-    const amount=text.slice(i+1).trim().replace(/\.$/,'');
+    const amount=replaceSlashSeparators(text.slice(i+1).trim().replace(/\.$/,''));
     note.classList.add('stl-surcharge-note');
-    note.innerHTML=`<span class="stl-surcharge-brand">${brand}</span><b class="stl-surcharge-price">${amount}</b>`;
+    note.innerHTML=`<span class="stl-surcharge-brand">Permesse, Wella, Matrix и L'Oréal</span><b class="stl-surcharge-price">${amount}</b>`;
+  }else{
+    note.textContent=replaceSlashSeparators(text);
   }
   note.dataset.stlPolishedNote='1';
+}
+
+function polishSticky(){
+  document.querySelectorAll('.availability strong,.tn13-sticky strong').forEach(el=>{
+    const text=(el.textContent||'').trim();
+    const m=text.match(/(\d+)\s+услуг\b/i);
+    if(!m)return;
+    const next=`Доступно ${m[1]} услуг`;
+    if(text!==next)el.textContent=next;
+    if(el.dataset.stlStickyWatch!=='1'){
+      el.dataset.stlStickyWatch='1';
+      new MutationObserver(()=>{
+        const current=(el.textContent||'').trim();
+        const match=current.match(/(\d+)\s+услуг\b/i);
+        if(!match)return;
+        const value=`Доступно ${match[1]} услуг`;
+        if(current!==value)el.textContent=value;
+      }).observe(el,{childList:true,characterData:true,subtree:true});
+    }
+  });
 }
 
 function unifyRows(){
   ensureStyle();
   document.querySelectorAll('#tn13Services .stl-grouped-service').forEach(row=>{
-    if(row.dataset.stlUnifiedPrice==='2')return;
+    if(row.dataset.stlUnifiedPrice==='3')return;
     const copy=row.querySelector('.tn31-service-copy');
     const side=row.querySelector('.tn31-service-side');
     if(!copy||!side)return;
 
     polishTitle(copy);
+    polishSeparators(copy);
 
     const singlePrice=side.querySelector('.tn31-service-price');
     const variants=copy.querySelector('.stl-price-variants');
     const title=copy.querySelector('.tn31-service-name');
 
-    if(singlePrice&&!variants&&title){
+    if(singlePrice&&!variants&&title&&!copy.querySelector('.stl-single-head')){
       const head=document.createElement('div');
       head.className='stl-single-head';
       copy.insertBefore(head,title);
@@ -186,14 +224,16 @@ function unifyRows(){
 
     polishNote(copy);
     side.querySelectorAll('.tn31-service-book').forEach(btn=>btn.remove());
-    row.dataset.stlUnifiedPrice='2';
+    row.dataset.stlUnifiedPrice='3';
   });
+  polishSticky();
 }
 
 function boot(){
   const list=document.querySelector('#tn13Services .tn31-service-list');
   if(!list){setTimeout(boot,80);return;}
   unifyRows();
+  polishSticky();
   const observer=new MutationObserver(()=>unifyRows());
   observer.observe(list,{childList:true,subtree:true});
 }
