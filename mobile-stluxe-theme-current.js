@@ -79,7 +79,7 @@ base.onload=()=>{
       top:0!important;
       z-index:45!important;
       margin:26px -18px 0!important;
-      padding:8px 18px 18px!important;
+      padding:8px 18px 8px!important;
       background:rgba(36,33,39,.98)!important;
       -webkit-backdrop-filter:blur(14px) saturate(135%)!important;
       backdrop-filter:blur(14px) saturate(135%)!important;
@@ -126,6 +126,27 @@ base.onload=()=>{
     wrap.className='stl-gallery-tabs-sticky';
     tabs.parentNode.insertBefore(wrap,tabs);
     wrap.appendChild(tabs);
+  }
+
+  const themeMeta=document.querySelector('meta[name="theme-color"]');
+  const LIGHT_THEME='#fafafa';
+  const DARK_THEME='#242127';
+
+  function syncGalleryChrome(){
+    const gallery=document.querySelector('#tn13Gallery');
+    const open=!!gallery?.classList.contains('open');
+    if(themeMeta)themeMeta.setAttribute('content',open?DARK_THEME:LIGHT_THEME);
+    document.documentElement.style.backgroundColor=open?DARK_THEME:LIGHT_THEME;
+  }
+
+  function bindGalleryChrome(){
+    const gallery=document.querySelector('#tn13Gallery');
+    if(!gallery)return;
+    if(!gallery.dataset.stlGalleryChromeBound){
+      gallery.dataset.stlGalleryChromeBound='1';
+      new MutationObserver(syncGalleryChrome).observe(gallery,{attributes:true,attributeFilter:['class']});
+    }
+    syncGalleryChrome();
   }
 
   const PRICE_PAGES=Array.from({length:7},(_,i)=>({
@@ -202,6 +223,7 @@ base.onload=()=>{
 
   function bindPriceTiles(){
     ensureStickyGalleryTabs();
+    bindGalleryChrome();
     bindNativeControls();
     document.querySelectorAll('[data-stl-price-index]').forEach(tile=>{
       if(tile.dataset.stlNativeViewer==='1')return;
