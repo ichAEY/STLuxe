@@ -316,6 +316,10 @@ base.onload=()=>{
     document.head.appendChild(unified);
   };
   document.head.appendChild(pricing);
+
+  const heroGallery=document.createElement('script');
+  heroGallery.src='mobile-stluxe-hero-gallery.js?v=20260907-hero-salon-gallery-v1';
+  document.head.appendChild(heroGallery);
 };
 base.onerror=()=>console.error('STLuxe theme base failed to load');
 document.head.appendChild(base);
