@@ -97,6 +97,35 @@ base.onload=()=>{
     #tn13Gallery .stl-gallery-tabs-sticky + .tn22-gallery-grid{
       margin-top:0!important;
     }
+    #tn13Visit .tn22-footer{
+      height:auto!important;
+      min-height:96px!important;
+      padding:17px 24px 18px!important;
+      display:flex!important;
+      flex-direction:column!important;
+      align-items:center!important;
+      justify-content:center!important;
+      gap:8px!important;
+      text-align:center!important;
+    }
+    #tn13Visit .stl-tanem-mark{
+      width:34px!important;
+      height:34px!important;
+      border:1px solid rgba(255,255,255,.34)!important;
+      border-radius:10px!important;
+      display:grid!important;
+      place-items:center!important;
+      color:#fff!important;
+      font:600 22px/1 'Cormorant Garamond',Georgia,serif!important;
+    }
+    #tn13Visit .stl-tanem-credit{
+      max-width:none!important;
+      margin:0!important;
+      text-align:center!important;
+      color:rgba(255,255,255,.72)!important;
+      font:500 10px/1.2 'Manrope',Arial,sans-serif!important;
+      letter-spacing:.04em!important;
+    }
   }
   `;
   document.head.appendChild(tweakStyle);
@@ -115,6 +144,13 @@ base.onload=()=>{
     if(pdf)pdf.remove();
   };
   applyTweak();
+
+  function applyTanemFooter(){
+    const footer=document.querySelector('#tn13Visit .tn22-footer');
+    if(!footer||footer.dataset.stlTanemCredit==='1')return;
+    footer.dataset.stlTanemCredit='1';
+    footer.innerHTML='<span class="stl-tanem-mark">T</span><span class="stl-tanem-credit">Создано в TANEM.ru</span>';
+  }
 
   function ensureStickyGalleryTabs(){
     const gallery=document.querySelector('#tn13Gallery');
@@ -244,6 +280,7 @@ base.onload=()=>{
   }
 
   function bindPriceTiles(){
+    applyTanemFooter();
     ensureStickyGalleryTabs();
     bindGalleryChrome();
     bindNativeControls();
