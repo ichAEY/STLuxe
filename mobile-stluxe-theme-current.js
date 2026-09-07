@@ -72,7 +72,6 @@ base.onload=()=>{
     }
     @media(prefers-reduced-motion:reduce){#tn13Services .stl-price-open:after{animation:none!important}}
 
-    /* Carry a piece of the gallery background together with the category row */
     #tn13Gallery .stl-gallery-tabs-sticky{
       position:-webkit-sticky!important;
       position:sticky!important;
@@ -245,7 +244,12 @@ base.onload=()=>{
   bindPriceTiles();
 
   const pricing=document.createElement('script');
-  pricing.src='mobile-stluxe-pricing-grouped.js?v=20260907-grouped-price-v2';
+  pricing.src='mobile-stluxe-pricing-grouped.js?v=20260907-grouped-price-v3';
+  pricing.onload=()=>{
+    const unified=document.createElement('script');
+    unified.src='mobile-stluxe-pricing-unified.js?v=20260907-unified-price-v1';
+    document.head.appendChild(unified);
+  };
   document.head.appendChild(pricing);
 };
 base.onerror=()=>console.error('STLuxe theme base failed to load');
