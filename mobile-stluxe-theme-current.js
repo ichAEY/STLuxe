@@ -247,7 +247,7 @@ base.onload=()=>{
   pricing.src='mobile-stluxe-pricing-grouped.js?v=20260907-grouped-price-v3';
   pricing.onload=()=>{
     const unified=document.createElement('script');
-    unified.src='mobile-stluxe-pricing-unified.js?v=20260907-unified-price-v1';
+    unified.src='mobile-stluxe-pricing-unified.js?v=20260907-unified-price-v2';
     document.head.appendChild(unified);
   };
   document.head.appendChild(pricing);
