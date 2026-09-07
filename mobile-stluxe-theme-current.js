@@ -229,8 +229,8 @@ base.onload=()=>{
       if(Math.abs(dx)<55||Math.abs(dx)<=Math.abs(dy)*1.15)return;
       e.preventDefault();
       e.stopImmediatePropagation();
-      if(dx>0)paintPrice(priceIndex+1);
-      else paintPrice(priceIndex-1);
+      if(dx>0)paintPrice(priceIndex-1);
+      else paintPrice(priceIndex+1);
     },{capture:true,passive:false});
 
     p.viewer.addEventListener('touchcancel',()=>{swipeStartX=null;swipeStartY=null;},{capture:true,passive:true});
