@@ -309,7 +309,7 @@ base.onload=()=>{
   bindPriceTiles();
 
   const pricing=document.createElement('script');
-  pricing.src='mobile-stluxe-pricing-grouped.js?v=20260907-grouped-price-v3';
+  pricing.src='mobile-stluxe-pricing-grouped.js?v=20260907-grouped-price-v4';
   pricing.onload=()=>{
     const unified=document.createElement('script');
     unified.src='mobile-stluxe-pricing-unified.js?v=20260907-unified-price-v5';
