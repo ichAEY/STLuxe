@@ -243,6 +243,10 @@ base.onload=()=>{
   const observer=new MutationObserver(bindPriceTiles);
   observer.observe(document.body,{childList:true,subtree:true});
   bindPriceTiles();
+
+  const pricing=document.createElement('script');
+  pricing.src='mobile-stluxe-pricing-current.js?v=20260907-full-price-v1';
+  document.head.appendChild(pricing);
 };
 base.onerror=()=>console.error('STLuxe theme base failed to load');
 document.head.appendChild(base);
