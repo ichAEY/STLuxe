@@ -127,6 +127,23 @@ function applyContentFixes(){
     portfolioButton.innerHTML='Открыть галерею <span>→</span>';
   }
 
+  const navPop=document.querySelector('#tn13Top .tn22-navpop');
+  if(navPop){
+    const teamLink=navPop.querySelector('a[href="#tn13Team"]');
+    let aboutLink=navPop.querySelector('a[href="#tn38About"]');
+    if(teamLink){
+      if(!aboutLink){
+        aboutLink=document.createElement('a');
+        aboutLink.href='#tn38About';
+        aboutLink.textContent='О нас';
+        aboutLink.addEventListener('click',()=>navPop.classList.remove('open'));
+      }else{
+        aboutLink.textContent='О нас';
+      }
+      if(teamLink.nextElementSibling!==aboutLink)teamLink.insertAdjacentElement('afterend',aboutLink);
+    }
+  }
+
   document.querySelectorAll('#tn13Services .tn31-service-row').forEach(row=>{
     const name=(row.querySelector('.tn31-service-name')?.textContent||'').trim();
     const detail=row.querySelector('.tn31-service-detail');
