@@ -5,6 +5,24 @@
 
   const PHONE='+79163552222';
   const ADDRESS='Ивантеевка, ул. Победы, 16';
+  const YANDEX_REVIEWS='https://yandex.com/maps/org/beauty_salon_stluxe/51087098664/reviews/';
+  const DESKTOP_REAL_REVIEWS=[
+    ['мария н.','Первый раз я попала в салон по рекомендации и ничуть не пожалела, влюбилась в него с первого раза😊'],
+    ['Ольга К.','Делаю хим завивку, в этом салоне никогда не отказывают, отличная атмосфера, все чисто стерильно, приветливый персонал'],
+    ['Оксана Семина','Никаких минусов. Отличный салон, замечательная атмосфера. Ногти - шедевр!!!'],
+    ['Дарья К.','Отличный салон красоты. Очень уютно, чисто, опрятно, приветливое отношение, качественные услуги.'],
+    ['Надежда Донеско','Очень чисто, много цветов и наклеек для дизайнов, всегда используются запакованные и обеззараженные приборы'],
+    ['Галина Б.','Лучшего салона в Ивантеевке я не знаю. Являюсь клиентом уже лет 10.'],
+    ['Ольга Г.','Хочу выразить свою благодарность Татьяне, за профессионализм, создание уютной атмосферы.'],
+    ['Лариса Ф.','Очень стильный салон с приятной атмосферой. Все чистенько, аккуратно, красиво.'],
+    ['Ольга 🐝','Очень стильный интерьер салона. Я хожу больше года к мастеру Татьяне на маникюр и окрашивание.'],
+    ['Галина Михайлова','Огромная благодарность хозяйке салона Твтьяне и ее персоналу за высокое качество предлагаемых услуг'],
+    ['Наталья Маслова','Масса хороших впечатлений , доброжелательная хозяйка салона встречает как дорогого гостя,салон чистый ,светлый хорошая аура'],
+    ['Алина Сергеева','Как всегда, в этом салоне комфортно и уютно.Благодарю мастера Татьяну за выполненный маникюр.'],
+    ['Юлия Логинова','Рекомендую данный салон! Высоко профессиональный персонал,включая хозяйку салона Татьяну, вкладывающий душу в свою работу'],
+    ['Олеся Полянская','Прекрасный, по домашнему, уютный и очень стильный салон. Замечательные мастера, рекомендую Татьяну и Алену.'],
+    ['z','Я постоянный клиент этого салона, после каждого посещения остаюсь очень довольной.']
+  ];
   const PORTFOLIO=[
     {src:'hair.webp',alt:'Работа с волосами STLuxe'},
     {src:'nails2.webp',alt:'Маникюр STLuxe'},
@@ -1233,6 +1251,59 @@
         </div>
 
         <div class="std-team-hint" aria-hidden="true">Листайте <span>→</span></div>
+      </div>
+    </section>
+
+    <section class="std-reviews" id="stluxeDesktopReviews" aria-labelledby="stdReviewsTitle">
+      <div class="std-reviews-head">
+        <p class="std-reviews-kicker">Отзывы</p>
+        <h2 class="std-reviews-title" id="stdReviewsTitle">Что говорят о нас</h2>
+        <div class="std-reviews-score">
+          <strong>4,9</strong>
+          <div class="std-reviews-stars" aria-label="5 звёзд">★★★★★</div>
+          <div class="std-reviews-count">86 отзывов на Яндекс Картах</div>
+        </div>
+      </div>
+
+      <div class="std-reviews-viewport" id="stdReviewsViewport" aria-label="Отзывы клиентов. Наведите курсор, чтобы остановить ленту.">
+        <div class="std-reviews-loop">
+          <div class="std-reviews-set">
+            ${DESKTOP_REAL_REVIEWS.map(r=>`
+              <a class="std-review-card" href="${YANDEX_REVIEWS}#:~:text=${encodeURIComponent(r[1])}" target="_blank" rel="noopener">
+                <div class="std-review-head">
+                  <span class="std-review-avatar">${([...(String(r[0]).trim())][0]||'S').toUpperCase()}</span>
+                  <span>
+                    <strong class="std-review-name">${r[0]}</strong>
+                    <span class="std-review-meta">Яндекс Карты</span>
+                    <span class="std-review-stars">★★★★★</span>
+                  </span>
+                </div>
+                <p class="std-review-text">${r[1]}</p>
+                <span class="std-review-more">Подробнее →</span>
+              </a>
+            `).join('')}
+          </div>
+          <div class="std-reviews-set" aria-hidden="true">
+            ${DESKTOP_REAL_REVIEWS.map(r=>`
+              <a class="std-review-card" href="${YANDEX_REVIEWS}#:~:text=${encodeURIComponent(r[1])}" target="_blank" rel="noopener" tabindex="-1">
+                <div class="std-review-head">
+                  <span class="std-review-avatar">${([...(String(r[0]).trim())][0]||'S').toUpperCase()}</span>
+                  <span>
+                    <strong class="std-review-name">${r[0]}</strong>
+                    <span class="std-review-meta">Яндекс Карты</span>
+                    <span class="std-review-stars">★★★★★</span>
+                  </span>
+                </div>
+                <p class="std-review-text">${r[1]}</p>
+                <span class="std-review-more">Подробнее →</span>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+
+      <div class="std-reviews-actions">
+        <a class="std-reviews-all" href="${YANDEX_REVIEWS}" target="_blank" rel="noopener">Смотреть все отзывы →</a>
       </div>
     </section>
 
