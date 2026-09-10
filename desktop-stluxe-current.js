@@ -1,0 +1,321 @@
+/* STLuxe desktop build — hero block. Mobile bundle is intentionally untouched. */
+(function(){
+  'use strict';
+  if(!window.matchMedia || !window.matchMedia('(min-width:768px)').matches) return;
+
+  const PHONE='+79163552222';
+  const ADDRESS='Ивантеевка, ул. Победы, 16';
+
+  const font=document.createElement('link');
+  font.rel='stylesheet';
+  font.href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Manrope:wght@400;500;600&display=swap';
+  document.head.appendChild(font);
+
+  const css=document.createElement('style');
+  css.id='stluxe-desktop-v1-style';
+  css.textContent=`
+    @media(min-width:768px){
+      html,body{margin:0!important;padding:0!important;background:#fff!important;color:#17171a!important;overflow-x:hidden}
+      body>main.shell,body>.booking-island{display:none!important}
+
+      #stluxe-desktop-v1{
+        --purple:#5b0b6f;
+        --purple2:#6d177f;
+        --ink:#17171a;
+        --muted:#6d6b73;
+        --line:#ecebee;
+        display:block;
+        width:100%;
+        min-height:100vh;
+        background:#fff;
+        color:var(--ink);
+        font-family:"Manrope",Arial,sans-serif;
+        -webkit-font-smoothing:antialiased;
+      }
+      #stluxe-desktop-v1 *{box-sizing:border-box}
+      #stluxe-desktop-v1 a,#stluxe-desktop-v1 button{font:inherit;color:inherit}
+      #stluxe-desktop-v1 a{text-decoration:none}
+      #stluxe-desktop-v1 button{cursor:pointer}
+
+      .std-header{
+        height:98px;
+        width:100%;
+        display:flex;
+        align-items:center;
+        position:relative;
+        z-index:20;
+        padding:0 46px;
+        border-bottom:1px solid #efedf0;
+        background:#fff;
+      }
+      .std-nav{
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+        display:flex;
+        align-items:center;
+        gap:52px;
+        white-space:nowrap;
+      }
+      .std-nav a{
+        font-size:16px;
+        font-weight:400;
+        line-height:1;
+        transition:opacity .18s ease;
+      }
+      .std-nav a:hover{opacity:.55}
+      .std-phone{
+        margin-left:auto;
+        width:236px;
+        height:54px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:18px;
+        border-radius:10px;
+        background:linear-gradient(105deg,#561068 0%,#641378 55%,#511063 100%);
+        color:#fff!important;
+        box-shadow:0 2px 7px rgba(68,13,83,.13);
+        font-size:18px;
+        font-weight:400;
+      }
+      .std-phone svg{width:23px;height:23px;flex:0 0 23px}
+
+      .std-hero{
+        display:grid;
+        grid-template-columns:42.75% 57.25%;
+        height:calc(100svh - 98px);
+        min-height:690px;
+        background:#fff;
+      }
+      .std-hero-copy{
+        min-width:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:48px 28px 62px;
+        background:#fff;
+      }
+      .std-copy-inner{
+        width:min(100%,455px);
+        transform:translateY(-4px);
+      }
+      .std-logo{
+        margin:0;
+        font-family:"Bodoni Moda","Times New Roman",serif;
+        font-size:86px;
+        line-height:.94;
+        font-weight:500;
+        letter-spacing:-.055em;
+        color:#111116;
+      }
+      .std-logo-sub{
+        margin:14px 0 45px 31px;
+        font-size:17px;
+        line-height:1;
+        letter-spacing:.43em;
+        color:#8b8990;
+        text-transform:uppercase;
+        white-space:nowrap;
+      }
+      .std-tagline{
+        margin:0 0 42px;
+        max-width:450px;
+        font-size:30px;
+        line-height:1.34;
+        font-weight:400;
+        letter-spacing:-.035em;
+        color:#232329;
+      }
+
+      .std-meta{
+        display:grid;
+        grid-template-columns:1fr 1px 1.33fr;
+        gap:24px;
+        align-items:center;
+        margin-bottom:40px;
+      }
+      .std-meta-divider{width:1px;height:65px;background:#e5e3e7}
+      .std-meta-item{
+        display:flex;
+        align-items:center;
+        gap:15px;
+        min-width:0;
+      }
+      .std-meta-icon{
+        width:64px;
+        height:64px;
+        flex:0 0 64px;
+        display:grid;
+        place-items:center;
+        border:1px solid #dedde1;
+        border-radius:50%;
+        background:#fff;
+        color:#111116;
+      }
+      .std-meta-icon svg{width:28px;height:28px}
+      .std-meta-text{
+        min-width:0;
+        font-size:17px;
+        line-height:1.45;
+        letter-spacing:-.025em;
+        color:#3c3b41;
+      }
+      .std-status-main{display:block;color:#8e1b78}
+      .std-status-sub{display:block;color:#505057}
+      .std-address{display:block}
+
+      .std-actions{display:grid;gap:20px}
+      .std-btn{
+        width:100%;
+        height:69px;
+        border-radius:10px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:22px;
+        font-size:23px;
+        font-weight:400;
+        border:1px solid #dad8dc;
+        background:#fff;
+        transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease;
+      }
+      .std-btn:hover{transform:translateY(-1px)}
+      .std-btn:active{transform:translateY(0)}
+      .std-btn-primary{
+        border-color:transparent;
+        color:#fff!important;
+        background:linear-gradient(105deg,#57106a 0%,#6d147e 55%,#571069 100%);
+        box-shadow:0 5px 16px rgba(86,16,105,.12);
+      }
+      .std-btn-primary:hover{box-shadow:0 8px 20px rgba(86,16,105,.18)}
+      .std-btn svg{width:28px;height:28px;flex:0 0 28px}
+      .std-sparkles{
+        width:29px;height:29px;position:relative;display:inline-grid;place-items:center;font-size:29px;line-height:1
+      }
+
+      .std-hero-photo{
+        position:relative;
+        min-width:0;
+        height:100%;
+        overflow:hidden;
+        background:#eee;
+      }
+      .std-hero-photo img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center center;
+        display:block;
+      }
+
+      @media(max-width:1180px){
+        .std-header{padding:0 30px}
+        .std-nav{gap:28px}
+        .std-phone{width:205px}
+        .std-hero{grid-template-columns:46% 54%}
+        .std-hero-copy{padding-inline:34px}
+        .std-logo{font-size:72px}
+        .std-logo-sub{font-size:14px;margin-left:20px}
+        .std-tagline{font-size:26px}
+        .std-meta{gap:14px}
+        .std-meta-icon{width:54px;height:54px;flex-basis:54px}
+        .std-meta-text{font-size:15px}
+      }
+    }
+  `;
+  document.head.appendChild(css);
+
+  const root=document.createElement('div');
+  root.id='stluxe-desktop-v1';
+  root.innerHTML=`
+    <header class="std-header">
+      <nav class="std-nav" aria-label="Основная навигация">
+        <a href="#stluxeDesktopServices">Услуги</a>
+        <a href="#stluxeDesktopPortfolio">Наши работы</a>
+        <a href="#stluxeDesktopAbout">О нас</a>
+        <a href="#stluxeDesktopReviews">Отзывы</a>
+        <a href="#stluxeDesktopContacts">Контакты</a>
+      </nav>
+      <a class="std-phone" href="tel:${PHONE}" aria-label="Позвонить в STLuxe">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.83 16.57a1 1 0 0 0 1.21-.3l.36-.47A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.47.35a1 1 0 0 0-.29 1.23 14 14 0 0 0 6.39 6.39Z" fill="currentColor"/></svg>
+        <span>+7 916 355-22-22</span>
+      </a>
+    </header>
+
+    <section class="std-hero" id="stluxeDesktopTop" aria-label="STLuxe">
+      <div class="std-hero-copy">
+        <div class="std-copy-inner">
+          <h1 class="std-logo">STLUXE</h1>
+          <div class="std-logo-sub">салон красоты</div>
+
+          <p class="std-tagline">Место, где стиль становится<br>вашей естественной красотой.</p>
+
+          <div class="std-meta">
+            <div class="std-meta-item">
+              <span class="std-meta-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.7v4.8l3 1.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span class="std-meta-text"><span class="std-status-main" id="stdStatusMain">Закрыто</span><span class="std-status-sub" id="stdStatusSub">до 10:00</span></span>
+            </div>
+
+            <span class="std-meta-divider" aria-hidden="true"></span>
+
+            <a class="std-meta-item" href="https://yandex.ru/maps/?text=%D0%98%D0%B2%D0%B0%D0%BD%D1%82%D0%B5%D0%B5%D0%B2%D0%BA%D0%B0%2C%20%D1%83%D0%BB.%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%2C%2016%20STLuxe" target="_blank" rel="noopener">
+              <span class="std-meta-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.1" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+              </span>
+              <span class="std-meta-text std-address">Ивантеевка,<br>ул. Победы, 16</span>
+            </a>
+          </div>
+
+          <div class="std-actions">
+            <button class="std-btn std-btn-primary" id="stdBookBtn" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 3.8v4.4M16 3.8v4.4M4 10h16M8 13.5h.01M12 13.5h.01M16 13.5h.01M8 17h.01M12 17h.01M16 17h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <span>Записаться</span>
+            </button>
+            <a class="std-btn" href="#stluxeDesktopPortfolio">
+              <span class="std-sparkles" aria-hidden="true">✦</span>
+              <span>Смотреть работы</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="std-hero-photo">
+        <img src="assets/images/salon-reception.webp" alt="Интерьер салона красоты STLuxe">
+      </div>
+    </section>
+  `;
+  document.body.appendChild(root);
+
+  const bookBtn=document.getElementById('stdBookBtn');
+  bookBtn.addEventListener('click',()=>{
+    if(typeof window.openBooking==='function') window.openBooking();
+  });
+
+  function updateStatus(){
+    const parts=new Intl.DateTimeFormat('en-GB',{
+      timeZone:'Europe/Moscow',
+      weekday:'short',
+      hour:'2-digit',
+      minute:'2-digit',
+      hour12:false
+    }).formatToParts(new Date());
+    const weekday=parts.find(p=>p.type==='weekday')?.value||'Mon';
+    const hour=Number(parts.find(p=>p.type==='hour')?.value||0);
+    const minute=Number(parts.find(p=>p.type==='minute')?.value||0);
+    const mins=hour*60+minute;
+    const isMonday=weekday==='Mon';
+    const isOpen=!isMonday && mins>=600 && mins<1200;
+    const main=document.getElementById('stdStatusMain');
+    const sub=document.getElementById('stdStatusSub');
+    if(!main||!sub) return;
+    main.textContent=isOpen?'Открыто':'Закрыто';
+    sub.textContent=isOpen?'до 20:00':'до 10:00';
+    main.style.color=isOpen?'#277245':'#8e1b78';
+  }
+  updateStatus();
+  setInterval(updateStatus,60000);
+})();
