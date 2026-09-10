@@ -1011,6 +1011,63 @@
         letter-spacing:.08em;
       }
 
+
+      /* Compact team override */
+      #stluxeDesktopTeam.std-team{
+        min-height:0!important;
+        padding:46px 70px 38px!important;
+      }
+      #stluxeDesktopTeam .std-team-inner{
+        width:min(100%,1120px)!important;
+      }
+      #stluxeDesktopTeam .std-team-kicker{
+        font-size:10px!important;
+      }
+      #stluxeDesktopTeam .std-team-title{
+        margin-top:12px!important;
+        font-size:46px!important;
+      }
+      #stluxeDesktopTeam .std-team-subtitle{
+        margin-top:13px!important;
+        font-size:13px!important;
+      }
+      #stluxeDesktopTeam .std-team-window{
+        margin-top:26px!important;
+      }
+      #stluxeDesktopTeam .std-team-track{
+        width:100%!important;
+        min-width:0!important;
+        gap:48px!important;
+        justify-content:space-between!important;
+        overflow-x:auto!important;
+      }
+      #stluxeDesktopTeam .std-master{
+        flex:0 0 210px!important;
+      }
+      #stluxeDesktopTeam .std-master-avatar{
+        width:200px!important;
+        height:200px!important;
+      }
+      #stluxeDesktopTeam .std-master-avatar svg{
+        width:58px!important;
+        height:58px!important;
+      }
+      #stluxeDesktopTeam .std-master-name{
+        margin-top:14px!important;
+        font-size:25px!important;
+      }
+      #stluxeDesktopTeam .std-master-role{
+        margin-top:7px!important;
+        font-size:11px!important;
+      }
+      #stluxeDesktopTeam .std-team-hint{
+        margin-top:18px!important;
+        font-size:9px!important;
+      }
+      #stluxeDesktopTeam .std-team-hint span{
+        font-size:19px!important;
+      }
+
       @media(max-width:1180px){
         .std-header{padding:0 30px}
         .std-nav{gap:22px}
