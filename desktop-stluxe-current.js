@@ -279,9 +279,9 @@
         min-height:auto;
         padding:46px 42px 46px;
         background:
-          radial-gradient(560px 360px at 5% 8%,rgba(145,103,191,.085),transparent 72%),
-          radial-gradient(560px 360px at 96% 94%,rgba(145,103,191,.075),transparent 72%),
-          radial-gradient(420px 280px at 52% 104%,rgba(145,103,191,.035),transparent 76%),
+          radial-gradient(520px 360px at -7% 108%,rgba(139,92,184,.115) 0%,rgba(139,92,184,.072) 30%,rgba(139,92,184,.028) 52%,transparent 74%),
+          radial-gradient(520px 350px at 107% -8%,rgba(139,92,184,.105) 0%,rgba(139,92,184,.064) 30%,rgba(139,92,184,.024) 52%,transparent 74%),
+          radial-gradient(900px 460px at 50% 50%,rgba(255,255,255,.52),transparent 78%),
           #fbfbfb;
         color:#17171a;
       }
