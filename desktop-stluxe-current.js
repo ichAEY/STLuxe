@@ -38,7 +38,7 @@
       #stluxe-desktop-v1 button{cursor:pointer}
 
       .std-header{
-        height:80px;
+        height:98px;
         width:100%;
         display:flex;
         align-items:center;
@@ -91,9 +91,9 @@
       .std-hero{
         display:grid;
         grid-template-columns:50% 50%;
-        height:calc(100svh - 80px);
+        height:calc(100svh - 87px);
         min-height:690px;
-        margin:0;
+        margin:-11px 0 0;
         background:#242127;
       }
       .std-hero-copy{
