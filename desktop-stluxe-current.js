@@ -8,7 +8,7 @@
 
   const font=document.createElement('link');
   font.rel='stylesheet';
-  font.href='https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Manrope:wght@400;500;600&display=swap';
+  font.href='https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap';
   document.head.appendChild(font);
 
   const css=document.createElement('style');
@@ -60,31 +60,31 @@
       }
       .std-nav a{
         font-size:16px;
-        font-weight:400;
+        font-weight:600;
         line-height:1;
         transition:opacity .18s ease;
       }
       .std-nav a:hover{opacity:.55}
       .std-phone{
         margin-left:auto;
-        width:236px;
+        width:auto;
         height:54px;
         display:flex;
         align-items:center;
         justify-content:center;
-        gap:18px;
-        border-radius:10px;
-        background:linear-gradient(105deg,#561068 0%,#641378 55%,#511063 100%);
-        color:#fff!important;
-        box-shadow:0 2px 7px rgba(68,13,83,.13);
+        gap:12px;
+        border-radius:0;
+        background:transparent;
+        color:#17171a!important;
+        box-shadow:none;
         font-size:18px;
-        font-weight:400;
+        font-weight:700;
       }
       .std-phone svg{width:23px;height:23px;flex:0 0 23px}
 
       .std-hero{
         display:grid;
-        grid-template-columns:42.75% 57.25%;
+        grid-template-columns:50% 50%;
         height:calc(100svh - 98px);
         min-height:690px;
         background:#fff;
@@ -98,35 +98,42 @@
         background:#fff;
       }
       .std-copy-inner{
-        width:min(100%,455px);
+        width:min(100%,520px);
         transform:translateY(-4px);
+        text-align:center;
       }
       .std-logo{
         margin:0;
-        font-family:"Bodoni Moda","Times New Roman",serif;
-        font-size:86px;
+        font-family:"Cormorant Garamond",Georgia,serif;
+        font-size:88px;
         line-height:.94;
-        font-weight:500;
-        letter-spacing:-.055em;
+        font-weight:600;
+        letter-spacing:-.045em;
+        text-align:center;
         color:#111116;
       }
       .std-logo-sub{
-        margin:14px 0 45px 31px;
+        margin:12px 0 45px;
         font-size:17px;
         line-height:1;
         letter-spacing:.43em;
+        text-align:center;
         color:#8b8990;
         text-transform:uppercase;
         white-space:nowrap;
       }
       .std-tagline{
         margin:0 0 42px;
-        max-width:450px;
+        max-width:500px;
+        font-family:"Manrope",Arial,sans-serif;
         font-size:30px;
         line-height:1.34;
         font-weight:400;
         letter-spacing:-.035em;
         color:#232329;
+        text-align:center;
+        margin-left:auto;
+        margin-right:auto;
       }
 
       .std-meta{
@@ -134,12 +141,14 @@
         grid-template-columns:1fr 1px 1.33fr;
         gap:24px;
         align-items:center;
+        justify-content:center;
         margin-bottom:40px;
       }
       .std-meta-divider{width:1px;height:65px;background:#e5e3e7}
       .std-meta-item{
         display:flex;
         align-items:center;
+        justify-content:center;
         gap:15px;
         min-width:0;
       }
@@ -213,11 +222,11 @@
       @media(max-width:1180px){
         .std-header{padding:0 30px}
         .std-nav{gap:28px}
-        .std-phone{width:205px}
+        .std-phone{width:auto}
         .std-hero{grid-template-columns:46% 54%}
         .std-hero-copy{padding-inline:34px}
         .std-logo{font-size:72px}
-        .std-logo-sub{font-size:14px;margin-left:20px}
+        .std-logo-sub{font-size:14px;margin-left:0}
         .std-tagline{font-size:26px}
         .std-meta{gap:14px}
         .std-meta-icon{width:54px;height:54px;flex-basis:54px}
@@ -284,7 +293,7 @@
       </div>
 
       <div class="std-hero-photo">
-        <img src="assets/images/salon-reception.webp" alt="Интерьер салона красоты STLuxe">
+        <img src="stluxe_reception.webp" alt="Ресепшен STLuxe">
       </div>
     </section>
   `;
