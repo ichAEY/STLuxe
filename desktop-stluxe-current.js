@@ -5,6 +5,21 @@
 
   const PHONE='+79163552222';
   const ADDRESS='Ивантеевка, ул. Победы, 16';
+  const PORTFOLIO=[
+    {src:'hair.webp',alt:'Работа с волосами STLuxe'},
+    {src:'nails2.webp',alt:'Маникюр STLuxe'},
+    {src:'res.webp',alt:'Работа с ресницами STLuxe'},
+    {src:'hair5.webp',alt:'Работа с волосами STLuxe'},
+    {src:'nails7.webp',alt:'Маникюр STLuxe'},
+    {src:'hair8.webp',alt:'Работа с волосами STLuxe'},
+    {src:'nails10.webp',alt:'Маникюр STLuxe'}
+  ];
+  const DESKTOP_GALLERY=[
+    'salon.webp','salon2.webp','salon3.webp','salon4.webp','salon6.webp','salon7.webp','salon8.webp','salon9.webp','salon10.webp','salon11.webp','salon12.webp','salon13.webp',
+    'nails.webp','nails2.webp','nails3.webp','nails4.webp','nails5.webp','nails6.webp','nails7.webp','nails8.webp','nails9.webp','nails10.webp','nails11.webp','nails12.webp',
+    'hair.webp','hair2.webp','hair3.webp','hair4.webp','hair5.webp','hair6.webp','hair7.webp','hair8.webp',
+    'res.webp'
+  ];
 
   const font=document.createElement('link');
   font.rel='stylesheet';
@@ -258,6 +273,146 @@
         display:block;
       }
 
+      .std-portfolio{
+        position:relative;
+        overflow:hidden;
+        min-height:890px;
+        padding:88px 54px 82px;
+        background:
+          radial-gradient(420px 300px at -7% 20%,rgba(143,85,181,.055),transparent 72%),
+          radial-gradient(430px 320px at 105% 84%,rgba(143,85,181,.045),transparent 72%),
+          #fafafa;
+        color:#17171a;
+      }
+      .std-portfolio-inner{width:min(100%,1240px);margin:0 auto}
+      .std-portfolio-head{text-align:center}
+      .std-portfolio-kicker{
+        margin:0;
+        font:600 12px/1 "Manrope",Arial,sans-serif;
+        letter-spacing:.30em;
+        text-transform:uppercase;
+        color:#726d75;
+      }
+      .std-portfolio-title{
+        margin:16px 0 0;
+        font:500 64px/.95 "Cormorant Garamond",Georgia,serif;
+        letter-spacing:-.035em;
+        color:#19171b;
+      }
+      .std-portfolio-copy{
+        width:min(100%,680px);
+        margin:18px auto 0;
+        font:400 16px/1.55 "Manrope",Arial,sans-serif;
+        color:#77717b;
+      }
+      .std-portfolio-grid{
+        display:grid;
+        grid-template-columns:1.18fr 1fr 1fr 1fr;
+        grid-template-rows:205px 205px;
+        gap:12px;
+        margin-top:45px;
+      }
+      .std-work{
+        border:0;
+        padding:0;
+        border-radius:17px;
+        overflow:hidden;
+        background:#e7e4e8;
+        box-shadow:0 7px 24px rgba(35,27,40,.045);
+      }
+      .std-work:first-child{grid-row:1 / span 2}
+      .std-work img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:block;
+        transition:transform .35s cubic-bezier(.2,.7,.2,1);
+      }
+      .std-work:hover img{transform:scale(1.025)}
+      .std-portfolio-more{
+        min-width:246px;
+        height:52px;
+        margin:32px auto 0;
+        padding:0 24px;
+        border:1px solid #d6d2d9;
+        border-radius:9px;
+        background:rgba(255,255,255,.55);
+        color:#28252b;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:15px;
+        font:600 14px/1 "Manrope",Arial,sans-serif;
+        transition:background .18s ease,transform .18s ease;
+      }
+      .std-portfolio-more:hover{background:#fff;transform:translateY(-1px)}
+
+      .std-gallery{
+        position:fixed;
+        inset:0;
+        z-index:300;
+        display:none;
+        align-items:center;
+        justify-content:center;
+        padding:68px 72px 74px;
+        background:rgba(18,16,20,.96);
+        backdrop-filter:blur(9px);
+      }
+      .std-gallery.open{display:flex}
+      .std-gallery-close{
+        position:absolute;
+        top:24px;
+        right:28px;
+        width:46px;
+        height:46px;
+        border:1px solid rgba(255,255,255,.17);
+        border-radius:50%;
+        background:rgba(255,255,255,.07);
+        color:#fff!important;
+        font-size:27px;
+        line-height:1;
+      }
+      .std-gallery-stage{
+        position:relative;
+        width:min(100%,1120px);
+        height:min(74vh,720px);
+        display:grid;
+        place-items:center;
+      }
+      .std-gallery-image{
+        max-width:100%;
+        max-height:100%;
+        width:auto;
+        height:auto;
+        object-fit:contain;
+        border-radius:12px;
+        box-shadow:0 24px 80px rgba(0,0,0,.35);
+      }
+      .std-gallery-nav{
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        width:52px;
+        height:70px;
+        border:0;
+        background:transparent;
+        color:#fff!important;
+        font:300 52px/1 Arial,sans-serif!important;
+        opacity:.82;
+      }
+      .std-gallery-nav:hover{opacity:1}
+      .std-gallery-prev{left:-68px}
+      .std-gallery-next{right:-68px}
+      .std-gallery-count{
+        position:absolute;
+        left:50%;
+        bottom:-39px;
+        transform:translateX(-50%);
+        color:rgba(255,255,255,.72);
+        font:500 12px/1 "Manrope",Arial,sans-serif;
+        letter-spacing:.08em;
+      }
+
       @media(max-width:1180px){
         .std-header{padding:0 30px}
         .std-nav{gap:22px}
@@ -335,12 +490,80 @@
         <img src="stluxe_reception.webp" alt="Ресепшен STLuxe">
       </div>
     </section>
+
+    <section class="std-portfolio" id="stluxeDesktopPortfolio" aria-labelledby="stluxeDesktopPortfolioTitle">
+      <div class="std-portfolio-inner">
+        <div class="std-portfolio-head">
+          <p class="std-portfolio-kicker">Портфолио</p>
+          <h2 class="std-portfolio-title" id="stluxeDesktopPortfolioTitle">Наши работы</h2>
+          <p class="std-portfolio-copy">Вдохновляйтесь реальными результатами наших мастеров и выбирайте свой идеальный образ.</p>
+        </div>
+        <div class="std-portfolio-grid">
+          ${PORTFOLIO.map((item,i)=>`<button class="std-work" type="button" data-portfolio-index="${i}" aria-label="Открыть фотографию"><img src="${item.src}" alt="${item.alt}" loading="${i<4?'eager':'lazy'}"></button>`).join('')}
+        </div>
+        <button class="std-portfolio-more" id="stdOpenGallery" type="button">Открыть галерею <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <div class="std-gallery" id="stdGallery" role="dialog" aria-modal="true" aria-label="Галерея STLuxe">
+      <button class="std-gallery-close" id="stdGalleryClose" type="button" aria-label="Закрыть">×</button>
+      <div class="std-gallery-stage">
+        <button class="std-gallery-nav std-gallery-prev" id="stdGalleryPrev" type="button" aria-label="Предыдущее фото">‹</button>
+        <img class="std-gallery-image" id="stdGalleryImage" src="" alt="Фотография STLuxe">
+        <button class="std-gallery-nav std-gallery-next" id="stdGalleryNext" type="button" aria-label="Следующее фото">›</button>
+        <span class="std-gallery-count" id="stdGalleryCount"></span>
+      </div>
+    </div>
   `;
   document.body.appendChild(root);
 
   const bookBtn=document.getElementById('stdBookBtn');
   bookBtn.addEventListener('click',()=>{
     if(typeof window.openBooking==='function') window.openBooking();
+  });
+
+  const gallery=document.getElementById('stdGallery');
+  const galleryImage=document.getElementById('stdGalleryImage');
+  const galleryCount=document.getElementById('stdGalleryCount');
+  let galleryIndex=0;
+
+  function paintGallery(){
+    galleryImage.src=DESKTOP_GALLERY[galleryIndex];
+    galleryImage.alt='Фотография STLuxe';
+    galleryCount.textContent=(galleryIndex+1)+' / '+DESKTOP_GALLERY.length;
+  }
+  function openDesktopGallery(src){
+    const found=src?DESKTOP_GALLERY.indexOf(src):-1;
+    galleryIndex=found>=0?found:0;
+    paintGallery();
+    gallery.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeDesktopGallery(){
+    gallery.classList.remove('open');
+    document.body.style.overflow='';
+  }
+  function moveDesktopGallery(step){
+    galleryIndex=(galleryIndex+step+DESKTOP_GALLERY.length)%DESKTOP_GALLERY.length;
+    paintGallery();
+  }
+
+  document.querySelectorAll('.std-work').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const item=PORTFOLIO[Number(btn.dataset.portfolioIndex)||0];
+      openDesktopGallery(item.src);
+    });
+  });
+  document.getElementById('stdOpenGallery').addEventListener('click',()=>openDesktopGallery());
+  document.getElementById('stdGalleryClose').addEventListener('click',closeDesktopGallery);
+  document.getElementById('stdGalleryPrev').addEventListener('click',()=>moveDesktopGallery(-1));
+  document.getElementById('stdGalleryNext').addEventListener('click',()=>moveDesktopGallery(1));
+  gallery.addEventListener('click',e=>{if(e.target===gallery)closeDesktopGallery()});
+  document.addEventListener('keydown',e=>{
+    if(!gallery.classList.contains('open'))return;
+    if(e.key==='Escape')closeDesktopGallery();
+    if(e.key==='ArrowLeft')moveDesktopGallery(-1);
+    if(e.key==='ArrowRight')moveDesktopGallery(1);
   });
 
   function updateStatus(){
