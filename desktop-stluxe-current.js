@@ -276,62 +276,62 @@
       .std-portfolio{
         position:relative;
         overflow:hidden;
-        min-height:930px;
-        padding:88px 0 82px;
+        min-height:auto;
+        padding:46px 42px 46px;
         background:
-          radial-gradient(420px 300px at -7% 20%,rgba(143,85,181,.055),transparent 72%),
-          radial-gradient(430px 320px at 105% 84%,rgba(143,85,181,.045),transparent 72%),
-          #fafafa;
+          radial-gradient(440px 310px at -5% 90%,rgba(143,85,181,.045),transparent 72%),
+          radial-gradient(450px 320px at 102% 6%,rgba(143,85,181,.04),transparent 72%),
+          #fbfbfb;
         color:#17171a;
       }
       .std-portfolio-inner{
-        width:calc(100vw + 120px);
+        width:min(100%,1452px);
         max-width:none;
-        margin-left:-60px;
-        margin-right:-60px;
+        margin:0 auto;
       }
       .std-portfolio-head{
-        width:100vw;
-        margin:0 60px;
-        padding:0 36px;
+        width:auto;
+        margin:0;
+        padding:0;
         text-align:center;
       }
       .std-portfolio-kicker{
         margin:0;
         font:600 12px/1 "Manrope",Arial,sans-serif;
-        letter-spacing:.30em;
+        letter-spacing:.31em;
         text-transform:uppercase;
-        color:#726d75;
+        color:#66636a;
       }
       .std-portfolio-title{
-        margin:16px 0 0;
-        font:500 64px/.95 "Cormorant Garamond",Georgia,serif;
-        letter-spacing:-.035em;
-        color:#19171b;
+        margin:20px 0 0;
+        font:500 76px/.92 "Cormorant Garamond",Georgia,serif;
+        letter-spacing:-.045em;
+        color:#171518;
       }
       .std-portfolio-copy{
-        width:max-content;
-        max-width:100%;
-        margin:18px auto 0;
-        font:400 16px/1.55 "Manrope",Arial,sans-serif;
-        color:#77717b;
-        white-space:nowrap;
+        width:min(100%,760px);
+        max-width:760px;
+        margin:20px auto 0;
+        font:400 17px/1.45 "Manrope",Arial,sans-serif;
+        color:#77747b;
+        white-space:normal;
+        text-align:center;
       }
       .std-portfolio-grid{
         display:grid;
-        grid-template-columns:1.42fr 1fr 1fr 1fr;
-        grid-template-rows:250px 250px;
-        gap:14px;
-        margin-top:45px;
-        padding:0 10px;
+        grid-template-columns:330px repeat(3,minmax(0,1fr));
+        grid-template-rows:276px 304px;
+        gap:12px;
+        margin-top:28px;
+        padding:0;
       }
       .std-work{
         border:0;
         padding:0;
-        border-radius:17px;
+        border-radius:13px;
         overflow:hidden;
         background:#e7e4e8;
-        box-shadow:0 10px 28px rgba(35,27,40,.055);
+        box-shadow:none;
       }
       .std-work:first-child{grid-row:1 / span 2}
       .std-work img{
@@ -341,24 +341,26 @@
         display:block;
         transition:transform .35s cubic-bezier(.2,.7,.2,1);
       }
-      .std-work:hover img{transform:scale(1.025)}
+      .std-work:hover img{transform:scale(1.018)}
       .std-portfolio-more{
-        min-width:246px;
-        height:52px;
-        margin:34px auto 0;
-        padding:0 24px;
-        border:1px solid #d6d2d9;
-        border-radius:9px;
-        background:rgba(255,255,255,.55);
-        color:#28252b;
+        width:516px;
+        max-width:calc(100% - 84px);
+        height:76px;
+        margin:42px auto 0;
+        padding:0 28px;
+        border:1px solid #ceccd0;
+        border-radius:13px;
+        background:rgba(255,255,255,.72);
+        color:#242126;
         display:flex;
         align-items:center;
         justify-content:center;
-        gap:15px;
-        font:600 14px/1 "Manrope",Arial,sans-serif;
+        gap:18px;
+        font:500 18px/1 "Manrope",Arial,sans-serif;
+        position:static;
+        left:auto;
         transition:background .18s ease,transform .18s ease;
       }
-      .std-portfolio-more{position:relative;left:60px}
       .std-portfolio-more:hover{background:#fff;transform:translateY(-1px)}
 
       .std-gallery{
@@ -510,7 +512,7 @@
         <div class="std-portfolio-head">
           <p class="std-portfolio-kicker">Портфолио</p>
           <h2 class="std-portfolio-title" id="stluxeDesktopPortfolioTitle">Наши работы</h2>
-          <p class="std-portfolio-copy">Вдохновляйтесь реальными результатами наших мастеров и выбирайте свой идеальный образ.</p>
+          <p class="std-portfolio-copy">Вдохновляйтесь реальными результатами наших мастеров<br>и выбирайте свой идеальный образ.</p>
         </div>
         <div class="std-portfolio-grid">
           ${PORTFOLIO.map((item,i)=>`<button class="std-work" type="button" data-portfolio-index="${i}" aria-label="Открыть фотографию"><img src="${item.src}" alt="${item.alt}" loading="${i<4?'eager':'lazy'}"></button>`).join('')}
