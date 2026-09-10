@@ -411,10 +411,10 @@
         min-height:900px;
         padding:54px 72px 58px;
         background:
-          radial-gradient(620px 470px at 106% 14%,rgba(108,46,137,.17),transparent 70%),
-          radial-gradient(520px 390px at -8% 94%,rgba(91,36,116,.10),transparent 72%),
-          linear-gradient(180deg,#201d24 0%,#1c1a20 100%);
-        color:#f6f2f7;
+          radial-gradient(420px 310px at 108% 8%,rgba(143,85,181,.19),transparent 67%),
+          radial-gradient(300px 230px at -14% 88%,rgba(111,61,130,.10),transparent 72%),
+          #242127;
+        color:#f7f3f8;
       }
       .std-services-inner{
         width:min(100%,1215px);
@@ -429,6 +429,11 @@
         min-height:770px;
         background:rgba(255,255,255,.16);
       }
+      .std-services-left{min-width:0}
+      .std-services-right{
+        min-width:0;
+        overflow:hidden;
+      }
       .std-services-kicker{
         margin:0;
         font:600 12px/1 "Manrope",Arial,sans-serif;
@@ -442,10 +447,13 @@
         letter-spacing:-.035em;
         color:#fff;
       }
+      .std-price-wrap{
+        width:min(100%,530px);
+      }
       .std-price-card{
         position:relative;
-        width:min(100%,530px);
-        aspect-ratio:1.08/1;
+        width:100%;
+        height:auto;
         border-radius:9px;
         overflow:hidden;
         background:#f0ece7;
@@ -453,7 +461,7 @@
       }
       .std-price-card img{
         width:100%;
-        height:100%;
+        height:auto;
         display:block;
         object-fit:contain;
         background:#f4f0ea;
@@ -487,7 +495,7 @@
       .std-price-prev{left:0}
       .std-price-next{right:0}
       .std-price-dots{
-        width:min(100%,530px);
+        width:100%;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -507,28 +515,44 @@
         box-shadow:0 0 13px rgba(151,73,227,.34);
       }
       .std-price-open{
+        display:block;
         width:min(100%,390px);
         height:60px;
         margin:30px auto 0;
-        border:1px solid #9445d6;
+        border:1px solid rgba(190,139,211,.30);
         border-radius:999px;
-        background:rgba(111,52,139,.08);
-        color:#f8f4fa!important;
+        background:linear-gradient(135deg,#8d45b4,#77369d);
+        color:#fff!important;
+        box-shadow:0 10px 28px rgba(82,39,100,.25);
         font:500 16px/1 "Manrope",Arial,sans-serif;
         transition:background .18s ease,box-shadow .18s ease,transform .18s ease;
       }
       .std-price-open:hover{
-        background:rgba(140,66,174,.16);
-        box-shadow:0 0 28px rgba(142,66,190,.14);
+        background:linear-gradient(135deg,#9550ba,#7e3ba2);
+        box-shadow:0 12px 30px rgba(82,39,100,.30);
         transform:translateY(-1px);
       }
 
       .std-service-tabs{
         display:flex;
-        flex-wrap:wrap;
-        gap:12px 14px;
+        flex-wrap:nowrap;
+        align-items:center;
+        gap:12px;
+        width:calc(100% + max(0px,(100vw - 1215px)/2));
         margin:0 0 31px;
+        padding:2px 44px 9px 10px;
+        overflow-x:auto;
+        overflow-y:hidden;
+        overscroll-behavior-inline:contain;
+        scrollbar-width:none;
+        -webkit-overflow-scrolling:touch;
+        cursor:grab;
+        user-select:none;
+        -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 25px,#000 calc(100% - 44px),transparent 100%);
+        mask-image:linear-gradient(90deg,transparent 0,#000 25px,#000 calc(100% - 44px),transparent 100%);
       }
+      .std-service-tabs::-webkit-scrollbar{display:none}
+      .std-service-tabs.dragging{cursor:grabbing}
       .std-service-tab{
         min-height:43px;
         padding:0 24px;
@@ -541,10 +565,10 @@
         transition:background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease;
       }
       .std-service-tab.active{
-        border-color:#963fe0;
-        background:linear-gradient(105deg,#7632c9 0%,#9e43ee 100%);
+        border-color:#6f3d82;
+        background:#6f3d82;
         color:#fff!important;
-        box-shadow:0 5px 20px rgba(134,54,207,.20);
+        box-shadow:0 5px 20px rgba(111,61,130,.20);
       }
       .std-service-list{
         border-top:1px solid rgba(255,255,255,.12);
@@ -564,15 +588,15 @@
         color:#f6f2f7;
       }
       .std-service-price{
-        font:500 20px/1 "Cormorant Garamond",Georgia,serif;
-        color:#f6f2f7;
+        font:600 27px/1 "Cormorant Garamond",Georgia,serif;
+        color:#f7f3f8;
         white-space:nowrap;
       }
       .std-service-detail{
         display:block;
         margin-top:9px;
-        font:400 13px/1.42 "Manrope",Arial,sans-serif;
-        color:#a69faa;
+        font:400 15.5px/1.45 "Manrope",Arial,sans-serif;
+        color:#b9b2bd;
       }
       .std-service-variants{
         display:grid;
@@ -584,19 +608,19 @@
         grid-template-columns:minmax(0,1fr) auto;
         gap:18px;
         align-items:baseline;
-        font:400 14px/1.35 "Manrope",Arial,sans-serif;
-        color:#c2bbc5;
+        font:400 15.5px/1.4 "Manrope",Arial,sans-serif;
+        color:#c9c1cc;
       }
       .std-service-variant b{
-        font:500 18px/1 "Cormorant Garamond",Georgia,serif;
-        color:#f5f0f6;
+        font:600 23px/1 "Cormorant Garamond",Georgia,serif;
+        color:#f7f3f8;
         white-space:nowrap;
       }
       .std-service-note{
         display:block;
         margin-top:10px;
-        font:400 11px/1.45 "Manrope",Arial,sans-serif;
-        color:#88808c;
+        font:400 13px/1.5 "Manrope",Arial,sans-serif;
+        color:#aaa2ad;
       }
       .std-service-more{
         width:100%;
@@ -848,14 +872,16 @@
         <div class="std-services-left">
           <p class="std-services-kicker">Услуги</p>
           <h2 class="std-services-title" id="stdServicesTitle">Наши услуги</h2>
-          <div class="std-price-card">
-            <img id="stdPriceImage" src="${PRICE_PAGES[0]}" alt="Фото-прайс STLuxe, страница 1">
-            <span class="std-price-count" id="stdPriceCount">1 / ${PRICE_PAGES.length}</span>
-            <button class="std-price-arrow std-price-prev" id="stdPricePrev" type="button" aria-label="Предыдущая страница">‹</button>
-            <button class="std-price-arrow std-price-next" id="stdPriceNext" type="button" aria-label="Следующая страница">›</button>
+          <div class="std-price-wrap">
+            <div class="std-price-card">
+              <img id="stdPriceImage" src="${PRICE_PAGES[0]}" alt="Фото-прайс STLuxe, страница 1">
+              <span class="std-price-count" id="stdPriceCount">1 / ${PRICE_PAGES.length}</span>
+              <button class="std-price-arrow std-price-prev" id="stdPricePrev" type="button" aria-label="Предыдущая страница">‹</button>
+              <button class="std-price-arrow std-price-next" id="stdPriceNext" type="button" aria-label="Следующая страница">›</button>
+            </div>
+            <div class="std-price-dots" id="stdPriceDots"></div>
+            <button class="std-price-open" id="stdPriceOpen" type="button">Открыть фото-прайс</button>
           </div>
-          <div class="std-price-dots" id="stdPriceDots"></div>
-          <button class="std-price-open" id="stdPriceOpen" type="button">Открыть фото-прайс</button>
         </div>
 
         <span class="std-services-divider" aria-hidden="true"></span>
@@ -1027,6 +1053,30 @@
   }
   serviceMore.onclick=()=>{desktopServicesExpanded=!desktopServicesExpanded;renderDesktopServices();};
   renderDesktopServices();
+
+  let tabsDragging=false,tabsStartX=0,tabsStartScroll=0;
+  serviceTabs.addEventListener('pointerdown',e=>{
+    if(e.target.closest('button'))return;
+    tabsDragging=true;
+    tabsStartX=e.clientX;
+    tabsStartScroll=serviceTabs.scrollLeft;
+    serviceTabs.classList.add('dragging');
+    serviceTabs.setPointerCapture?.(e.pointerId);
+  });
+  serviceTabs.addEventListener('pointermove',e=>{
+    if(!tabsDragging)return;
+    serviceTabs.scrollLeft=tabsStartScroll-(e.clientX-tabsStartX);
+  });
+  const endTabsDrag=()=>{tabsDragging=false;serviceTabs.classList.remove('dragging');};
+  serviceTabs.addEventListener('pointerup',endTabsDrag);
+  serviceTabs.addEventListener('pointercancel',endTabsDrag);
+  serviceTabs.addEventListener('wheel',e=>{
+    if(Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;
+    const max=serviceTabs.scrollWidth-serviceTabs.clientWidth;
+    if(max<=0)return;
+    e.preventDefault();
+    serviceTabs.scrollLeft+=e.deltaY;
+  },{passive:false});
 
   function updateStatus(){
     const parts=new Intl.DateTimeFormat('en-GB',{
