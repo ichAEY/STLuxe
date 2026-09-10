@@ -709,6 +709,127 @@
         letter-spacing:.08em;
       }
 
+      .std-about{
+        position:relative;
+        overflow:hidden;
+        min-height:790px;
+        padding:92px 64px 96px;
+        background:
+          radial-gradient(470px 340px at 108% 14%,rgba(150,79,190,.135),transparent 68%),
+          radial-gradient(340px 250px at -12% 92%,rgba(157,91,194,.055),transparent 73%),
+          #f7f7f8;
+        color:#211e23;
+      }
+      .std-about-inner{
+        width:min(100%,1405px);
+        margin:0 auto;
+      }
+      .std-about-kicker{
+        margin:0 0 27px;
+        font:600 13px/1 "Manrope",Arial,sans-serif;
+        letter-spacing:.29em;
+        text-transform:uppercase;
+        color:#6f6971;
+      }
+      .std-about-grid{
+        display:grid;
+        grid-template-columns:minmax(0,635px) minmax(0,1fr);
+        gap:44px;
+        align-items:center;
+      }
+      .std-about-visual{
+        position:relative;
+        min-width:0;
+        height:556px;
+        border-radius:29px;
+        overflow:hidden;
+        background:#342338;
+        box-shadow:0 18px 46px rgba(55,40,62,.10);
+      }
+      .std-about-visual:after{
+        content:'';
+        position:absolute;
+        inset:0;
+        pointer-events:none;
+        background:radial-gradient(340px 230px at 88% 12%,rgba(189,121,222,.18),transparent 70%);
+      }
+      .std-about-visual img{
+        width:100%;
+        height:100%;
+        display:block;
+        object-fit:cover;
+        object-position:center center;
+        filter:brightness(1.17) saturate(1.08) contrast(.98);
+      }
+      .std-about-rating{
+        position:absolute;
+        z-index:2;
+        left:29px;
+        bottom:29px;
+        height:72px;
+        padding:0 25px;
+        border:1px solid rgba(255,255,255,.25);
+        border-radius:999px;
+        background:rgba(62,35,72,.74);
+        backdrop-filter:blur(12px);
+        display:flex;
+        align-items:center;
+        gap:13px;
+        color:#fff;
+        box-shadow:0 8px 22px rgba(26,18,29,.16);
+      }
+      .std-about-rating-star{
+        color:#f0c45d;
+        font-size:25px;
+        line-height:1;
+      }
+      .std-about-rating strong{
+        font:600 25px/1 "Manrope",Arial,sans-serif;
+        color:#fff;
+      }
+      .std-about-rating span{
+        font:500 15px/1 "Manrope",Arial,sans-serif;
+        color:rgba(255,255,255,.72);
+        white-space:nowrap;
+      }
+      .std-about-copy{
+        min-width:0;
+        padding:6px 0 0;
+      }
+      .std-about-lead{
+        margin:0;
+        max-width:700px;
+        font:500 55px/1.08 "Cormorant Garamond",Georgia,serif;
+        letter-spacing:-.035em;
+        color:#211e23;
+      }
+      .std-about-text{
+        margin:36px 0 0;
+        max-width:710px;
+        font:400 20px/1.5 "Manrope",Arial,sans-serif;
+        color:#5c565f;
+      }
+      .std-about-facts{
+        display:grid;
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:20px;
+        margin-top:37px;
+      }
+      .std-about-fact{
+        min-height:136px;
+        padding:20px 18px;
+        border:1px solid rgba(75,58,81,.09);
+        border-radius:19px;
+        background:#dfdce2;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        font:500 17px/1.35 "Manrope",Arial,sans-serif;
+        color:#2c282e;
+        box-shadow:none;
+      }
+
       .std-gallery{
         position:fixed;
         inset:0;
@@ -891,6 +1012,31 @@
           <div class="std-service-list" id="stdServiceList"></div>
           <button class="std-service-more" id="stdServiceMore" type="button"><span id="stdServiceMoreText"></span><span id="stdServiceMoreArrow" aria-hidden="true">↓</span></button>
           <div class="std-services-count" id="stdServicesCount"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="std-about" id="stluxeDesktopAbout" aria-labelledby="stdAboutTitle">
+      <div class="std-about-inner">
+        <p class="std-about-kicker">О нас</p>
+        <div class="std-about-grid">
+          <div class="std-about-visual">
+            <img src="assets/images/stluxe-about-logo.webp" alt="STLuxe" loading="lazy">
+            <div class="std-about-rating">
+              <span class="std-about-rating-star" aria-hidden="true">★</span>
+              <strong>4,9</strong>
+              <span>рейтинг салона</span>
+            </div>
+          </div>
+          <div class="std-about-copy">
+            <h2 class="std-about-lead" id="stdAboutTitle">Мы сделали STLuxe местом,<br>где можно спокойно доверить<br>свою красоту мастеру.</h2>
+            <p class="std-about-text">Нам важно, чтобы вам было комфортно на каждом этапе: мы внимательно относимся к пожеланиям, ценим аккуратную работу и собираем в одном пространстве мастеров разных направлений.</p>
+            <div class="std-about-facts">
+              <div class="std-about-fact">Мастера разных<br>направлений</div>
+              <div class="std-about-fact">Комфортная<br>атмосфера</div>
+              <div class="std-about-fact">Индивидуальный<br>подход</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
