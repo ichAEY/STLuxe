@@ -91,9 +91,9 @@
       .std-hero{
         display:grid;
         grid-template-columns:50% 50%;
-        height:calc(100svh - 87px);
+        height:calc(100svh - 81px);
         min-height:690px;
-        margin:-11px 0 0;
+        margin:-17px 0 0;
         background:#242127;
       }
       .std-hero-copy{
@@ -194,19 +194,21 @@
       .std-actions{display:grid;gap:20px}
       .std-btn{
         width:100%;
-        height:69px;
+        height:73px;
         border-radius:10px;
         display:flex;
         align-items:center;
         justify-content:center;
         gap:22px;
-        font-size:25px;
-        font-weight:650;
+        font-size:27px;
+        font-weight:700;
         border:1px solid rgba(255,255,255,.20);
         background:rgba(255,255,255,.035);
         color:#f7f3f8;
         transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease;
       }
+      .std-btn:not(.std-btn-primary){color:#fff!important}
+      .std-sparkles{color:#fff!important}
       .std-btn:hover{transform:translateY(-1px)}
       .std-btn:active{transform:translateY(0)}
       .std-btn-primary{
