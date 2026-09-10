@@ -34,7 +34,8 @@
   const TEAM_MASTERS=[
     {id:'master1',name:'Мастер 1',role:'Косметолог'},
     {id:'master2',name:'Мастер 2',role:'Мастер маникюра'},
-    {id:'master3',name:'Мастер 3',role:'Мастер волос'}
+    {id:'master3',name:'Мастер 3',role:'Мастер волос'},
+    {id:'master4',name:'Мастер 4',role:'Мастер'}
   ];
   const TEAM_AVATAR='<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="23" r="11" fill="currentColor"></circle><path d="M12 56c2.7-11.4 10-17 20-17s17.3 5.6 20 17" fill="currentColor"></path></svg>';
 
