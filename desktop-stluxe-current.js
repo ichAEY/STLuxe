@@ -45,7 +45,7 @@
         position:relative;
         z-index:20;
         padding:0 46px;
-        border-bottom:1px solid rgba(255,255,255,.055);
+        border-bottom:0;
         background:
           radial-gradient(380px 160px at 12% 0%,rgba(143,85,181,.12),transparent 72%),
           linear-gradient(180deg,#2a2630 0%,#28242d 100%);
@@ -93,6 +93,7 @@
         grid-template-columns:50% 50%;
         height:calc(100svh - 98px);
         min-height:690px;
+        margin:0;
         background:#242127;
       }
       .std-hero-copy{
@@ -100,7 +101,7 @@
         display:flex;
         justify-content:center;
         align-items:center;
-        padding:48px 34px 62px;
+        padding:0 34px 40px;
         background:
           radial-gradient(520px 360px at 8% 86%,rgba(111,61,130,.15),transparent 72%),
           radial-gradient(520px 360px at 98% 10%,rgba(143,85,181,.20),transparent 68%),
@@ -243,6 +244,7 @@
         position:relative;
         min-width:0;
         height:100%;
+        margin:0;
         overflow:hidden;
         background:#eee;
       }
