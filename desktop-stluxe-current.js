@@ -20,6 +20,17 @@
     'hair.webp','hair2.webp','hair3.webp','hair4.webp','hair5.webp','hair6.webp','hair7.webp','hair8.webp',
     'res.webp'
   ];
+  const PRICE_PAGES=[
+    'stluxe_price_page_1.webp',
+    'stluxe_price_page_2.webp',
+    'stluxe_price_page_3.webp',
+    'stluxe_price_page_4.webp',
+    'stluxe_price_page_5.webp',
+    'stluxe_price_page_6.webp',
+    'stluxe_price_page_7.webp'
+  ];
+  const SERVICE_DATA={"Стрижки и укладки":[["Стрижка и укладка","","",[["Короткие волосы","1 400 ₽"],["Средние волосы","1 600 ₽"],["Длинные волосы","2 000 ₽"]],""],["Стрижка чёлки","300 ₽","Без мытья головы",[],""],["Подравнивание","","Без мытья головы, укладки и стайлинга",[["Средние волосы","800 ₽"],["Длинные волосы","1 000 ₽"]],""],["Укладка волос 30–45 мин","","Без стрижки",[["Короткие волосы","700 ₽"],["Средние волосы","1 000 ₽"],["Длинные волосы","1 200 ₽"]],""],["Доплаты к укладке","","",[["Диффузор","+150 / +250 / +350 ₽"],["Начёс","+200 / +300 / +450 ₽"],["Утюжок","+300 / +500 / +700 ₽"],["Щипцы","+300 / +500 / +700 ₽"]],"Цены указаны для коротких / средних / длинных волос."],["Вечерняя причёска","1 500–3 500 ₽","",[],""],["Свадебная причёска","2 500–4 500 ₽","",[],""],["Пробная свадебная причёска","","",[["Короткие волосы","1 500–2 500 ₽"],["Средние волосы","2 500–3 500 ₽"],["Длинные волосы","3 500–4 500 ₽"]],""],["Плетение оригинальных косичек","","",[["1 элемент · 30 мин · средние","400 ₽"],["1 элемент · 30 мин · длинные","500 ₽"],["2 элемента · 60 мин · средние","600 ₽"],["2 элемента · 60 мин · длинные","750 ₽"],["3+ элемента · средние","900–1 200 ₽"],["3+ элемента · длинные","1 200–1 500 ₽"],["Мытьё и сушка · средние","+150 ₽"],["Мытьё и сушка · длинные","+250 ₽"]],""]],"Окрашивание":[["Окрашивание корней волос","","Londa / Barex",[["Короткие волосы","от 2 500 ₽"],["Средние волосы","от 3 300 ₽"],["Длинные волосы","от 3 700 ₽"]],"Permesse / Wella / Matrix / L’Oréal: +300 / +500 / +700 ₽."],["Окрашивание в 1 тон","","Londa / Barex",[["Короткие волосы","от 3 500 ₽"],["Средние волосы","от 4 000 ₽"],["Длинные волосы","от 4 800 ₽"]],"Permesse / Wella / Matrix / L’Oréal: +300 / +500 / +700 ₽."],["Смывка цвета","","",[["Короткие волосы","3 800 ₽"],["Средние волосы","4 600 ₽"],["Длинные волосы","5 500 ₽"]],""],["Блондирование корней + тонирование","","Londa / Barex",[["Короткие волосы","от 4 500 ₽"],["Средние волосы","от 5 500 ₽"],["Длинные волосы","от 6 000 ₽"]],"Permesse / Wella / Matrix / L’Oréal: +300 / +500 / +700 ₽."],["Блондирование + тонирование","","Londa / Barex",[["Короткие волосы","от 5 500 ₽"],["Средние волосы","от 6 500 ₽"],["Длинные волосы","от 7 000 ₽"]],"Permesse / Wella / Matrix / L’Oréal: +300 / +500 / +700 ₽."]],"Мелирование":[["Мелирование на фольге","","",[["Короткие волосы","от 4 500 ₽"],["Средние волосы","от 5 000 ₽"],["Длинные волосы","от 6 000 ₽"]],""],["Мелирование корней на фольге","","",[["Короткие волосы","от 4 000 ₽"],["Средние волосы","от 4 500 ₽"],["Длинные волосы","от 5 500 ₽"]],""],["Частичное мелирование до 10 прядей","","",[["Во время окрашивания · короткие","1 900 ₽"],["Во время окрашивания · средние","2 700 ₽"],["Во время окрашивания · длинные","3 500 ₽"],["Отдельно · короткие","2 000 ₽"],["Отдельно · средние","2 500 ₽"],["Отдельно · длинные","3 000 ₽"]],""],["Мелирование на фольге + тонирование","","Londa / Barex",[["Короткие волосы","от 6 000 ₽"],["Средние волосы","от 7 000 ₽"],["Длинные волосы","от 8 000 ₽"]],"Permesse / Wella / Matrix / L’Oréal: +300 / +500 / +700 ₽."],["Мелирование корней на фольге + тонирование","","Londa / Barex",[["Короткие волосы","от 5 000 ₽"],["Средние волосы","от 6 000 ₽"],["Длинные волосы","от 7 000 ₽"]],"Permesse / Wella / Matrix / L’Oréal: +300 / +500 / +700 ₽."],["Сложное колорирование 3-D / омбре / брондирование","","Londa / Barex",[["Короткие волосы","от 5 500 ₽"],["Средние волосы","от 6 500 ₽"],["Длинные волосы","от 8 000 ₽"]],"Permesse / Wella / Matrix / L’Oréal: +300 / +500 / +700 ₽."],["Шатуш / балаяж / рельефное окрашивание","","Londa / Barex",[["Короткие волосы","от 6 000 ₽"],["Средние волосы","от 7 000 ₽"],["Длинные волосы","от 9 000 ₽"]],"Permesse / Wella / Matrix / L’Oréal: +300 / +500 / +700 ₽."]],"Уход за волосами":[["Химическая завивка Londa","","",[["Короткие волосы","от 3 800 ₽"],["Средние волосы","от 4 000 ₽"],["Длинные волосы","от 5 000 ₽"]],""],["Биохимическая завивка Selective","","",[["Короткие волосы","от 4 000 ₽"],["Средние волосы","от 5 000 ₽"],["Длинные волосы","от 5 500 ₽"]],""],["Прикорневая биохимия BustUp New","2 500–4 500 ₽","",[],""],["Ламинирование волос Barex","","",[["Короткие волосы","3 000 ₽"],["Средние волосы","3 500 ₽"],["Длинные волосы","от 4 000 ₽"]],""],["Кератиновое восстановление Brazilian Blowout","","",[["Короткие волосы · 10 мл","от 5 000 ₽"],["Средние волосы · 17 мл","от 7 000 ₽"],["Длинные волосы · 25 мл","от 8 000 ₽"]],""],["Кератиновое выпрямление чёлки Brazilian Blowout","1 000 ₽","",[],""],["Экспресс-лечение повреждённых волос","","Selective / Matrix",[["Короткие волосы","500 ₽"],["Средние волосы","1 000 ₽"],["Длинные волосы","1 500 ₽"]],""],["Ботокс для волос Densi Fill Selective","","",[["Короткие волосы","1 200–1 500 ₽"],["Средние волосы","1 700–2 000 ₽"],["Длинные волосы","2 500–3 000 ₽"]],""],["Экспресс-лечение перхоти Londa / Barex","от 1 000 ₽","",[],""],["Лечебная маска для волос","","Barex / Matrix / Brazilian Blowout",[["Короткие волосы","400 ₽"],["Средние волосы","600 ₽"],["Длинные волосы","900 ₽"]],""],["Глазирование волос Matrix","","",[["Короткие волосы","1 700 ₽"],["Средние волосы","от 2 100 ₽"],["Длинные волосы","от 2 700 ₽"]],""]],"Мужчины и дети":[["Стрижка простая / модельная","","Мужская",[["Короткие волосы","1 000 ₽"],["Средние волосы","1 400 ₽"]],""],["Стрижка под машинку / насадками","800 ₽","",[],""],["Креативная имидж-стрижка","1 500 ₽","",[],""],["Креативные полоски / рисунки","от 200 ₽","",[],""],["Детская стрижка","600 ₽","Мальчики / девочки до 7 лет",[],""],["Подростковая стрижка","800 ₽","Мальчики 7–12 лет",[],""],["Подростковая стрижка","","Девочки 7–12 лет",[["Короткие волосы","1 200 ₽"],["Средние волосы","1 400 ₽"],["Длинные волосы","1 700 ₽"]],""],["Стрижка чёлки","250 ₽","Детская / подростковая",[],""],["Подравнивание","600 ₽","Детское / подростковое",[],""]],"Маникюр":[["Маникюр гигиенический","1 400 ₽","Аппаратный, обрезной или комбинированный",[],""],["Экспресс-маникюр","1 400 ₽","",[],""],["SPA-маникюр","1 700 ₽","Маникюр + пилинг + маска + лосьон + массаж",[],""],["Пилинг рук","200 ₽","",[],""],["Массаж рук","200 ₽","",[],""],["Полировка ногтей","200 ₽","",[],""],["Мужской маникюр гигиенический","1 500 ₽","",[],""],["Подростковый маникюр","1 000 ₽","До 12 лет",[],""],["Маникюр с покрытием гель-лаком OPI / EMI / Luxio","1 900 ₽","",[],""],["Экспресс-маникюр с покрытием гель-лаком OPI / EMI / Luxio","1 700 ₽","",[],""],["Маникюр с покрытием лаком OPI / EMI / CND Vinylux","1 700 ₽","",[],""],["Экспресс-маникюр с покрытием лаком OPI / EMI / CND Vinylux","1 500 ₽","",[],""],["Маникюр с лечебным покрытием","1 600 ₽","",[],""],["Экспресс-маникюр с лечебным покрытием","1 400 ₽","",[],""],["Покрытие ногтей гель-лаком без маникюра","1 200 ₽","",[],""],["Покрытие ногтей лаком без маникюра","1 000 ₽","Основа + лак + сушка",[],""],["Маникюр + Smoothing Gel System EMI / Luxio / OPI","","",[["Без цветного гель-лака","2 400 ₽"],["С цветным гель-лаком","2 600 ₽"]],""],["Ремонт натурального ногтя гелем","","",[["При маникюре · 1 ноготь","100 ₽"],["Без маникюра · 1 ноготь","500 ₽"]],""],["Снятие гель-лака","","",[["При маникюре","400 ₽"],["Без маникюра","800 ₽"]],""],["Дизайн — френч / обратный френч / лунки / кошачий глаз","600 ₽","",[],""],["Дизайн с использованием декора","от 50 ₽","Наклейки, стразы, фольга, конфетти, слюда, втирка, глиттер и др. · 1 ноготь",[],""],["Художественная роспись / аэрография","от 100 ₽","1 ноготь",[],""],["Стразы","от 10 ₽","1 шт.",[],""],["Парафинотерапия рук","1 500 ₽","",[],""]],"Педикюр":[["Педикюр","2 500 ₽","Аппаратный, обрезной или комбинированный",[],""],["Экспресс-педикюр","1 700 ₽","",[],""],["SPA-педикюр OPI без покрытия","3 200 ₽","Педикюр + скраб + пилинг + маска + лосьон + массаж",[],""],["Пилинг стоп","500 ₽","",[],""],["Массаж стоп","600 ₽","",[],""],["Полировка ногтей","400 ₽","",[],""],["Мужской педикюр гигиенический","3 000 ₽","",[],""],["Подростковый педикюр","1 700 ₽","До 12 лет",[],""],["Педикюр с покрытием гель-лаком OPI / Luxio / EMI","3 300 ₽","",[],""],["Экспресс-педикюр с покрытием гель-лаком OPI / Luxio / EMI","2 700 ₽","",[],""],["Педикюр с покрытием лаком OPI / EMI / CND Vinylux","2 900 ₽","",[],""],["Экспресс-педикюр с покрытием лаком OPI / EMI / CND Vinylux","2 500 ₽","",[],""],["Педикюр с лечебным покрытием","2 400 ₽","",[],""],["Экспресс-педикюр с лечебным покрытием","2 200 ₽","",[],""],["Покрытие ногтей гель-лаком без педикюра","1 200 ₽","",[],""],["Покрытие ногтей лаком без педикюра","1 000 ₽","Основа + лак + сушка",[],""],["Снятие гель-лака","","",[["При педикюре","400 ₽"],["Без педикюра","800 ₽"]],""],["Снятие лака","100 ₽","При педикюре",[],""],["Ремонт натурального ногтя","","",[["При педикюре","от 200 ₽"],["Без педикюра","от 300 ₽"]],""],["Дизайн — френч / обратный френч / лунки / кошачий глаз","400 ₽","",[],""],["Дизайн с использованием декора","от 50 ₽","Наклейки, стразы, фольга, конфетти, слюда, втирка, глиттер и др. · 1 ноготь",[],""],["Художественная роспись / аэрография","от 100 ₽","1 ноготь",[],""],["Стразы","от 10 ₽","1 шт.",[],""]],"Наращивание":[["Наращивание ногтей гелем","","",[["С цветным верхним покрытием","3 000 ₽"],["Без цветного покрытия","2 500 ₽"]],"Цены для длины 2/3 ногтевой пластины; длинные ногти +30%."],["Коррекция ногтей гелем","","",[["С цветным верхним покрытием","2 700 ₽"],["Без цветного покрытия","2 000 ₽"]],"Цены для длины 2/3 ногтевой пластины; длинные ногти +30%."],["Снятие искусственных ногтей","1 000 ₽","Без маникюра",[],""],["Ремонт 1 ногтя","","",[["При коррекции","200 ₽"],["Вне коррекции","250 ₽"]],""],["Наращивание 1 ногтя","","",[["При коррекции","250 ₽"],["Вне коррекции","300 ₽"]],""],["Дизайн — френч / обратный френч / лунки / кошачий глаз","500 ₽","",[],""],["Дизайн с использованием декора","от 50 ₽","Наклейки, стразы, фольга, конфетти, слюда, втирка, глиттер и др. · 1 ноготь",[],""],["Художественная роспись / аэрография","от 100 ₽","1 ноготь",[],""],["Стразы","от 10 ₽","1 шт.",[],""]]};
+  const SERVICE_CATEGORIES=Object.keys(SERVICE_DATA);
 
   const font=document.createElement('link');
   font.rel='stylesheet';
@@ -394,6 +405,286 @@
         box-shadow:0 10px 26px rgba(120,84,156,.12);
       }
 
+      .std-services{
+        position:relative;
+        overflow:hidden;
+        min-height:900px;
+        padding:54px 72px 58px;
+        background:
+          radial-gradient(620px 470px at 106% 14%,rgba(108,46,137,.17),transparent 70%),
+          radial-gradient(520px 390px at -8% 94%,rgba(91,36,116,.10),transparent 72%),
+          linear-gradient(180deg,#201d24 0%,#1c1a20 100%);
+        color:#f6f2f7;
+      }
+      .std-services-inner{
+        width:min(100%,1215px);
+        margin:0 auto;
+        display:grid;
+        grid-template-columns:minmax(0,.98fr) 1px minmax(0,1.12fr);
+        gap:58px;
+        align-items:start;
+      }
+      .std-services-divider{
+        width:1px;
+        min-height:770px;
+        background:rgba(255,255,255,.16);
+      }
+      .std-services-kicker{
+        margin:0;
+        font:600 12px/1 "Manrope",Arial,sans-serif;
+        letter-spacing:.31em;
+        text-transform:uppercase;
+        color:#bcb5c0;
+      }
+      .std-services-title{
+        margin:17px 0 36px;
+        font:500 67px/.92 "Cormorant Garamond",Georgia,serif;
+        letter-spacing:-.035em;
+        color:#fff;
+      }
+      .std-price-card{
+        position:relative;
+        width:min(100%,530px);
+        aspect-ratio:1.08/1;
+        border-radius:9px;
+        overflow:hidden;
+        background:#f0ece7;
+        box-shadow:0 18px 50px rgba(0,0,0,.17);
+      }
+      .std-price-card img{
+        width:100%;
+        height:100%;
+        display:block;
+        object-fit:contain;
+        background:#f4f0ea;
+      }
+      .std-price-count{
+        position:absolute;
+        top:14px;
+        right:17px;
+        z-index:2;
+        padding:4px 8px;
+        border-radius:999px;
+        background:rgba(248,245,240,.82);
+        color:#57515c;
+        font:600 10px/1 "Manrope",Arial,sans-serif;
+        letter-spacing:.08em;
+        backdrop-filter:blur(8px);
+      }
+      .std-price-arrow{
+        position:absolute;
+        z-index:3;
+        top:50%;
+        transform:translateY(-50%);
+        width:44px;
+        height:64px;
+        border:0;
+        background:transparent;
+        color:#17151a!important;
+        font:300 47px/1 Arial,sans-serif!important;
+        text-shadow:0 1px 8px rgba(255,255,255,.55);
+      }
+      .std-price-prev{left:0}
+      .std-price-next{right:0}
+      .std-price-dots{
+        width:min(100%,530px);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:11px;
+        margin-top:23px;
+      }
+      .std-price-dot{
+        width:10px;
+        height:10px;
+        padding:0;
+        border:0;
+        border-radius:50%;
+        background:rgba(255,255,255,.22);
+      }
+      .std-price-dot.active{
+        background:#9749e3;
+        box-shadow:0 0 13px rgba(151,73,227,.34);
+      }
+      .std-price-open{
+        width:min(100%,390px);
+        height:60px;
+        margin:30px auto 0;
+        border:1px solid #9445d6;
+        border-radius:999px;
+        background:rgba(111,52,139,.08);
+        color:#f8f4fa!important;
+        font:500 16px/1 "Manrope",Arial,sans-serif;
+        transition:background .18s ease,box-shadow .18s ease,transform .18s ease;
+      }
+      .std-price-open:hover{
+        background:rgba(140,66,174,.16);
+        box-shadow:0 0 28px rgba(142,66,190,.14);
+        transform:translateY(-1px);
+      }
+
+      .std-service-tabs{
+        display:flex;
+        flex-wrap:wrap;
+        gap:12px 14px;
+        margin:0 0 31px;
+      }
+      .std-service-tab{
+        min-height:43px;
+        padding:0 24px;
+        border:1px solid rgba(255,255,255,.16);
+        border-radius:999px;
+        background:transparent;
+        color:#ded8e2!important;
+        font:500 14px/1 "Manrope",Arial,sans-serif;
+        white-space:nowrap;
+        transition:background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease;
+      }
+      .std-service-tab.active{
+        border-color:#963fe0;
+        background:linear-gradient(105deg,#7632c9 0%,#9e43ee 100%);
+        color:#fff!important;
+        box-shadow:0 5px 20px rgba(134,54,207,.20);
+      }
+      .std-service-list{
+        border-top:1px solid rgba(255,255,255,.12);
+      }
+      .std-service-row{
+        padding:23px 3px 23px 5px;
+        border-bottom:1px solid rgba(255,255,255,.13);
+      }
+      .std-service-head{
+        display:grid;
+        grid-template-columns:minmax(0,1fr) auto;
+        gap:24px;
+        align-items:baseline;
+      }
+      .std-service-name{
+        font:500 27px/1.05 "Cormorant Garamond",Georgia,serif;
+        color:#f6f2f7;
+      }
+      .std-service-price{
+        font:500 20px/1 "Cormorant Garamond",Georgia,serif;
+        color:#f6f2f7;
+        white-space:nowrap;
+      }
+      .std-service-detail{
+        display:block;
+        margin-top:9px;
+        font:400 13px/1.42 "Manrope",Arial,sans-serif;
+        color:#a69faa;
+      }
+      .std-service-variants{
+        display:grid;
+        gap:8px;
+        margin-top:13px;
+      }
+      .std-service-variant{
+        display:grid;
+        grid-template-columns:minmax(0,1fr) auto;
+        gap:18px;
+        align-items:baseline;
+        font:400 14px/1.35 "Manrope",Arial,sans-serif;
+        color:#c2bbc5;
+      }
+      .std-service-variant b{
+        font:500 18px/1 "Cormorant Garamond",Georgia,serif;
+        color:#f5f0f6;
+        white-space:nowrap;
+      }
+      .std-service-note{
+        display:block;
+        margin-top:10px;
+        font:400 11px/1.45 "Manrope",Arial,sans-serif;
+        color:#88808c;
+      }
+      .std-service-more{
+        width:100%;
+        height:57px;
+        margin-top:20px;
+        border:1px solid rgba(255,255,255,.15);
+        border-radius:9px;
+        background:rgba(255,255,255,.025);
+        color:#e8e2ea!important;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:13px;
+        font:500 14px/1 "Manrope",Arial,sans-serif;
+      }
+      .std-service-more:hover{background:rgba(255,255,255,.055)}
+      .std-services-count{
+        margin-top:17px;
+        text-align:right;
+        font:500 11px/1 "Manrope",Arial,sans-serif;
+        color:#77707c;
+        letter-spacing:.06em;
+      }
+
+      .std-price-viewer{
+        position:fixed;
+        inset:0;
+        z-index:340;
+        display:none;
+        align-items:center;
+        justify-content:center;
+        padding:42px 88px 60px;
+        background:rgba(16,14,18,.97);
+        backdrop-filter:blur(10px);
+      }
+      .std-price-viewer.open{display:flex}
+      .std-price-viewer-stage{
+        position:relative;
+        width:min(100%,1120px);
+        height:min(86vh,820px);
+        display:grid;
+        place-items:center;
+      }
+      .std-price-viewer-img{
+        max-width:100%;
+        max-height:100%;
+        width:auto;
+        height:auto;
+        object-fit:contain;
+        border-radius:8px;
+        box-shadow:0 24px 80px rgba(0,0,0,.35);
+      }
+      .std-price-viewer-close{
+        position:absolute;
+        top:22px;
+        right:27px;
+        width:46px;
+        height:46px;
+        border:1px solid rgba(255,255,255,.17);
+        border-radius:50%;
+        background:rgba(255,255,255,.07);
+        color:#fff!important;
+        font-size:27px;
+        line-height:1;
+      }
+      .std-price-viewer-nav{
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        width:54px;
+        height:72px;
+        border:0;
+        background:transparent;
+        color:#fff!important;
+        font:300 54px/1 Arial,sans-serif!important;
+      }
+      .std-price-viewer-prev{left:-70px}
+      .std-price-viewer-next{right:-70px}
+      .std-price-viewer-count{
+        position:absolute;
+        left:50%;
+        bottom:-37px;
+        transform:translateX(-50%);
+        color:rgba(255,255,255,.72);
+        font:500 12px/1 "Manrope",Arial,sans-serif;
+        letter-spacing:.08em;
+      }
+
       .std-gallery{
         position:fixed;
         inset:0;
@@ -552,6 +843,42 @@
       </div>
     </section>
 
+    <section class="std-services" id="stluxeDesktopServices" aria-labelledby="stdServicesTitle">
+      <div class="std-services-inner">
+        <div class="std-services-left">
+          <p class="std-services-kicker">Услуги</p>
+          <h2 class="std-services-title" id="stdServicesTitle">Наши услуги</h2>
+          <div class="std-price-card">
+            <img id="stdPriceImage" src="${PRICE_PAGES[0]}" alt="Фото-прайс STLuxe, страница 1">
+            <span class="std-price-count" id="stdPriceCount">1 / ${PRICE_PAGES.length}</span>
+            <button class="std-price-arrow std-price-prev" id="stdPricePrev" type="button" aria-label="Предыдущая страница">‹</button>
+            <button class="std-price-arrow std-price-next" id="stdPriceNext" type="button" aria-label="Следующая страница">›</button>
+          </div>
+          <div class="std-price-dots" id="stdPriceDots"></div>
+          <button class="std-price-open" id="stdPriceOpen" type="button">Открыть фото-прайс</button>
+        </div>
+
+        <span class="std-services-divider" aria-hidden="true"></span>
+
+        <div class="std-services-right">
+          <div class="std-service-tabs" id="stdServiceTabs"></div>
+          <div class="std-service-list" id="stdServiceList"></div>
+          <button class="std-service-more" id="stdServiceMore" type="button"><span id="stdServiceMoreText"></span><span id="stdServiceMoreArrow" aria-hidden="true">↓</span></button>
+          <div class="std-services-count" id="stdServicesCount"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="std-price-viewer" id="stdPriceViewer" role="dialog" aria-modal="true" aria-label="Фото-прайс STLuxe">
+      <button class="std-price-viewer-close" id="stdPriceViewerClose" type="button" aria-label="Закрыть">×</button>
+      <div class="std-price-viewer-stage">
+        <button class="std-price-viewer-nav std-price-viewer-prev" id="stdPriceViewerPrev" type="button" aria-label="Предыдущая страница">‹</button>
+        <img class="std-price-viewer-img" id="stdPriceViewerImage" src="" alt="Фото-прайс STLuxe">
+        <button class="std-price-viewer-nav std-price-viewer-next" id="stdPriceViewerNext" type="button" aria-label="Следующая страница">›</button>
+        <span class="std-price-viewer-count" id="stdPriceViewerCount"></span>
+      </div>
+    </div>
+
     <div class="std-gallery" id="stdGallery" role="dialog" aria-modal="true" aria-label="Галерея STLuxe">
       <button class="std-gallery-close" id="stdGalleryClose" type="button" aria-label="Закрыть">×</button>
       <div class="std-gallery-stage">
@@ -612,6 +939,94 @@
     if(e.key==='ArrowLeft')moveDesktopGallery(-1);
     if(e.key==='ArrowRight')moveDesktopGallery(1);
   });
+  document.addEventListener('keydown',e=>{
+    if(!priceViewer.classList.contains('open'))return;
+    if(e.key==='Escape')closePriceViewer();
+    if(e.key==='ArrowLeft')movePricePage(-1);
+    if(e.key==='ArrowRight')movePricePage(1);
+  });
+
+  let pricePageIndex=0;
+  const priceImage=document.getElementById('stdPriceImage');
+  const priceCount=document.getElementById('stdPriceCount');
+  const priceDots=document.getElementById('stdPriceDots');
+  const priceViewer=document.getElementById('stdPriceViewer');
+  const priceViewerImage=document.getElementById('stdPriceViewerImage');
+  const priceViewerCount=document.getElementById('stdPriceViewerCount');
+
+  function paintPricePages(){
+    priceImage.src=PRICE_PAGES[pricePageIndex];
+    priceImage.alt='Фото-прайс STLuxe, страница '+(pricePageIndex+1);
+    priceCount.textContent=(pricePageIndex+1)+' / '+PRICE_PAGES.length;
+    priceDots.innerHTML=PRICE_PAGES.map((_,i)=>'<button class="std-price-dot'+(i===pricePageIndex?' active':'')+'" type="button" data-price-dot="'+i+'" aria-label="Страница '+(i+1)+'"></button>').join('');
+    priceDots.querySelectorAll('[data-price-dot]').forEach(btn=>btn.onclick=()=>{pricePageIndex=Number(btn.dataset.priceDot);paintPricePages();});
+    if(priceViewer.classList.contains('open')){
+      priceViewerImage.src=PRICE_PAGES[pricePageIndex];
+      priceViewerCount.textContent=(pricePageIndex+1)+' / '+PRICE_PAGES.length;
+    }
+  }
+  function movePricePage(step){
+    pricePageIndex=(pricePageIndex+step+PRICE_PAGES.length)%PRICE_PAGES.length;
+    paintPricePages();
+  }
+  function openPriceViewer(){
+    priceViewerImage.src=PRICE_PAGES[pricePageIndex];
+    priceViewerCount.textContent=(pricePageIndex+1)+' / '+PRICE_PAGES.length;
+    priceViewer.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closePriceViewer(){
+    priceViewer.classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.getElementById('stdPricePrev').onclick=()=>movePricePage(-1);
+  document.getElementById('stdPriceNext').onclick=()=>movePricePage(1);
+  document.getElementById('stdPriceOpen').onclick=openPriceViewer;
+  document.getElementById('stdPriceViewerClose').onclick=closePriceViewer;
+  document.getElementById('stdPriceViewerPrev').onclick=()=>movePricePage(-1);
+  document.getElementById('stdPriceViewerNext').onclick=()=>movePricePage(1);
+  priceViewer.addEventListener('click',e=>{if(e.target===priceViewer)closePriceViewer();});
+  paintPricePages();
+
+  let activeServiceCategory=SERVICE_CATEGORIES[0];
+  let desktopServicesExpanded=false;
+  const serviceTabs=document.getElementById('stdServiceTabs');
+  const serviceList=document.getElementById('stdServiceList');
+  const serviceMore=document.getElementById('stdServiceMore');
+  const serviceMoreText=document.getElementById('stdServiceMoreText');
+  const serviceMoreArrow=document.getElementById('stdServiceMoreArrow');
+  const servicesCount=document.getElementById('stdServicesCount');
+
+  function desktopServiceWord(n){
+    const n10=n%10,n100=n%100;
+    if(n10===1&&n100!==11)return 'услугу';
+    if(n10>=2&&n10<=4&&(n100<12||n100>14))return 'услуги';
+    return 'услуг';
+  }
+  function desktopServiceRow(item){
+    const title=item[0],price=item[1],detail=item[2],variants=item[3]||[],note=item[4];
+    const variantsHtml=variants.length?'<div class="std-service-variants">'+variants.map(v=>'<div class="std-service-variant"><span>'+v[0]+'</span><b>'+v[1]+'</b></div>').join('')+'</div>':'';
+    return '<div class="std-service-row"><div class="std-service-head"><div class="std-service-name">'+title+'</div>'+(price?'<div class="std-service-price">'+price+'</div>':'')+'</div>'+(detail?'<span class="std-service-detail">'+detail+'</span>':'')+variantsHtml+(note?'<span class="std-service-note">'+note+'</span>':'')+'</div>';
+  }
+  function renderDesktopServices(){
+    serviceTabs.innerHTML=SERVICE_CATEGORIES.map(cat=>'<button class="std-service-tab'+(cat===activeServiceCategory?' active':'')+'" type="button" data-service-category="'+cat+'">'+cat+'</button>').join('');
+    serviceTabs.querySelectorAll('[data-service-category]').forEach(btn=>btn.onclick=()=>{
+      activeServiceCategory=btn.dataset.serviceCategory;
+      desktopServicesExpanded=false;
+      renderDesktopServices();
+    });
+    const all=SERVICE_DATA[activeServiceCategory]||[];
+    const shown=desktopServicesExpanded?all:all.slice(0,5);
+    serviceList.innerHTML=shown.map(desktopServiceRow).join('');
+    const remaining=Math.max(0,all.length-5);
+    serviceMore.hidden=all.length<=5;
+    serviceMoreText.textContent=desktopServicesExpanded?'Свернуть':('Показать ещё '+remaining+' '+desktopServiceWord(remaining));
+    serviceMoreArrow.textContent=desktopServicesExpanded?'↑':'↓';
+    const total=SERVICE_CATEGORIES.reduce((sum,cat)=>sum+(SERVICE_DATA[cat]?.length||0),0);
+    servicesCount.textContent='Все категории · '+total+' позиций';
+  }
+  serviceMore.onclick=()=>{desktopServicesExpanded=!desktopServicesExpanded;renderDesktopServices();};
+  renderDesktopServices();
 
   function updateStatus(){
     const parts=new Intl.DateTimeFormat('en-GB',{
