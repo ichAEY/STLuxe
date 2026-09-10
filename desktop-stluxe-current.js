@@ -285,7 +285,32 @@
           #fbfbfb;
         color:#17171a;
       }
+      .std-portfolio:before,
+      .std-portfolio:after{
+        content:'';
+        position:absolute;
+        pointer-events:none;
+        border-radius:50%;
+        z-index:0;
+        filter:blur(28px);
+      }
+      .std-portfolio:before{
+        width:560px;
+        height:420px;
+        left:-210px;
+        bottom:-165px;
+        background:radial-gradient(circle,rgba(141,88,188,.22) 0%,rgba(141,88,188,.12) 38%,rgba(141,88,188,.04) 62%,transparent 78%);
+      }
+      .std-portfolio:after{
+        width:560px;
+        height:420px;
+        right:-210px;
+        top:-165px;
+        background:radial-gradient(circle,rgba(141,88,188,.20) 0%,rgba(141,88,188,.11) 38%,rgba(141,88,188,.035) 62%,transparent 78%);
+      }
       .std-portfolio-inner{
+        position:relative;
+        z-index:1;
         width:min(100%,1452px);
         max-width:none;
         margin:0 auto;
