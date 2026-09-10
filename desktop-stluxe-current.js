@@ -732,7 +732,7 @@
       }
       .std-about-kicker{
         margin:0 0 27px;
-        font:600 13px/1 "Manrope",Arial,sans-serif;
+        font:600 11px/1 "Manrope",Arial,sans-serif;
         letter-spacing:.29em;
         text-transform:uppercase;
         color:#6f6971;
@@ -819,7 +819,7 @@
         display:grid;
         grid-template-columns:repeat(3,minmax(0,1fr));
         gap:20px;
-        margin-top:37px;
+        margin-top:24px;
       }
       .std-about-fact{
         min-height:136px;
@@ -839,8 +839,8 @@
       .std-team{
         position:relative;
         overflow:hidden;
-        min-height:860px;
-        padding:82px 70px 62px;
+        min-height:610px;
+        padding:58px 49px 44px;
         background:
           radial-gradient(420px 310px at 108% 8%,rgba(143,85,181,.19),transparent 67%),
           radial-gradient(300px 230px at -14% 88%,rgba(111,61,130,.10),transparent 72%),
@@ -859,26 +859,26 @@
         color:#aaa2ad;
       }
       .std-team-title{
-        margin:19px 0 0;
-        font:500 74px/.92 "Cormorant Garamond",Georgia,serif;
+        margin:14px 0 0;
+        font:500 52px/.92 "Cormorant Garamond",Georgia,serif;
         letter-spacing:-.035em;
         color:#f7f3f8;
       }
       .std-team-subtitle{
-        margin:24px 0 0;
-        font:400 17px/1.4 "Manrope",Arial,sans-serif;
+        margin:16px 0 0;
+        font:400 14px/1.4 "Manrope",Arial,sans-serif;
         color:#aaa2ad;
       }
       .std-team-window{
         position:relative;
         width:100%;
-        margin-top:47px;
+        margin-top:32px;
         overflow:hidden;
       }
       .std-team-track{
         display:flex;
         align-items:flex-start;
-        gap:84px;
+        gap:58px;
         width:max-content;
         min-width:100%;
         overflow-x:auto;
@@ -890,15 +890,15 @@
       }
       .std-team-track::-webkit-scrollbar{display:none}
       .std-master{
-        flex:0 0 330px;
+        flex:0 0 230px;
         scroll-snap-align:start;
         margin:0;
         text-align:center;
         color:#f7f3f8;
       }
       .std-master-avatar{
-        width:320px;
-        height:320px;
+        width:224px;
+        height:224px;
         margin:0 auto;
         border-radius:50%;
         display:grid;
@@ -911,20 +911,20 @@
         box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 16px 42px rgba(0,0,0,.10);
       }
       .std-master-avatar svg{
-        width:92px;
-        height:92px;
+        width:64px;
+        height:64px;
         opacity:.92;
       }
       .std-master-name{
         display:block;
-        margin-top:25px;
-        font:500 39px/1 "Cormorant Garamond",Georgia,serif;
+        margin-top:18px;
+        font:500 27px/1 "Cormorant Garamond",Georgia,serif;
         color:#f7f3f8;
       }
       .std-master-role{
         display:block;
-        margin-top:13px;
-        font:400 16px/1.3 "Manrope",Arial,sans-serif;
+        margin-top:9px;
+        font:400 12px/1.3 "Manrope",Arial,sans-serif;
         color:#b9b2bd;
       }
       .std-team-hint{
@@ -932,14 +932,14 @@
         display:flex;
         align-items:center;
         justify-content:flex-end;
-        gap:18px;
-        font:500 13px/1 "Manrope",Arial,sans-serif;
+        gap:12px;
+        font:500 10px/1 "Manrope",Arial,sans-serif;
         letter-spacing:.22em;
         text-transform:uppercase;
         color:#aaa2ad;
       }
       .std-team-hint span{
-        font-size:29px;
+        font-size:22px;
         line-height:1;
         letter-spacing:0;
         transform:translateY(-1px);
