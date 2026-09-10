@@ -277,14 +277,14 @@
         position:relative;
         overflow:hidden;
         min-height:890px;
-        padding:88px 54px 82px;
+        padding:88px 12px 82px;
         background:
           radial-gradient(420px 300px at -7% 20%,rgba(143,85,181,.055),transparent 72%),
           radial-gradient(430px 320px at 105% 84%,rgba(143,85,181,.045),transparent 72%),
           #fafafa;
         color:#17171a;
       }
-      .std-portfolio-inner{width:min(100%,1240px);margin:0 auto}
+      .std-portfolio-inner{width:100%;max-width:none;margin:0 auto}
       .std-portfolio-head{text-align:center}
       .std-portfolio-kicker{
         margin:0;
@@ -300,15 +300,17 @@
         color:#19171b;
       }
       .std-portfolio-copy{
-        width:min(100%,680px);
+        width:max-content;
+        max-width:100%;
         margin:18px auto 0;
         font:400 16px/1.55 "Manrope",Arial,sans-serif;
         color:#77717b;
+        white-space:nowrap;
       }
       .std-portfolio-grid{
         display:grid;
-        grid-template-columns:1.18fr 1fr 1fr 1fr;
-        grid-template-rows:205px 205px;
+        grid-template-columns:1.24fr 1fr 1fr 1fr;
+        grid-template-rows:225px 225px;
         gap:12px;
         margin-top:45px;
       }
