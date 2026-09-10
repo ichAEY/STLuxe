@@ -279,8 +279,9 @@
         min-height:auto;
         padding:46px 42px 46px;
         background:
-          radial-gradient(440px 310px at -5% 90%,rgba(143,85,181,.045),transparent 72%),
-          radial-gradient(450px 320px at 102% 6%,rgba(143,85,181,.04),transparent 72%),
+          radial-gradient(560px 360px at 5% 8%,rgba(145,103,191,.085),transparent 72%),
+          radial-gradient(560px 360px at 96% 94%,rgba(145,103,191,.075),transparent 72%),
+          radial-gradient(420px 280px at 52% 104%,rgba(145,103,191,.035),transparent 76%),
           #fbfbfb;
         color:#17171a;
       }
@@ -348,10 +349,10 @@
         height:76px;
         margin:42px auto 0;
         padding:0 28px;
-        border:1px solid #ceccd0;
+        border:1px solid #d8cbe8;
         border-radius:13px;
-        background:rgba(255,255,255,.72);
-        color:#242126;
+        background:linear-gradient(180deg,#f6f0fc 0%,#efe5fa 100%);
+        color:#2a2530;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -359,9 +360,14 @@
         font:500 18px/1 "Manrope",Arial,sans-serif;
         position:static;
         left:auto;
-        transition:background .18s ease,transform .18s ease;
+        box-shadow:0 8px 22px rgba(120,84,156,.08);
+        transition:background .18s ease,transform .18s ease,box-shadow .18s ease;
       }
-      .std-portfolio-more:hover{background:#fff;transform:translateY(-1px)}
+      .std-portfolio-more:hover{
+        background:linear-gradient(180deg,#f8f3fd 0%,#f2e8fb 100%);
+        transform:translateY(-1px);
+        box-shadow:0 10px 26px rgba(120,84,156,.12);
+      }
 
       .std-gallery{
         position:fixed;
