@@ -403,7 +403,237 @@
 
 
 
-<script defer src="desktop-stluxe-current.js?v=20260911-reviews-v2-exact"></script>
+<script defer src="desktop-stluxe-current.js?v=20260911-reviews-v3-current-structure"></script>
+<style id="desktop-reviews-reference-v3">
+@media (min-width:768px){
+  #stluxeDesktopReviews.std-reviews{
+    position:relative!important;
+    box-sizing:border-box!important;
+    width:100%!important;
+    height:864px!important;
+    min-height:864px!important;
+    overflow:hidden!important;
+    padding:65px 0 35px!important;
+    background:#f9f9fb!important;
+    color:#171719!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-head{
+    width:min(calc(100% - 128px),1408px)!important;
+    margin:0 auto!important;
+    text-align:center!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-kicker{
+    margin:0!important;
+    font:500 17px/1 "Manrope",Arial,sans-serif!important;
+    letter-spacing:.30em!important;
+    text-transform:uppercase!important;
+    color:#68686d!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-title{
+    margin:22px 0 0!important;
+    font:500 76px/.92 "Cormorant Garamond",Georgia,serif!important;
+    letter-spacing:-.035em!important;
+    color:#151517!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-score{
+    margin-top:44px!important;
+    text-align:center!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-score>strong{
+    display:block!important;
+    margin:0!important;
+    font:500 88px/.78 "Cormorant Garamond",Georgia,serif!important;
+    letter-spacing:-.045em!important;
+    color:#151517!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-stars{
+    display:block!important;
+    margin-top:21px!important;
+    color:#d9aa42!important;
+    font-size:34px!important;
+    line-height:1!important;
+    letter-spacing:6px!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-count{
+    margin-top:20px!important;
+    font:400 18px/1 "Manrope",Arial,sans-serif!important;
+    color:#737278!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-viewport{
+    position:relative!important;
+    box-sizing:border-box!important;
+    width:100%!important;
+    margin-top:35px!important;
+    padding:0 64px 4px!important;
+    overflow:hidden!important;
+    cursor:default!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-loop{
+    display:flex!important;
+    align-items:stretch!important;
+    gap:16px!important;
+    width:max-content!important;
+    transform:translate3d(0,0,0)!important;
+    will-change:transform!important;
+    animation:stdReviewsReferenceMarquee 105s linear infinite!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-set{
+    display:flex!important;
+    flex:0 0 auto!important;
+    align-items:stretch!important;
+    gap:16px!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-viewport:hover .std-reviews-loop,
+  #stluxeDesktopReviews .std-reviews-viewport:focus-within .std-reviews-loop,
+  #stluxeDesktopReviews .std-reviews-viewport:active .std-reviews-loop{
+    animation-play-state:paused!important;
+  }
+
+  @keyframes stdReviewsReferenceMarquee{
+    from{transform:translate3d(0,0,0)}
+    to{transform:translate3d(calc(-50% - 8px),0,0)}
+  }
+
+  #stluxeDesktopReviews .std-review-card{
+    box-sizing:border-box!important;
+    flex:0 0 459px!important;
+    width:459px!important;
+    height:320px!important;
+    min-width:459px!important;
+    min-height:320px!important;
+    max-width:none!important;
+    padding:31px 30px 28px!important;
+    border:1px solid #dedde2!important;
+    border-radius:12px!important;
+    background:rgba(250,250,252,.76)!important;
+    color:#19191b!important;
+    text-decoration:none!important;
+    box-shadow:none!important;
+    transform:none!important;
+  }
+
+  #stluxeDesktopReviews .std-review-card:hover{
+    border-color:#ceccd3!important;
+    background:#fbfbfc!important;
+    transform:none!important;
+  }
+
+  #stluxeDesktopReviews .std-review-head{
+    display:grid!important;
+    grid-template-columns:70px minmax(0,1fr)!important;
+    gap:24px!important;
+    align-items:center!important;
+  }
+
+  #stluxeDesktopReviews .std-review-avatar{
+    box-sizing:border-box!important;
+    width:70px!important;
+    height:70px!important;
+    border-radius:50%!important;
+    display:grid!important;
+    place-items:center!important;
+    background:#ececf0!important;
+    border:1px solid #dcdae0!important;
+    color:#4e4b51!important;
+    font:500 32px/1 "Cormorant Garamond",Georgia,serif!important;
+  }
+
+  #stluxeDesktopReviews .std-review-name{
+    display:block!important;
+    margin:0!important;
+    font:600 25px/1 "Cormorant Garamond",Georgia,serif!important;
+    color:#242126!important;
+  }
+
+  #stluxeDesktopReviews .std-review-meta{
+    display:block!important;
+    margin-top:7px!important;
+    font:500 11px/1 "Manrope",Arial,sans-serif!important;
+    letter-spacing:.13em!important;
+    text-transform:uppercase!important;
+    color:#818087!important;
+  }
+
+  #stluxeDesktopReviews .std-review-stars{
+    display:block!important;
+    margin-top:8px!important;
+    color:#d9aa42!important;
+    font-size:16px!important;
+    line-height:1!important;
+    letter-spacing:1.5px!important;
+  }
+
+  #stluxeDesktopReviews .std-review-stars::after{
+    content:" ·  Яндекс Карты"!important;
+    margin-left:9px!important;
+    color:#8d8b91!important;
+    font:400 11px/1 "Manrope",Arial,sans-serif!important;
+    letter-spacing:0!important;
+  }
+
+  #stluxeDesktopReviews .std-review-text{
+    display:block!important;
+    margin:31px 0 0!important;
+    min-height:95px!important;
+    font:400 16px/1.52 "Manrope",Arial,sans-serif!important;
+    color:#4b4a4f!important;
+  }
+
+  #stluxeDesktopReviews .std-review-more{
+    display:block!important;
+    margin-top:20px!important;
+    font:400 12px/1 "Manrope",Arial,sans-serif!important;
+    color:#67666c!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-actions{
+    display:flex!important;
+    justify-content:center!important;
+    margin-top:27px!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-all{
+    box-sizing:border-box!important;
+    width:458px!important;
+    height:55px!important;
+    border:1px solid #d5d4d9!important;
+    border-radius:7px!important;
+    background:transparent!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    color:#242327!important;
+    text-decoration:none!important;
+    font:500 14px/1 "Manrope",Arial,sans-serif!important;
+    letter-spacing:.14em!important;
+    text-transform:uppercase!important;
+  }
+
+  #stluxeDesktopReviews .std-reviews-all:hover{
+    background:#fff!important;
+    border-color:#c9c7ce!important;
+  }
+
+  @media (max-width:1450px){
+    #stluxeDesktopReviews .std-review-card{
+      flex-basis:calc((100vw - 160px)/3)!important;
+      width:calc((100vw - 160px)/3)!important;
+      min-width:0!important;
+    }
+  }
+}
+</style>
 <style id="desktop-team-compact-v4">
 @media (min-width:768px){
   #stluxeDesktopTeam{
