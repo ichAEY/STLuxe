@@ -276,16 +276,26 @@
       .std-portfolio{
         position:relative;
         overflow:hidden;
-        min-height:890px;
-        padding:88px 12px 82px;
+        min-height:930px;
+        padding:88px 0 82px;
         background:
           radial-gradient(420px 300px at -7% 20%,rgba(143,85,181,.055),transparent 72%),
           radial-gradient(430px 320px at 105% 84%,rgba(143,85,181,.045),transparent 72%),
           #fafafa;
         color:#17171a;
       }
-      .std-portfolio-inner{width:100%;max-width:none;margin:0 auto}
-      .std-portfolio-head{text-align:center}
+      .std-portfolio-inner{
+        width:calc(100vw + 120px);
+        max-width:none;
+        margin-left:-60px;
+        margin-right:-60px;
+      }
+      .std-portfolio-head{
+        width:100vw;
+        margin:0 60px;
+        padding:0 36px;
+        text-align:center;
+      }
       .std-portfolio-kicker{
         margin:0;
         font:600 12px/1 "Manrope",Arial,sans-serif;
@@ -309,10 +319,11 @@
       }
       .std-portfolio-grid{
         display:grid;
-        grid-template-columns:1.24fr 1fr 1fr 1fr;
-        grid-template-rows:225px 225px;
-        gap:12px;
+        grid-template-columns:1.42fr 1fr 1fr 1fr;
+        grid-template-rows:250px 250px;
+        gap:14px;
         margin-top:45px;
+        padding:0 10px;
       }
       .std-work{
         border:0;
@@ -320,7 +331,7 @@
         border-radius:17px;
         overflow:hidden;
         background:#e7e4e8;
-        box-shadow:0 7px 24px rgba(35,27,40,.045);
+        box-shadow:0 10px 28px rgba(35,27,40,.055);
       }
       .std-work:first-child{grid-row:1 / span 2}
       .std-work img{
@@ -334,7 +345,7 @@
       .std-portfolio-more{
         min-width:246px;
         height:52px;
-        margin:32px auto 0;
+        margin:34px auto 0;
         padding:0 24px;
         border:1px solid #d6d2d9;
         border-radius:9px;
@@ -347,6 +358,7 @@
         font:600 14px/1 "Manrope",Arial,sans-serif;
         transition:background .18s ease,transform .18s ease;
       }
+      .std-portfolio-more{position:relative;left:60px}
       .std-portfolio-more:hover{background:#fff;transform:translateY(-1px)}
 
       .std-gallery{
