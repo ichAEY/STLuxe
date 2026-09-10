@@ -45,15 +45,14 @@
         position:relative;
         z-index:20;
         padding:0 46px;
-        border-bottom:0;
-        background:transparent;
-        position:absolute;
-        top:0;
-        left:0;
+        border-bottom:1px solid rgba(255,255,255,.055);
+        background:
+          radial-gradient(380px 160px at 12% 0%,rgba(143,85,181,.12),transparent 72%),
+          linear-gradient(180deg,#2a2630 0%,#28242d 100%);
       }
       .std-nav{
         position:absolute;
-        left:25%;
+        left:50%;
         top:50%;
         transform:translate(-50%,-50%);
         display:flex;
@@ -80,19 +79,20 @@
         gap:12px;
         border-radius:0;
         background:transparent;
-        color:#17171a!important;
+        color:#fff!important;
         box-shadow:none;
-        font-size:18px;
+        font-size:21px;
         font-weight:800;
-        text-shadow:0 1px 8px rgba(255,255,255,.55);
+        letter-spacing:.01em;
+        text-shadow:none;
       }
       .std-phone svg{width:23px;height:23px;flex:0 0 23px}
 
       .std-hero{
         display:grid;
         grid-template-columns:50% 50%;
-        height:100svh;
-        min-height:760px;
+        height:calc(100svh - 98px);
+        min-height:690px;
         background:#242127;
       }
       .std-hero-copy{
@@ -100,7 +100,7 @@
         display:flex;
         justify-content:center;
         align-items:center;
-        padding:120px 34px 62px;
+        padding:48px 34px 62px;
         background:
           radial-gradient(520px 360px at 8% 86%,rgba(111,61,130,.15),transparent 72%),
           radial-gradient(520px 360px at 98% 10%,rgba(143,85,181,.20),transparent 68%),
@@ -199,8 +199,8 @@
         align-items:center;
         justify-content:center;
         gap:22px;
-        font-size:23px;
-        font-weight:600;
+        font-size:25px;
+        font-weight:650;
         border:1px solid rgba(255,255,255,.20);
         background:rgba(255,255,255,.035);
         color:#f7f3f8;
@@ -209,11 +209,30 @@
       .std-btn:hover{transform:translateY(-1px)}
       .std-btn:active{transform:translateY(0)}
       .std-btn-primary{
+        position:relative;
+        overflow:hidden;
         border-color:transparent;
         color:#fff!important;
         background:linear-gradient(105deg,#5e2f70 0%,#6f3d82 55%,#5e2f70 100%);
         box-shadow:0 5px 16px rgba(86,16,105,.12);
       }
+      .std-btn-primary:after{
+        content:'';
+        position:absolute;
+        top:-35%;
+        bottom:-35%;
+        left:-34%;
+        width:24%;
+        pointer-events:none;
+        background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
+        transform:skewX(-22deg);
+        animation:stdBookShine 4.2s ease-in-out infinite;
+      }
+      @keyframes stdBookShine{
+        0%,68%{left:-34%}
+        100%{left:132%}
+      }
+      @media(prefers-reduced-motion:reduce){.std-btn-primary:after{animation:none!important}}
       .std-btn-primary:hover{box-shadow:0 8px 20px rgba(86,16,105,.18)}
       .std-btn svg{width:28px;height:28px;flex:0 0 28px}
       .std-sparkles{
