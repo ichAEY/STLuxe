@@ -170,6 +170,7 @@
         line-height:1.45;
         letter-spacing:-.025em;
         color:#3c3b41;
+        text-align:center;
       }
       .std-status-main{display:block;color:#8e1b78}
       .std-status-sub{display:block;color:#505057}
@@ -223,7 +224,7 @@
         .std-header{padding:0 30px}
         .std-nav{gap:28px}
         .std-phone{width:auto}
-        .std-hero{grid-template-columns:46% 54%}
+        .std-hero{grid-template-columns:50% 50%}
         .std-hero-copy{padding-inline:34px}
         .std-logo{font-size:72px}
         .std-logo-sub{font-size:14px;margin-left:0}
