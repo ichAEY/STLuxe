@@ -38,7 +38,7 @@
       #stluxe-desktop-v1 button{cursor:pointer}
 
       .std-header{
-        height:76px;
+        height:98px;
         width:100%;
         display:flex;
         align-items:center;
@@ -72,7 +72,7 @@
       .std-phone{
         margin-left:auto;
         width:auto;
-        height:46px;
+        height:54px;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -91,7 +91,7 @@
       .std-hero{
         display:grid;
         grid-template-columns:50% 50%;
-        height:calc(100svh - 76px);
+        height:calc(100svh - 98px);
         min-height:690px;
         margin:0;
         background:#242127;
