@@ -45,23 +45,28 @@
         position:relative;
         z-index:20;
         padding:0 46px;
-        border-bottom:1px solid #efedf0;
-        background:#fff;
+        border-bottom:0;
+        background:transparent;
+        position:absolute;
+        top:0;
+        left:0;
       }
       .std-nav{
         position:absolute;
-        left:50%;
+        left:25%;
         top:50%;
         transform:translate(-50%,-50%);
         display:flex;
         align-items:center;
-        gap:52px;
+        gap:38px;
         white-space:nowrap;
       }
       .std-nav a{
         font-size:16px;
         font-weight:600;
         line-height:1;
+        color:#f7f3f8!important;
+        text-shadow:0 1px 10px rgba(0,0,0,.18);
         transition:opacity .18s ease;
       }
       .std-nav a:hover{opacity:.55}
@@ -78,24 +83,28 @@
         color:#17171a!important;
         box-shadow:none;
         font-size:18px;
-        font-weight:700;
+        font-weight:800;
+        text-shadow:0 1px 8px rgba(255,255,255,.55);
       }
       .std-phone svg{width:23px;height:23px;flex:0 0 23px}
 
       .std-hero{
         display:grid;
         grid-template-columns:50% 50%;
-        height:calc(100svh - 98px);
-        min-height:690px;
-        background:#fff;
+        height:100svh;
+        min-height:760px;
+        background:#242127;
       }
       .std-hero-copy{
         min-width:0;
         display:flex;
         justify-content:center;
         align-items:center;
-        padding:48px 28px 62px;
-        background:#fff;
+        padding:120px 34px 62px;
+        background:
+          radial-gradient(520px 360px at 8% 86%,rgba(111,61,130,.15),transparent 72%),
+          radial-gradient(520px 360px at 98% 10%,rgba(143,85,181,.20),transparent 68%),
+          linear-gradient(180deg,#27232b 0%,#242127 100%);
       }
       .std-copy-inner{
         width:min(100%,520px);
@@ -105,20 +114,25 @@
       .std-logo{
         margin:0;
         font-family:"Cormorant Garamond",Georgia,serif;
-        font-size:88px;
-        line-height:.94;
-        font-weight:600;
-        letter-spacing:-.045em;
+        font-size:78px;
+        line-height:.88;
+        font-weight:500;
+        letter-spacing:.18em;
+        text-indent:.18em;
+        text-transform:uppercase;
         text-align:center;
-        color:#111116;
+        color:#f7f3f8;
       }
       .std-logo-sub{
-        margin:12px 0 45px;
-        font-size:17px;
+        margin:15px 0 45px;
+        font-family:"Manrope",Arial,sans-serif;
+        font-size:13px;
         line-height:1;
-        letter-spacing:.43em;
+        font-weight:500;
+        letter-spacing:.38em;
+        text-indent:.38em;
         text-align:center;
-        color:#8b8990;
+        color:#b9b2bd;
         text-transform:uppercase;
         white-space:nowrap;
       }
@@ -126,11 +140,11 @@
         margin:0 0 42px;
         max-width:500px;
         font-family:"Manrope",Arial,sans-serif;
-        font-size:30px;
-        line-height:1.34;
+        font-size:27px;
+        line-height:1.38;
         font-weight:400;
-        letter-spacing:-.035em;
-        color:#232329;
+        letter-spacing:0;
+        color:#f1edf3;
         text-align:center;
         margin-left:auto;
         margin-right:auto;
@@ -144,7 +158,7 @@
         justify-content:center;
         margin-bottom:40px;
       }
-      .std-meta-divider{width:1px;height:65px;background:#e5e3e7}
+      .std-meta-divider{width:1px;height:65px;background:rgba(255,255,255,.15)}
       .std-meta-item{
         display:flex;
         align-items:center;
@@ -158,10 +172,10 @@
         flex:0 0 64px;
         display:grid;
         place-items:center;
-        border:1px solid #dedde1;
+        border:1px solid rgba(255,255,255,.18);
         border-radius:50%;
-        background:#fff;
-        color:#111116;
+        background:rgba(255,255,255,.045);
+        color:#f7f3f8;
       }
       .std-meta-icon svg{width:28px;height:28px}
       .std-meta-text{
@@ -169,12 +183,12 @@
         font-size:17px;
         line-height:1.45;
         letter-spacing:-.025em;
-        color:#3c3b41;
+        color:#ddd6e0;
         text-align:center;
       }
-      .std-status-main{display:block;color:#8e1b78}
-      .std-status-sub{display:block;color:#505057}
-      .std-address{display:block}
+      .std-status-main{display:block;color:#a45e64;font-weight:500}
+      .std-status-sub{display:block;color:#d3ccd6}
+      .std-address{display:block;color:#eee9f0}
 
       .std-actions{display:grid;gap:20px}
       .std-btn{
@@ -186,9 +200,10 @@
         justify-content:center;
         gap:22px;
         font-size:23px;
-        font-weight:400;
-        border:1px solid #dad8dc;
-        background:#fff;
+        font-weight:600;
+        border:1px solid rgba(255,255,255,.20);
+        background:rgba(255,255,255,.035);
+        color:#f7f3f8;
         transition:transform .15s ease,box-shadow .15s ease,opacity .15s ease;
       }
       .std-btn:hover{transform:translateY(-1px)}
@@ -196,7 +211,7 @@
       .std-btn-primary{
         border-color:transparent;
         color:#fff!important;
-        background:linear-gradient(105deg,#57106a 0%,#6d147e 55%,#571069 100%);
+        background:linear-gradient(105deg,#5e2f70 0%,#6f3d82 55%,#5e2f70 100%);
         box-shadow:0 5px 16px rgba(86,16,105,.12);
       }
       .std-btn-primary:hover{box-shadow:0 8px 20px rgba(86,16,105,.18)}
@@ -222,13 +237,13 @@
 
       @media(max-width:1180px){
         .std-header{padding:0 30px}
-        .std-nav{gap:28px}
+        .std-nav{gap:22px}
         .std-phone{width:auto}
         .std-hero{grid-template-columns:50% 50%}
         .std-hero-copy{padding-inline:34px}
-        .std-logo{font-size:72px}
-        .std-logo-sub{font-size:14px;margin-left:0}
-        .std-tagline{font-size:26px}
+        .std-logo{font-size:64px}
+        .std-logo-sub{font-size:11px;margin-left:0}
+        .std-tagline{font-size:24px}
         .std-meta{gap:14px}
         .std-meta-icon{width:54px;height:54px;flex-basis:54px}
         .std-meta-text{font-size:15px}
@@ -317,14 +332,16 @@
     const hour=Number(parts.find(p=>p.type==='hour')?.value||0);
     const minute=Number(parts.find(p=>p.type==='minute')?.value||0);
     const mins=hour*60+minute;
-    const isMonday=weekday==='Mon';
-    const isOpen=!isMonday && mins>=600 && mins<1200;
+    const monday=weekday==='Mon';
+    const sundayLate=weekday==='Sun'&&mins>=1200;
+    const isOpen=!monday&&mins>=600&&mins<1200;
+    const closedToTuesday=monday||sundayLate;
     const main=document.getElementById('stdStatusMain');
     const sub=document.getElementById('stdStatusSub');
     if(!main||!sub) return;
     main.textContent=isOpen?'Открыто':'Закрыто';
-    sub.textContent=isOpen?'до 20:00':'до 10:00';
-    main.style.color=isOpen?'#277245':'#8e1b78';
+    sub.textContent=isOpen?'до 20:00':(closedToTuesday?'до вт 10:00':'до 10:00');
+    main.style.color=isOpen?'#3f8750':'#a45e64';
   }
   updateStatus();
   setInterval(updateStatus,60000);
