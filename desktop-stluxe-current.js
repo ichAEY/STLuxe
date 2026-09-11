@@ -5,6 +5,9 @@
 
   const PHONE='+79163552222';
   const ADDRESS='Ивантеевка, ул. Победы, 16';
+  const YANDEX_RU='https://yandex.ru/maps/org/stluxe/51087098664/';
+  const ROUTE='https://yandex.ru/maps/?rtext=~%D0%98%D0%B2%D0%B0%D0%BD%D1%82%D0%B5%D0%B5%D0%B2%D0%BA%D0%B0%2C%20%D1%83%D0%BB.%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%2C%2016&rtt=auto';
+  const WHATSAPP_URL='https://wa.me/79163552222?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20STLuxe.';
   const YANDEX_REVIEWS='https://yandex.com/maps/org/beauty_salon_stluxe/51087098664/reviews/';
   const DESKTOP_REAL_REVIEWS=[
     ['Галина Михайлова','Огромная благодарность хозяйке салона Твтьяне и ее персоналу за высокое качество предлагаемых услуг'],
@@ -964,6 +967,228 @@
         transform:translateY(-1px);
       }
 
+      .std-contact{
+        position:relative;
+        box-sizing:border-box;
+        overflow:hidden;
+        min-height:1024px;
+        padding:110px 84px 68px;
+        background:
+          radial-gradient(620px 430px at 102% 7%,rgba(99,57,151,.27),transparent 70%),
+          radial-gradient(520px 390px at -9% 94%,rgba(111,66,170,.21),transparent 72%),
+          linear-gradient(180deg,#1d1b23 0%,#18171e 100%);
+        color:#f8f5fa;
+      }
+      .std-contact-inner{
+        position:relative;
+        width:min(100%,1368px);
+        margin:0 auto;
+        display:grid;
+        grid-template-columns:586px minmax(0,1fr);
+        gap:34px;
+        align-items:start;
+      }
+      .std-contact-status{
+        position:absolute;
+        z-index:3;
+        top:0;
+        right:0;
+        height:64px;
+        padding:0 29px 0 25px;
+        border:1px solid rgba(255,124,139,.32);
+        border-radius:999px;
+        background:rgba(116,50,65,.39);
+        backdrop-filter:blur(12px);
+        display:flex;
+        align-items:center;
+        gap:13px;
+        color:#ffb1bb;
+        font:500 18px/1 "Manrope",Arial,sans-serif;
+        white-space:nowrap;
+      }
+      .std-contact-status svg{
+        width:28px;
+        height:28px;
+        fill:none;
+        stroke:currentColor;
+        stroke-width:1.9;
+        stroke-linecap:round;
+        stroke-linejoin:round;
+      }
+      .std-contact-status.open{
+        border-color:rgba(107,210,132,.34);
+        background:rgba(49,104,66,.38);
+        color:#b7efc3;
+      }
+      .std-contact-kicker{
+        margin:0;
+        font:500 16px/1 "Manrope",Arial,sans-serif;
+        letter-spacing:.34em;
+        text-transform:uppercase;
+        color:rgba(255,255,255,.83);
+      }
+      .std-contact-title{
+        margin:9px 0 27px;
+        font:500 84px/.88 "Cormorant Garamond",Georgia,serif;
+        letter-spacing:-.035em;
+        color:#fbf8fc;
+      }
+      .std-contact-list{
+        display:grid;
+        gap:12px;
+      }
+      .std-contact-card{
+        box-sizing:border-box;
+        width:100%;
+        min-height:103px;
+        padding:0 24px;
+        border:1px solid rgba(255,255,255,.13);
+        border-radius:20px;
+        background:linear-gradient(180deg,rgba(36,33,43,.88),rgba(31,29,38,.88));
+        display:grid;
+        grid-template-columns:89px minmax(0,1fr);
+        align-items:center;
+        color:#f8f5fa!important;
+        text-decoration:none!important;
+        box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+        transition:border-color .18s ease,background .18s ease;
+      }
+      .std-contact-card:hover{
+        border-color:rgba(210,145,246,.34);
+        background:linear-gradient(180deg,rgba(40,36,48,.92),rgba(34,31,41,.92));
+      }
+      .std-contact-card.static{
+        cursor:default;
+      }
+      .std-contact-card-icon{
+        width:55px;
+        height:55px;
+        display:grid;
+        place-items:center;
+        color:#d486fa;
+      }
+      .std-contact-card-icon svg{
+        width:42px;
+        height:42px;
+        fill:none;
+        stroke:currentColor;
+        stroke-width:1.8;
+        stroke-linecap:round;
+        stroke-linejoin:round;
+      }
+      .std-contact-card-copy{
+        min-width:0;
+      }
+      .std-contact-card-title{
+        display:block;
+        font:500 28px/1.06 "Cormorant Garamond",Georgia,serif;
+        color:#f8f5fa;
+      }
+      .std-contact-card-sub{
+        display:block;
+        margin-top:9px;
+        font:400 15px/1.2 "Manrope",Arial,sans-serif;
+        color:#aaa5b1;
+      }
+      .std-contact-right{
+        min-width:0;
+        padding-top:118px;
+      }
+      .std-contact-map{
+        position:relative;
+        width:100%;
+        height:447px;
+        overflow:hidden;
+        border-radius:20px;
+        background:#eee;
+      }
+      .std-contact-map iframe{
+        display:block;
+        width:100%;
+        height:100%;
+        border:0;
+        filter:saturate(.88) contrast(.98);
+      }
+      .std-contact-actions{
+        display:grid;
+        grid-template-columns:.94fr 1fr;
+        gap:16px;
+        margin-top:20px;
+      }
+      .std-contact-action{
+        box-sizing:border-box;
+        height:91px;
+        border-radius:20px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:#fff!important;
+        text-decoration:none!important;
+        font:400 27px/1 "Manrope",Arial,sans-serif;
+        transition:filter .18s ease,transform .18s ease;
+      }
+      .std-contact-action:hover{
+        filter:brightness(1.05);
+        transform:translateY(-1px);
+      }
+      .std-contact-call{
+        border:1px solid rgba(255,255,255,.12);
+        background:rgba(30,28,36,.92);
+      }
+      .std-contact-route{
+        border:1px solid rgba(199,120,238,.35);
+        background:linear-gradient(105deg,#8f48b9 0%,#a851ca 100%);
+        box-shadow:0 8px 30px rgba(117,57,145,.12);
+      }
+      .std-contact-bottom{
+        width:min(100%,1368px);
+        margin:29px auto 0;
+        border-top:1px solid rgba(255,255,255,.16);
+        padding-top:35px;
+      }
+      .std-contact-brand{
+        width:max-content;
+        margin:0 auto;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:10px;
+        color:#eee8f0!important;
+        text-decoration:none!important;
+      }
+      .std-contact-brand-mark{
+        width:49px;
+        height:49px;
+        border:1px solid rgba(255,255,255,.28);
+        border-radius:11px;
+        display:grid;
+        place-items:center;
+        font:500 34px/1 "Cormorant Garamond",Georgia,serif;
+        color:#f6f2f7;
+        box-shadow:0 5px 18px rgba(0,0,0,.13);
+      }
+      .std-contact-brand-text{
+        font:500 20px/1 "Cormorant Garamond",Georgia,serif;
+        color:#eee8f0;
+      }
+
+      @media(max-width:1280px){
+        .std-contact{
+          min-height:0;
+          padding:76px 40px 54px;
+        }
+        .std-contact-inner{
+          grid-template-columns:500px minmax(0,1fr);
+          gap:28px;
+        }
+        .std-contact-title{font-size:72px}
+        .std-contact-right{padding-top:108px}
+        .std-contact-card{grid-template-columns:78px minmax(0,1fr)}
+        .std-contact-card-title{font-size:25px}
+        .std-contact-card-sub{font-size:13px}
+        .std-contact-action{font-size:22px}
+      }
+
       .std-gallery{
         position:fixed;
         inset:0;
@@ -1307,6 +1532,88 @@
       </div>
     </section>
 
+    <section class="std-contact" id="stluxeDesktopContacts" aria-labelledby="stdContactTitle">
+      <div class="std-contact-inner">
+        <div class="std-contact-status" id="stdContactStatus">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3.2 1.8"></path></svg>
+          <span id="stdContactStatusText">Закрыто до 10:00</span>
+        </div>
+
+        <div class="std-contact-left">
+          <p class="std-contact-kicker">Контакты</p>
+          <h2 class="std-contact-title" id="stdContactTitle">Ждём вас</h2>
+
+          <div class="std-contact-list">
+            <a class="std-contact-card" href="${YANDEX_RU}" target="_blank" rel="noopener">
+              <span class="std-contact-card-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6.5-5.4 6.5-11a6.5 6.5 0 1 0-13 0c0 5.6 6.5 11 6.5 11Z"></path><circle cx="12" cy="10" r="2.2"></circle></svg>
+              </span>
+              <span class="std-contact-card-copy">
+                <strong class="std-contact-card-title">Ивантеевка, ул. Победы, 16</strong>
+                <span class="std-contact-card-sub">Московская область · открыть в Яндекс Картах</span>
+              </span>
+            </a>
+
+            <a class="std-contact-card" href="tel:${PHONE}">
+              <span class="std-contact-card-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 4.6h2.7c.5 0 .9.3 1 .8l.8 3c.1.4 0 .8-.3 1.1l-1.6 1.6a14.4 14.4 0 0 0 5.7 5.7l1.6-1.6c.3-.3.7-.4 1.1-.3l3 .8c.5.1.8.5.8 1v2.7c0 .6-.4 1.1-1 1.2-.8.1-1.6.2-2.4.2C9.7 20.8 3.2 14.3 3.2 6c0-.8.1-1.6.2-2.4.1-.6.6-1 1.2-1Z"></path></svg>
+              </span>
+              <span class="std-contact-card-copy">
+                <strong class="std-contact-card-title">+7 (916) 355–22–22</strong>
+                <span class="std-contact-card-sub">Нажмите, чтобы позвонить</span>
+              </span>
+            </a>
+
+            <a class="std-contact-card" href="${WHATSAPP_URL}" target="_blank" rel="noopener">
+              <span class="std-contact-card-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19.4 6.1 16A7.6 7.6 0 1 1 12 19.6c-1.4 0-2.8-.4-4-1.1L5 19.4Z"></path><path d="M9.2 8.8c.2-.4.4-.5.7-.5h.5c.2 0 .4.1.5.4l.6 1.4c.1.3 0 .5-.2.7l-.4.4c-.2.2-.2.4-.1.6.5 1 1.4 1.9 2.5 2.4.2.1.4.1.6-.1l.5-.6c.2-.2.4-.3.7-.2l1.3.6c.3.1.5.4.4.7 0 .5-.2 1-.6 1.3-.4.4-1.1.6-1.7.6-.8 0-2-.3-3.2-1.1-1.8-1.1-3.2-2.8-3.9-4.6-.3-.8-.1-1.5.1-2Z"></path></svg>
+              </span>
+              <span class="std-contact-card-copy">
+                <strong class="std-contact-card-title">WhatsApp</strong>
+                <span class="std-contact-card-sub">Написать в салон</span>
+              </span>
+            </a>
+
+            <div class="std-contact-card static">
+              <span class="std-contact-card-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18.5 6 15.7A7.2 7.2 0 1 1 12 19.2c-1.4 0-2.7-.4-3.8-1.1L5 18.5Z"></path><path d="M8.5 9.2h7M8.5 12h7M8.5 14.8h4.8"></path></svg>
+              </span>
+              <span class="std-contact-card-copy">
+                <strong class="std-contact-card-title">MAX</strong>
+              </span>
+            </div>
+
+            <div class="std-contact-card static">
+              <span class="std-contact-card-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3.2 1.8"></path></svg>
+              </span>
+              <span class="std-contact-card-copy">
+                <strong class="std-contact-card-title">Вт–Вс 10:00–20:00</strong>
+                <span class="std-contact-card-sub">Понедельник — выходной</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="std-contact-right">
+          <div class="std-contact-map">
+            <iframe title="Карта STLuxe" loading="eager" src="https://yandex.ru/map-widget/v1/?mode=search&text=%D0%98%D0%B2%D0%B0%D0%BD%D1%82%D0%B5%D0%B5%D0%B2%D0%BA%D0%B0%2C%20%D1%83%D0%BB.%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%2C%2016&z=16"></iframe>
+          </div>
+          <div class="std-contact-actions">
+            <a class="std-contact-action std-contact-call" href="tel:${PHONE}">Позвонить</a>
+            <a class="std-contact-action std-contact-route" href="${ROUTE}" target="_blank" rel="noopener">Построить маршрут</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="std-contact-bottom">
+        <a class="std-contact-brand" href="https://tanem.ru/" target="_blank" rel="noopener">
+          <span class="std-contact-brand-mark">T</span>
+          <span class="std-contact-brand-text">Создано в TANEM.ru</span>
+        </a>
+      </div>
+    </section>
+
     <div class="std-price-viewer" id="stdPriceViewer" role="dialog" aria-modal="true" aria-label="Фото-прайс STLuxe">
       <button class="std-price-viewer-close" id="stdPriceViewerClose" type="button" aria-label="Закрыть">×</button>
       <div class="std-price-viewer-stage">
@@ -1512,6 +1819,12 @@
     main.textContent=isOpen?'Открыто':'Закрыто';
     sub.textContent=isOpen?'до 20:00':(closedToTuesday?'до вт 10:00':'до 10:00');
     main.style.color=isOpen?'#3f8750':'#a45e64';
+    const contactStatus=document.getElementById('stdContactStatus');
+    const contactStatusText=document.getElementById('stdContactStatusText');
+    if(contactStatus&&contactStatusText){
+      contactStatusText.textContent=isOpen?'Открыто до 20:00':(closedToTuesday?'Закрыто до вт 10:00':'Закрыто до 10:00');
+      contactStatus.classList.toggle('open',isOpen);
+    }
   }
   updateStatus();
   setInterval(updateStatus,60000);
