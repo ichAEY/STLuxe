@@ -1,867 +1,374 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0d0c12">
-  <meta name="description" content="STLuxe — все основные ссылки салона красоты в одном месте.">
-  <title>STLuxe — ссылки салона</title>
-  <style>
-    :root{
-      --bg:#0d0c12;
-      --bg2:#15111c;
-      --panel:rgba(27,25,32,.78);
-      --line:rgba(255,255,255,.17);
-      --text:#f7f5f8;
-      --muted:#aaa5af;
-      --violet:#ad5ed1;
-      --violet-2:#7f3fa3;
-      --violet-soft:#c77ae6;
-      --gold:#c8a16b;
-      --red:#e44444;
-      --radius:17px;
-      --serif:Georgia,"Times New Roman",serif;
-      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
-    }
-    *{box-sizing:border-box}
-    html{background:var(--bg);scroll-behavior:smooth}
-    body{
-      margin:0;
-      min-height:100vh;
-      color:var(--text);
-      font-family:var(--sans);
-      -webkit-font-smoothing:antialiased;
-      background:
-        radial-gradient(760px 520px at 7% 0%, rgba(123,54,151,.28), transparent 68%),
-        radial-gradient(700px 560px at 100% 100%, rgba(126,56,162,.34), transparent 68%),
-        linear-gradient(135deg,#0b0a10 0%,#101019 48%,#181120 100%);
-      overflow-x:hidden;
-    }
-    body::before,
-    body::after{
-      content:"";
-      position:fixed;
-      width:620px;height:620px;
-      border:1px solid rgba(173,94,209,.34);
-      border-radius:50%;
-      pointer-events:none;
-      z-index:0;
-    }
-    body::before{right:-430px;top:-455px}
-    body::after{left:-485px;bottom:-465px}
-    a,button{font:inherit;color:inherit}
-    a{text-decoration:none}
-    button{border:0}
-    .page{
-      position:relative;
-      z-index:1;
-      width:min(100%,1480px);
-      min-height:100vh;
-      margin:0 auto;
-      padding:42px 54px 28px;
-      display:grid;
-      grid-template-columns:minmax(420px,.88fr) minmax(610px,1.12fr);
-      gap:68px;
-      align-items:center;
-    }
-    .brand{
-      min-width:0;
-      align-self:center;
-      padding:18px 0 36px 28px;
-    }
-    .brand-visual{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start;
-    }
-    .woman{
-      width:310px;
-      max-width:75%;
-      height:auto;
-      color:#f7eafa;
-      filter:drop-shadow(0 0 14px rgba(191,106,222,.22));
-      margin:0 0 3px 48px;
-    }
-    .woman path{
-      fill:none;
-      stroke:currentColor;
-      stroke-width:4.2;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-    }
-    .wordmark{
-      white-space:nowrap;
-      line-height:.82;
-      margin-top:-3px;
-      letter-spacing:-.065em;
-      text-shadow:0 0 18px rgba(255,255,255,.03);
-    }
-    .wordmark .stl{
-      font-family:var(--serif);
-      font-size:116px;
-      font-weight:400;
-    }
-    .wordmark .luxe{
-      font-family:var(--serif);
-      font-size:96px;
-      font-style:italic;
-      font-weight:400;
-      letter-spacing:-.09em;
-    }
-    .subtitle{
-      margin-top:22px;
-      font-family:var(--serif);
-      font-size:22px;
-      letter-spacing:.42em;
-      color:#e5dce8;
-      text-transform:uppercase;
-    }
-    .brand-line{
-      width:440px;
-      max-width:90%;
-      height:1px;
-      margin:34px 0 23px;
-      background:linear-gradient(90deg,rgba(255,255,255,.08),rgba(255,255,255,.36),rgba(255,255,255,.08));
-    }
-    .brand-tagline{
-      width:470px;
-      max-width:94%;
-      font-size:14px;
-      line-height:1.95;
-      letter-spacing:.33em;
-      text-transform:uppercase;
-      color:#a7a1ac;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0910">
+<title>STLuxe</title>
+<style>
+:root{
+  --bg:#0a0910;
+  --panel:rgba(21,19,28,.84);
+  --line:rgba(255,255,255,.24);
+  --white:#f6f2f5;
+  --muted:#aaa2af;
+  --purple:#c35ff0;
+  --purple2:#7a329a;
+  --gold:#efd29a;
+  --red:#ef4048;
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#09080e;
+}
+body{
+  color:var(--white);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(72vw 55vh at -10% -2%,rgba(75,18,114,.48),transparent 68%),
+    radial-gradient(65vw 55vh at 112% 76%,rgba(91,25,130,.38),transparent 72%),
+    linear-gradient(145deg,#08070d 0%,#0e0c14 48%,#14101d 100%);
+}
+a,button{font:inherit;color:inherit}
+a{text-decoration:none}
+button{border:0;padding:0;background:none}
+.stage{
+  position:relative;
+  width:min(100vw,56.25svh);
+  height:100svh;
+  margin:0 auto;
+  overflow:hidden;
+}
+.stage::before{
+  content:"";
+  position:absolute;
+  width:78%;
+  aspect-ratio:1;
+  right:-57%;
+  top:-28%;
+  border:1px solid rgba(132,61,169,.34);
+  border-radius:50%;
+  pointer-events:none;
+}
+.logo{
+  position:absolute;
+  top:5.35%;
+  left:50%;
+  transform:translateX(-50%);
+  width:76%;
+  text-align:center;
+  color:var(--gold);
+}
+.logo-main{
+  line-height:.82;
+  white-space:nowrap;
+  letter-spacing:-.055em;
+  text-shadow:0 0 18px rgba(239,210,154,.08);
+}
+.logo-main .stl{
+  font-family:var(--serif);
+  font-size:12.25vw;
+  font-weight:400;
+}
+.logo-main .luxe{
+  font-family:var(--serif);
+  font-size:9.7vw;
+  font-style:italic;
+  font-weight:400;
+  letter-spacing:-.095em;
+}
+.logo-sub{
+  margin-top:2.1vh;
+  font-family:var(--serif);
+  font-size:2.75vw;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  color:#e7d7bb;
+}
+.award{
+  position:absolute;
+  left:23.7%;
+  top:16.0%;
+  width:52.8%;
+  height:4.05%;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:2.4%;
+  background:#fff;
+  color:#0e0e10;
+  font-weight:760;
+  font-size:2.85vw;
+  box-shadow:0 7px 20px rgba(0,0,0,.20);
+  white-space:nowrap;
+}
+.award svg{width:5.7%;height:auto;color:var(--red);flex:0 0 auto}
 
-    .content{
-      width:100%;
-      max-width:730px;
-      justify-self:end;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      padding:8px 0;
-    }
-    .award-row{
-      display:flex;
-      justify-content:flex-start;
-      align-items:center;
-      margin:0 0 18px 10px;
-    }
-    .laurel{
-      width:34px;
-      height:52px;
-      color:var(--gold);
-      opacity:.96;
-      flex:0 0 auto;
-    }
-    .laurel.right{transform:scaleX(-1)}
-    .award{
-      min-height:48px;
-      padding:0 28px;
-      border-radius:999px;
-      background:#fff;
-      color:#111;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      font-weight:650;
-      font-size:16px;
-      box-shadow:0 8px 28px rgba(0,0,0,.18),inset 0 0 0 1px rgba(0,0,0,.06);
-      white-space:nowrap;
-    }
-    .award .pin{width:22px;height:22px;color:var(--red);flex:0 0 auto}
-    .award:hover{transform:translateY(-1px)}
-    .action,
-    .info-card{
-      width:100%;
-      min-height:64px;
-      border-radius:var(--radius);
-      border:1px solid var(--line);
-      background:var(--panel);
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
-      display:flex;
-      align-items:center;
-      padding:0 28px;
-      transition:.2s ease;
-    }
-    .action{
-      cursor:pointer;
-      justify-content:flex-start;
-      gap:24px;
-    }
-    .action:hover{
-      border-color:rgba(199,122,230,.46);
-      background:rgba(37,31,43,.88);
-      transform:translateY(-1px);
-    }
-    .action.primary{
-      min-height:70px;
-      background:linear-gradient(100deg,#a551c8,#734092 62%,#653681);
-      border-color:rgba(216,157,239,.5);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
-    }
-    .action.primary:hover{background:linear-gradient(100deg,#ad59cf,#7a449a 62%,#6b3988)}
-    .icon{
-      width:28px;height:28px;
-      color:var(--violet-soft);
-      flex:0 0 auto;
-    }
-    .primary .icon{color:#fff}
-    .action-label{
-      flex:1;
-      font-family:var(--serif);
-      font-size:24px;
-      line-height:1;
-      letter-spacing:-.015em;
-    }
-    .primary .action-label{
-      font-size:28px;
-      text-align:center;
-      transform:translateX(-12px);
-    }
-    .chev{
-      margin-left:auto;
-      font-size:34px;
-      line-height:1;
-      font-weight:200;
-      color:#d5d0d7;
-      transform:translateY(-2px);
-    }
-    .max-disabled{
-      cursor:default;
-    }
-    .max-disabled:hover{
-      transform:none;
-      background:var(--panel);
-      border-color:var(--line);
-    }
-    .address{
-      min-height:84px;
-      margin-top:1px;
-      gap:24px;
-      cursor:pointer;
-    }
-    .address:hover{
-      border-color:rgba(199,122,230,.42);
-      background:rgba(37,31,43,.86);
-    }
-    .info-copy{min-width:0;flex:1}
-    .info-title{
-      font-family:var(--serif);
-      font-size:22px;
-      line-height:1.15;
-    }
-    .info-sub{
-      margin-top:8px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.2;
-    }
-    .hours{
-      margin-top:1px;
-      padding:20px 28px;
-      align-items:flex-start;
-      gap:24px;
-      min-height:168px;
-    }
-    .hours .icon{margin-top:4px}
-    .hours-list{
-      font-family:var(--serif);
-      font-size:17px;
-      line-height:1.43;
-      color:#f0edf2;
-    }
-    .footer{
-      grid-column:1 / -1;
-      width:100%;
-      margin-top:10px;
-      padding-top:14px;
-      border-top:1px solid rgba(255,255,255,.12);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:7px;
-      color:#d8d2db;
-    }
-    .tanem-mark{
-      width:36px;height:36px;
-      display:grid;
-      place-items:center;
-      border:1px solid rgba(255,255,255,.28);
-      border-radius:9px;
-      font-family:var(--serif);
-      font-size:23px;
-    }
-    .tanem-copy{
-      font-family:var(--serif);
-      font-size:14px;
-      letter-spacing:.025em;
-    }
+.action{
+  position:absolute;
+  left:11.35%;
+  width:77.3%;
+  border-radius:3.3vw;
+  border:1px solid var(--line);
+  background:var(--panel);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--serif);
+  color:var(--white);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.02);
+  cursor:pointer;
+}
+.action .icon{
+  position:absolute;
+  left:7.5%;
+  width:5.3%;
+  height:auto;
+  color:var(--purple);
+}
+.action .chev{
+  position:absolute;
+  right:6%;
+  top:50%;
+  transform:translateY(-56%);
+  font-family:var(--sans);
+  font-size:6.7vw;
+  font-weight:200;
+  line-height:1;
+  color:#cc72ef;
+}
+.site{
+  top:24.0%;
+  height:6.2%;
+  background:linear-gradient(100deg,#aa4ec9 0%,#733391 55%,#632b80 100%);
+  border-color:rgba(206,112,236,.72);
+  font-size:5.0vw;
+}
+.site .icon{color:#fff}
+.site .chev{color:#e6c2ef}
+.book{
+  top:31.34%;
+  height:6.0%;
+  font-size:4.65vw;
+}
+.whatsapp{
+  top:38.34%;
+  height:6.0%;
+  font-size:4.45vw;
+}
+.max{
+  top:45.25%;
+  height:6.0%;
+  font-size:4.25vw;
+}
+.map{
+  top:52.30%;
+  height:7.05%;
+  font-size:4.05vw;
+}
+.map .icon{width:5.7%;fill:var(--purple);color:var(--purple)}
+.map-copy{
+  text-align:center;
+  line-height:1.04;
+}
+.map-title{display:block}
+.map-sub{
+  display:block;
+  margin-top:1.15vh;
+  font-family:var(--sans);
+  font-size:2.55vw;
+  color:#9f98a6;
+}
 
-    .modal{
-      position:fixed;
-      inset:0;
-      z-index:20;
-      display:none;
-      place-items:center;
-      background:rgba(7,6,10,.68);
-      backdrop-filter:blur(8px);
-      padding:20px;
-    }
-    .modal.open{display:grid}
-    .sheet{
-      width:min(100%,430px);
-      border-radius:24px;
-      background:#17151c;
-      border:1px solid rgba(255,255,255,.15);
-      box-shadow:0 24px 80px rgba(0,0,0,.4);
-      padding:22px;
-    }
-    .sheet-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px}
-    .sheet-title{font-family:var(--serif);font-size:25px;margin:0}
-    .sheet-sub{margin:7px 0 0;color:var(--muted);font-size:14px}
-    .close{
-      margin-left:auto;
-      width:34px;height:34px;border-radius:50%;
-      background:rgba(255,255,255,.07);
-      color:#fff;font-size:22px;cursor:pointer;
-    }
-    .sheet-links{display:grid;gap:10px}
-    .sheet-link{
-      min-height:58px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      display:flex;
-      align-items:center;
-      gap:15px;
-      padding:0 16px;
-      background:rgba(255,255,255,.025);
-    }
-    .sheet-link .icon{width:24px;height:24px}
-    .sheet-link strong{font-weight:500}
-    .sheet-link.pending{opacity:.55;pointer-events:none}
+.schedule{
+  position:absolute;
+  left:11.35%;
+  top:63.0%;
+  width:77.3%;
+  height:20.3%;
+}
+.schedule-head{
+  height:3.2vh;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:3.4vw;
+  color:#c77ae6;
+}
+.schedule-head::before,.schedule-head::after{
+  content:"";
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(199,122,230,.92));
+}
+.schedule-head::after{
+  background:linear-gradient(90deg,rgba(199,122,230,.92),transparent);
+}
+.schedule-head span{
+  font-family:var(--serif);
+  font-size:2.85vw;
+  letter-spacing:.32em;
+  white-space:nowrap;
+}
+.hours{
+  width:67%;
+  margin:2.6vh auto 0;
+  font-family:var(--serif);
+  font-size:3.45vw;
+  line-height:1.47;
+}
+.row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:5.3vw;
+  align-items:baseline;
+}
+.row span:last-child{text-align:right;white-space:nowrap}
+.row .closed{color:#c47fe2}
 
-    .schedule-wrap{width:100%}
-    .schedule-title{display:none}
-    .hours-row{display:block}
-    @media (max-width:980px){
-      html,body{height:100%;overflow:hidden}
-      body{
-        background:
-          radial-gradient(520px 340px at -12% 4%,rgba(87,23,124,.48),transparent 72%),
-          radial-gradient(520px 420px at 108% 78%,rgba(93,27,128,.38),transparent 72%),
-          linear-gradient(145deg,#090910 0%,#100d17 45%,#151020 100%);
-      }
-      body::before{
-        width:500px;height:500px;right:-405px;top:-392px;
-        border-color:rgba(131,66,168,.32)
-      }
-      body::after{display:none}
-      .page{
-        height:100svh;
-        min-height:100svh;
-        width:min(100%,520px);
-        display:flex;
-        flex-direction:column;
-        gap:0;
-        overflow:hidden;
-        padding:
-          max(20px,env(safe-area-inset-top))
-          28px
-          max(12px,env(safe-area-inset-bottom));
-      }
-      .brand{
-        width:100%;
-        padding:0;
-        flex:0 0 auto;
-      }
-      .brand-visual{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        text-align:center;
-      }
-      .woman,.brand-line,.brand-tagline{display:none}
-      .wordmark{
-        margin:0;
-        line-height:.82;
-        align-self:auto;
-        color:#f0d3a0;
-        text-shadow:0 0 14px rgba(240,211,160,.07);
-      }
-      .wordmark .stl{font-size:64px}
-      .wordmark .luxe{font-size:51px}
-      .subtitle{
-        margin:9px 0 0;
-        font-family:var(--serif);
-        font-size:11px;
-        letter-spacing:.39em;
-        color:#ead8b9;
-        align-self:auto;
-      }
-      .content{
-        width:100%;
-        max-width:none;
-        padding:0;
-        margin-top:24px;
-        gap:8px;
-        flex:0 0 auto;
-      }
-      .award-row{
-        justify-content:center;
-        margin:0 0 28px;
-      }
-      .laurel{display:none}
-      .award{
-        min-height:46px;
-        padding:0 20px;
-        font-size:14px;
-        gap:9px;
-        font-weight:700;
-        background:#fff;
-        color:#111;
-        box-shadow:0 8px 26px rgba(0,0,0,.18);
-      }
-      .award .pin{width:21px;height:21px;color:#e44343}
-
-      .action,.info-card{
-        position:relative;
-        width:100%;
-        min-height:58px;
-        padding:0 24px;
-        border-radius:17px;
-        border:1px solid rgba(255,255,255,.23);
-        background:rgba(21,20,28,.72);
-        box-shadow:inset 0 1px 0 rgba(255,255,255,.02);
-      }
-      .action{
-        gap:0;
-        justify-content:center;
-      }
-      .action.primary{
-        min-height:72px;
-        margin-bottom:4px;
-        background:linear-gradient(100deg,#a94ecb 0%,#713890 55%,#63327e 100%);
-        border-color:rgba(211,125,239,.64);
-      }
-      .action:not(.primary){
-        min-height:58px;
-      }
-      .action .icon{
-        position:absolute;
-        left:28px;
-        width:26px;
-        height:26px;
-        color:#bd62e4;
-      }
-      .primary .icon{
-        width:28px;height:28px;color:#fff;
-      }
-      .action .chev,
-      .address .chev{
-        position:absolute;
-        right:22px;
-        margin:0;
-        font-size:34px;
-        color:#c86eea;
-        transform:translateY(-2px);
-      }
-      .primary .chev{color:#e5c3f0}
-      .action-label{
-        flex:0 1 auto;
-        width:100%;
-        text-align:center;
-        font-family:var(--serif);
-        font-size:23px;
-        line-height:1;
-        letter-spacing:0;
-      }
-      .primary .action-label{
-        font-size:27px;
-        transform:none;
-      }
-      .phone-action{display:none}
-      .max-disabled{opacity:1}
-
-      .address{
-        min-height:68px;
-        margin-top:0;
-        gap:0;
-        justify-content:center;
-        text-align:center;
-        padding:8px 58px 7px;
-      }
-      .address .icon{
-        position:absolute;
-        left:28px;
-        width:26px;
-        height:26px;
-        color:#bd62e4;
-      }
-      .desktop-address-title,.desktop-address-sub{display:none}
-      .mobile-address-title,.mobile-address-sub{display:block}
-      .info-title{
-        font-family:var(--serif);
-        font-size:20px;
-        line-height:1.02;
-      }
-      .info-sub{
-        margin-top:6px;
-        color:#aaa5af;
-        font-size:12px;
-        line-height:1.05;
-      }
-
-      .hours{
-        min-height:0;
-        margin:22px 0 0;
-        padding:0;
-        border:0;
-        border-radius:0;
-        background:transparent;
-        box-shadow:none;
-        backdrop-filter:none;
-        -webkit-backdrop-filter:none;
-        display:block;
-      }
-      .hours .icon{display:none}
-      .schedule-wrap{width:100%}
-      .schedule-title{
-        display:grid;
-        grid-template-columns:1fr auto 1fr;
-        align-items:center;
-        gap:14px;
-        margin:0 4px 20px;
-        color:#c77ae6;
-      }
-      .schedule-title span{
-        height:1px;
-        background:linear-gradient(90deg,transparent,rgba(199,122,230,.9));
-      }
-      .schedule-title span:last-child{
-        background:linear-gradient(90deg,rgba(199,122,230,.9),transparent);
-      }
-      .schedule-title strong{
-        font-family:var(--serif);
-        font-size:12px;
-        font-weight:400;
-        letter-spacing:.34em;
-        white-space:nowrap;
-      }
-      .hours-list{
-        width:74%;
-        margin:0 auto;
-        font-family:var(--serif);
-        font-size:14px;
-        line-height:1.42;
-        color:#eee9f0;
-      }
-      .hours-row{
-        display:grid;
-        grid-template-columns:1fr auto;
-        gap:24px;
-        align-items:baseline;
-      }
-      .hours-row span:last-child{text-align:right}
-      .hours-row .closed{color:#bd79dc}
-
-      .footer{
-        width:100%;
-        margin-top:auto;
-        padding-top:10px;
-        border-top:1px solid rgba(255,255,255,.15);
-        gap:5px;
-        flex:0 0 auto;
-      }
-      .tanem-mark{
-        width:30px;
-        height:30px;
-        border-radius:8px;
-        font-size:19px;
-        color:#e2dde5;
-      }
-      .tanem-copy{
-        font-family:var(--serif);
-        font-size:12px;
-        color:#d5cbd8;
-      }
-    }
-
-    @media (max-width:420px){
-      .page{
-        padding:
-          max(14px,env(safe-area-inset-top))
-          24px
-          max(8px,env(safe-area-inset-bottom));
-      }
-      .wordmark .stl{font-size:58px}
-      .wordmark .luxe{font-size:46px}
-      .subtitle{margin-top:7px;font-size:10px}
-      .content{margin-top:20px;gap:7px}
-      .award-row{margin-bottom:24px}
-      .award{min-height:42px;font-size:13px;padding:0 18px}
-      .action.primary{min-height:66px}
-      .action:not(.primary){min-height:54px}
-      .action-label{font-size:21px}
-      .primary .action-label{font-size:25px}
-      .address{min-height:64px}
-      .info-title{font-size:18px}
-      .info-sub{font-size:11px}
-      .hours{margin-top:18px}
-      .schedule-title{margin-bottom:16px}
-      .hours-list{width:76%;font-size:13px;line-height:1.4}
-      .tanem-mark{width:27px;height:27px;font-size:17px}
-      .tanem-copy{font-size:11px}
-    }
-
-    @media (max-width:420px) and (max-height:760px){
-      .page{
-        padding:
-          max(9px,env(safe-area-inset-top))
-          20px
-          max(5px,env(safe-area-inset-bottom));
-      }
-      .wordmark .stl{font-size:48px}
-      .wordmark .luxe{font-size:39px}
-      .subtitle{margin-top:4px;font-size:8px}
-      .content{margin-top:12px;gap:4px}
-      .award-row{margin-bottom:12px}
-      .award{min-height:34px;font-size:11px;padding:0 14px}
-      .award .pin{width:17px;height:17px}
-      .action.primary{min-height:54px}
-      .action:not(.primary){min-height:43px}
-      .action .icon{left:22px;width:20px;height:20px}
-      .primary .icon{width:22px;height:22px}
-      .action .chev,.address .chev{right:18px;font-size:29px}
-      .action-label{font-size:17px}
-      .primary .action-label{font-size:21px}
-      .address{min-height:52px;padding-left:50px;padding-right:50px}
-      .address .icon{left:22px;width:20px;height:20px}
-      .info-title{font-size:15px}
-      .info-sub{font-size:9px;margin-top:3px}
-      .hours{margin-top:9px}
-      .schedule-title{margin:0 4px 8px;gap:9px}
-      .schedule-title strong{font-size:9px}
-      .hours-list{font-size:10.5px;line-height:1.23}
-      .footer{padding-top:5px}
-      .tanem-mark{width:21px;height:21px;font-size:13px}
-      .tanem-copy{font-size:8.5px}
-    }
-    @media (min-width:981px){
-      .mobile-address-title,.mobile-address-sub{display:none}
-    }
-    @media (max-width:420px){
-      .page{
-        padding:
-          max(12px,env(safe-area-inset-top))
-          16px
-          max(8px,env(safe-area-inset-bottom));
-      }
-      .wordmark .stl{font-size:50px}
-      .wordmark .luxe{font-size:41px}
-      .subtitle{font-size:9px}
-      .content{margin-top:8px;gap:4px}
-      .award{min-height:32px;font-size:11px;padding:0 13px}
-      .action.primary{min-height:52px}
-      .action:not(.primary){min-height:44px}
-      .action-label{font-size:17px}
-      .primary .action-label{font-size:21px}
-      .address{min-height:55px}
-      .info-title{font-size:16px}
-      .info-sub{font-size:10px}
-      .hours-list{font-size:11.5px;line-height:1.2}
-      .tanem-mark{width:23px;height:23px;font-size:15px}
-      .tanem-copy{font-size:9.5px}
-    }
-    @media (max-width:420px) and (max-height:740px){
-      .page{
-        padding:
-          max(8px,env(safe-area-inset-top))
-          14px
-          max(5px,env(safe-area-inset-bottom));
-      }
-      .wordmark .stl{font-size:44px}
-      .wordmark .luxe{font-size:36px}
-      .subtitle{margin-top:4px;font-size:8px}
-      .content{margin-top:6px;gap:3px}
-      .award-row{margin-bottom:3px}
-      .award{min-height:28px;font-size:10px}
-      .award .pin{width:15px;height:15px}
-      .action.primary{min-height:46px}
-      .action:not(.primary){min-height:39px}
-      .action .icon{width:19px;height:19px}
-      .action-label{font-size:15px}
-      .primary .action-label{font-size:19px}
-      .address{min-height:48px}
-      .info-title{font-size:14px}
-      .info-sub{font-size:9px}
-      .hours{padding-top:1px}
-      .hours-list{font-size:10px;line-height:1.14}
-      .footer{padding-top:4px}
-      .tanem-mark{width:20px;height:20px;font-size:13px}
-      .tanem-copy{font-size:8.5px}
-    }
-  </style>
+.footer{
+  position:absolute;
+  left:10.4%;
+  bottom:3.4%;
+  width:79.2%;
+  padding-top:3.2vh;
+  border-top:1px solid rgba(255,255,255,.17);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:1.2vh;
+  color:#d7cfdb;
+}
+.tmark{
+  width:5.4vw;
+  height:5.4vw;
+  border:1px solid rgba(255,255,255,.32);
+  border-radius:1.15vw;
+  display:grid;
+  place-items:center;
+  font-family:var(--serif);
+  font-size:3.7vw;
+}
+.tcopy{
+  font-family:var(--serif);
+  font-size:2.75vw;
+}
+.toast{
+  position:absolute;
+  left:50%;
+  bottom:2%;
+  transform:translate(-50%,18px);
+  z-index:10;
+  opacity:0;
+  pointer-events:none;
+  background:rgba(18,16,23,.96);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;
+  padding:10px 16px;
+  font-size:12px;
+  color:#eee;
+  transition:.22s ease;
+  white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (min-width:700px){
+  .logo-main .stl{font-size:68px}
+  .logo-main .luxe{font-size:54px}
+  .logo-sub{font-size:15px}
+  .award{font-size:16px}
+  .action{border-radius:18px}
+  .site{font-size:28px}
+  .book{font-size:26px}
+  .whatsapp{font-size:25px}
+  .max{font-size:24px}
+  .map{font-size:23px}
+  .map-sub{font-size:14px}
+  .schedule-head span{font-size:16px}
+  .hours{font-size:19px}
+  .action .chev{font-size:38px}
+  .tmark{width:31px;height:31px;border-radius:7px;font-size:21px}
+  .tcopy{font-size:15px}
+}
+</style>
 </head>
 <body>
-  <main class="page">
-    <section class="brand" aria-label="STLuxe">
-      <div class="brand-visual">
-        <svg class="woman" viewBox="0 0 250 330" aria-hidden="true">
-          <path d="M57 48c23-18 58-24 86-12 10 4 17 10 20 18-20-10-43-10-64-4-16 5-31 14-43 27"/>
-          <path d="M85 45c15-17 41-27 64-22 16 3 29 13 33 26"/>
-          <path d="M151 31c18-9 34-2 37 12 2 10-3 21-14 31-13 12-22 26-27 44"/>
-          <path d="M171 46c13-8 27 0 25 14-2 13-18 17-28 11"/>
-          <path d="M145 70c-13 10-20 22-20 35 1 10 8 18 19 22"/>
-          <path d="M123 94c-15 6-31 7-46 3"/>
-          <path d="M85 108c-13 9-27 10-42 4"/>
-          <path d="M73 122c8 3 16 3 24-1"/>
-          <path d="M109 128c-12 17-26 28-43 33"/>
-          <path d="M65 161c18 6 35 3 49-9"/>
-          <path d="M116 154c3 18 0 34-10 49"/>
-          <path d="M110 203c15 7 28 18 37 31"/>
-          <path d="M104 205c-7 17-17 31-31 42"/>
-          <path d="M74 247c-22 13-37 31-45 55"/>
-          <path d="M145 234c12 2 24 7 34 15 13 10 19 23 19 39"/>
-          <path d="M181 251c-5 20-5 40 1 59"/>
-          <path d="M149 246c-10 16-13 34-10 53"/>
-          <path d="M138 299c-12-2-21-9-27-20"/>
-          <path d="M111 279c-9 3-17 10-22 19"/>
-          <path d="M88 298c-10 4-20 4-30 1"/>
-          <path d="M196 111c12 8 18 20 16 36-1 11-7 20-17 27"/>
-          <path d="M195 174c7 8 8 18 4 29"/>
-        </svg>
-        <div class="wordmark" aria-label="STLuxe"><span class="stl">STL</span><span class="luxe">uxe</span></div>
-        <div class="subtitle">Салон красоты</div>
-        <div class="brand-line"></div>
-        <div class="brand-tagline">Место, где стиль становится<br>вашей естественной красотой</div>
-      </div>
-    </section>
+<main class="stage" aria-label="STLuxe">
+  <header class="logo">
+    <div class="logo-main"><span class="stl">STL</span><span class="luxe">uxe</span></div>
+    <div class="logo-sub">Салон красоты</div>
+  </header>
 
-    <section class="content" aria-label="Ссылки STLuxe">
-      <div class="award-row">
-        <svg class="laurel" viewBox="0 0 36 60" aria-hidden="true">
-          <path d="M29 4C15 14 8 29 10 48" fill="none" stroke="currentColor" stroke-width="1.5"/>
-          <ellipse cx="25" cy="10" rx="3.2" ry="6" transform="rotate(42 25 10)" fill="currentColor"/>
-          <ellipse cx="19" cy="18" rx="3" ry="5.5" transform="rotate(32 19 18)" fill="currentColor"/>
-          <ellipse cx="15" cy="27" rx="2.8" ry="5.2" transform="rotate(20 15 27)" fill="currentColor"/>
-          <ellipse cx="12" cy="37" rx="2.6" ry="4.8" transform="rotate(8 12 37)" fill="currentColor"/>
-          <ellipse cx="11" cy="47" rx="2.4" ry="4.5" transform="rotate(-8 11 47)" fill="currentColor"/>
-        </svg>
-        <a class="award" href="https://yandex.com/maps/org/beauty_salon_stluxe/51087098664/" target="_blank" rel="noopener">
-          <svg class="pin" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a8 8 0 0 0-8 8c0 5.5 8 12 8 12s8-6.5 8-12a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
-          <span>Лучшее место · Яндекс Карты</span>
-        </a>
-        <svg class="laurel right" viewBox="0 0 36 60" aria-hidden="true">
-          <path d="M29 4C15 14 8 29 10 48" fill="none" stroke="currentColor" stroke-width="1.5"/>
-          <ellipse cx="25" cy="10" rx="3.2" ry="6" transform="rotate(42 25 10)" fill="currentColor"/>
-          <ellipse cx="19" cy="18" rx="3" ry="5.5" transform="rotate(32 19 18)" fill="currentColor"/>
-          <ellipse cx="15" cy="27" rx="2.8" ry="5.2" transform="rotate(20 15 27)" fill="currentColor"/>
-          <ellipse cx="12" cy="37" rx="2.6" ry="4.8" transform="rotate(8 12 37)" fill="currentColor"/>
-          <ellipse cx="11" cy="47" rx="2.4" ry="4.5" transform="rotate(-8 11 47)" fill="currentColor"/>
-        </svg>
-      </div>
+  <a class="award" href="https://yandex.com/maps/org/beauty_salon_stluxe/51087098664/" target="_blank" rel="noopener" aria-label="Лучшее место — Яндекс Карты">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a8 8 0 0 0-8 8c0 5.5 8 12 8 12s8-6.5 8-12a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
+    <span>Лучшее место · Яндекс Карты</span>
+  </a>
 
-      <a class="action primary" href="/" aria-label="Перейти на сайт STLuxe">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
-        <span class="action-label">Перейти на сайт</span>
-        <span class="chev">›</span>
-      </a>
+  <a class="action site" href="/" aria-label="Перейти на сайт">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+    <span>Перейти на сайт</span>
+    <span class="chev">›</span>
+  </a>
 
-      <button class="action" type="button" id="bookingButton">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 3v4M16 3v4M3 10h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
-        <span class="action-label">Записаться</span>
-        <span class="chev">›</span>
-      </button>
+  <a class="action book" href="tel:+79163552222" aria-label="Записаться">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Записаться</span>
+    <span class="chev">›</span>
+  </a>
 
-      <a class="action phone-action" href="tel:+79163552222">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="action-label">Позвонить</span>
-        <span class="chev">›</span>
-      </a>
+  <a class="action whatsapp" href="https://wa.me/79163552222?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20STLuxe." target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+    <span>WhatsApp</span>
+    <span class="chev">›</span>
+  </a>
 
-      <a class="action" href="https://wa.me/79163552222?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20STLuxe." target="_blank" rel="noopener">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
-        <span class="action-label">WhatsApp</span>
-        <span class="chev">›</span>
-      </a>
+  <button class="action max" type="button" id="maxButton" aria-label="MAX">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-5 3v-12a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    <span>MAX</span>
+    <span class="chev">›</span>
+  </button>
 
-      <button class="action max-disabled" type="button" aria-disabled="true" title="Ссылка MAX будет добавлена позже">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-5 3v-12a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        <span class="action-label">MAX</span>
-        <span class="chev">›</span>
-      </button>
+  <a class="action map" href="https://yandex.ru/maps/?text=%D0%98%D0%B2%D0%B0%D0%BD%D1%82%D0%B5%D0%B5%D0%B2%D0%BA%D0%B0%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%2C%2016%20STLuxe" target="_blank" rel="noopener" aria-label="Открыть Яндекс Карты">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a8 8 0 0 0-8 8c0 5.5 8 12 8 12s8-6.5 8-12a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
+    <span class="map-copy"><span class="map-title">Открыть Яндекс Карты</span><span class="map-sub">Ивантеевка, ул. Победы, 16</span></span>
+    <span class="chev">›</span>
+  </a>
 
-      <a class="info-card address" href="https://yandex.ru/maps/?text=%D0%98%D0%B2%D0%B0%D0%BD%D1%82%D0%B5%D0%B5%D0%B2%D0%BA%D0%B0%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%2C%2016%20STLuxe" target="_blank" rel="noopener">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.7 7-12A7 7 0 1 0 5 9c0 6.3 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="1.9"/></svg>
-        <div class="info-copy">
-          <div class="info-title desktop-address-title">Ивантеевка, ул. Победы, 16</div>
-          <div class="info-sub desktop-address-sub">Московская область · открыть в Яндекс Картах</div>
-          <div class="info-title mobile-address-title">Открыть Яндекс Карты</div>
-          <div class="info-sub mobile-address-sub">Ивантеевка, ул. Победы, 16</div>
-        </div>
-        <span class="chev">›</span>
-      </a>
-
-      <div class="info-card hours">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div class="schedule-wrap">
-          <div class="schedule-title"><span></span><strong>РЕЖИМ РАБОТЫ</strong><span></span></div>
-          <div class="hours-list">
-            <div class="hours-row"><span>Понедельник</span><span class="closed">выходной</span></div>
-            <div class="hours-row"><span>Вторник</span><span>10:00 — 20:00</span></div>
-            <div class="hours-row"><span>Среда</span><span>10:00 — 20:00</span></div>
-            <div class="hours-row"><span>Четверг</span><span>10:00 — 20:00</span></div>
-            <div class="hours-row"><span>Пятница</span><span>10:00 — 20:00</span></div>
-            <div class="hours-row"><span>Суббота</span><span>10:00 — 20:00</span></div>
-            <div class="hours-row"><span>Воскресенье</span><span>10:00 — 20:00</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="tanem-mark">T</div>
-      <div class="tanem-copy">Создано в TANEM.ru</div>
-    </footer>
-  </main>
-
-  <div class="modal" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
-    <div class="sheet">
-      <div class="sheet-head">
-        <div>
-          <h2 class="sheet-title" id="bookingTitle">Как вам удобнее записаться?</h2>
-          <p class="sheet-sub">Выберите удобный способ связи.</p>
-        </div>
-        <button class="close" type="button" id="closeModal" aria-label="Закрыть">×</button>
-      </div>
-      <div class="sheet-links">
-        <a class="sheet-link" href="tel:+79163552222">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <strong>Телефон</strong>
-        </a>
-        <a class="sheet-link" href="https://wa.me/79163552222?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%B2%20STLuxe." target="_blank" rel="noopener">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
-          <strong>WhatsApp</strong>
-        </a>
-        <div class="sheet-link pending" aria-disabled="true">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-5 3v-12a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
-          <strong>MAX</strong>
-        </div>
-      </div>
+  <section class="schedule" aria-label="Режим работы">
+    <div class="schedule-head"><span>РЕЖИМ РАБОТЫ</span></div>
+    <div class="hours">
+      <div class="row"><span>Понедельник</span><span class="closed">выходной</span></div>
+      <div class="row"><span>Вторник</span><span>10:00 — 20:00</span></div>
+      <div class="row"><span>Среда</span><span>10:00 — 20:00</span></div>
+      <div class="row"><span>Четверг</span><span>10:00 — 20:00</span></div>
+      <div class="row"><span>Пятница</span><span>10:00 — 20:00</span></div>
+      <div class="row"><span>Суббота</span><span>10:00 — 20:00</span></div>
+      <div class="row"><span>Воскресенье</span><span>10:00 — 20:00</span></div>
     </div>
-  </div>
+  </section>
 
-  <script>
-    const modal=document.getElementById('bookingModal');
-    document.getElementById('bookingButton').addEventListener('click',()=>{modal.classList.add('open');document.body.style.overflow='hidden'});
-    document.getElementById('closeModal').addEventListener('click',()=>{modal.classList.remove('open');document.body.style.overflow=''});
-    modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');document.body.style.overflow=''}});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'){modal.classList.remove('open');document.body.style.overflow=''}});
-  </script>
+  <a class="footer" href="https://tanem.ru" target="_blank" rel="noopener">
+    <span class="tmark">T</span>
+    <span class="tcopy">Создано в TANEM.ru</span>
+  </a>
+
+  <div class="toast" id="toast">Ссылка MAX будет добавлена</div>
+</main>
+<script>
+const maxButton=document.getElementById('maxButton');
+const toast=document.getElementById('toast');
+let toastTimer;
+maxButton.addEventListener('click',()=>{
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toast.classList.remove('show'),1700);
+});
+</script>
 </body>
 </html>
