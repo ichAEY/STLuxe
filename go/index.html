@@ -345,94 +345,218 @@
     .sheet-link.pending{opacity:.55;pointer-events:none}
 
     @media (max-width:980px){
+      html,body{height:100%;overflow:hidden}
       body::before{right:-500px;top:-500px}
       body::after{display:none}
       .page{
-        min-height:100vh;
+        height:100svh;
+        min-height:100svh;
         width:min(100%,520px);
         display:flex;
         flex-direction:column;
         gap:0;
-        padding:34px 30px 26px;
+        overflow:hidden;
+        padding:
+          max(14px,env(safe-area-inset-top))
+          18px
+          max(10px,env(safe-area-inset-bottom));
       }
       .brand{
         width:100%;
         padding:0;
+        flex:0 0 auto;
       }
       .brand-visual{
-        display:grid;
-        grid-template-columns:118px 1fr;
-        column-gap:18px;
+        display:flex;
+        flex-direction:column;
         align-items:center;
+        justify-content:center;
+        text-align:center;
       }
-      .woman{
-        width:118px;
-        max-width:none;
-        margin:0;
-        grid-row:1 / span 2;
-      }
+      .woman{display:none}
       .wordmark{
         margin:0;
-        align-self:end;
+        line-height:.82;
+        align-self:auto;
       }
-      .wordmark .stl{font-size:72px}
-      .wordmark .luxe{font-size:58px}
+      .wordmark .stl{font-size:54px}
+      .wordmark .luxe{font-size:44px}
       .subtitle{
-        margin:11px 0 0;
-        font-size:14px;
+        margin:7px 0 0;
+        font-size:10px;
         letter-spacing:.38em;
-        align-self:start;
+        align-self:auto;
       }
       .brand-line,.brand-tagline{display:none}
       .content{
+        width:100%;
         max-width:none;
         padding:0;
-        margin-top:24px;
-        gap:10px;
+        margin-top:10px;
+        gap:5px;
+        flex:0 0 auto;
       }
       .award-row{
         justify-content:center;
-        margin:0 0 18px;
+        margin:0 0 5px;
       }
-      .award{min-height:46px;padding:0 21px;font-size:15px;gap:9px}
-      .laurel{width:25px;height:44px}
-      .action,.info-card{min-height:76px;padding:0 26px;border-radius:18px}
-      .action{gap:24px}
-      .action.primary{min-height:82px}
-      .action-label{font-size:25px}
-      .primary .action-label{font-size:29px}
-      .icon{width:29px;height:29px}
-      .address{min-height:96px}
-      .info-title{font-size:22px}
-      .info-sub{font-size:14px}
+      .laurel{display:none}
+      .award{
+        min-height:34px;
+        padding:0 16px;
+        font-size:12px;
+        gap:7px;
+        box-shadow:0 5px 18px rgba(0,0,0,.15);
+      }
+      .award .pin{width:18px;height:18px}
+      .action,.info-card{
+        position:relative;
+        min-height:47px;
+        padding:0 18px;
+        border-radius:14px;
+      }
+      .action{
+        gap:0;
+        justify-content:center;
+      }
+      .action.primary{
+        min-height:56px;
+      }
+      .action:not(.primary){
+        min-height:47px;
+      }
+      .action .icon{
+        position:absolute;
+        left:18px;
+        width:22px;
+        height:22px;
+      }
+      .action .chev{
+        position:absolute;
+        right:16px;
+      }
+      .action-label{
+        flex:0 1 auto;
+        width:100%;
+        text-align:center;
+        font-size:18px;
+        line-height:1;
+      }
+      .primary .action-label{
+        font-size:22px;
+        text-align:center;
+        transform:none;
+      }
+      .primary .icon{width:23px;height:23px}
+      .chev{font-size:27px}
+      .address{
+        min-height:58px;
+        gap:0;
+        justify-content:center;
+        text-align:center;
+        padding:6px 48px;
+      }
+      .address .icon{display:none}
+      .address .chev{
+        position:absolute;
+        right:16px;
+      }
+      .info-title{font-size:17px;line-height:1.05}
+      .info-sub{margin-top:5px;font-size:11px;line-height:1.15}
+      .desktop-address-title,.desktop-address-sub{display:none}
+      .mobile-address-title,.mobile-address-sub{display:block}
       .hours{
         min-height:0;
-        padding-top:25px;
-        padding-bottom:25px;
+        margin:2px 0 0;
+        padding:3px 2px 0;
+        border:0;
+        border-radius:0;
+        background:transparent;
+        backdrop-filter:none;
+        -webkit-backdrop-filter:none;
+        gap:0;
+        justify-content:center;
+        text-align:center;
       }
-      .hours-list{font-size:18px;line-height:1.45}
+      .hours .icon{display:none}
+      .hours-list{
+        width:100%;
+        font-family:var(--serif);
+        font-size:12px;
+        line-height:1.24;
+        color:#d8d3dc;
+      }
       .footer{
-        margin-top:30px;
-        padding-top:22px;
-        gap:10px;
+        width:100%;
+        margin-top:auto;
+        padding-top:6px;
+        border-top:1px solid rgba(255,255,255,.10);
+        gap:3px;
+        flex:0 0 auto;
       }
-      .tanem-mark{width:48px;height:48px;border-radius:11px;font-size:29px}
-      .tanem-copy{font-size:17px}
+      .tanem-mark{
+        width:25px;
+        height:25px;
+        border-radius:6px;
+        font-size:16px;
+      }
+      .tanem-copy{
+        font-size:10px;
+      }
+    }
+    @media (min-width:981px){
+      .mobile-address-title,.mobile-address-sub{display:none}
     }
     @media (max-width:420px){
-      .page{padding:28px 18px 23px}
-      .brand-visual{grid-template-columns:100px 1fr;column-gap:14px}
-      .woman{width:100px}
-      .wordmark .stl{font-size:60px}
-      .wordmark .luxe{font-size:49px}
-      .subtitle{font-size:12px}
-      .award{font-size:13px;padding:0 14px}
-      .laurel{width:20px}
-      .action,.info-card{padding-left:20px;padding-right:20px}
-      .action-label{font-size:22px}
-      .primary .action-label{font-size:26px}
-      .hours-list{font-size:16px}
-      .info-title{font-size:20px}
+      .page{
+        padding:
+          max(12px,env(safe-area-inset-top))
+          16px
+          max(8px,env(safe-area-inset-bottom));
+      }
+      .wordmark .stl{font-size:50px}
+      .wordmark .luxe{font-size:41px}
+      .subtitle{font-size:9px}
+      .content{margin-top:8px;gap:4px}
+      .award{min-height:32px;font-size:11px;padding:0 13px}
+      .action.primary{min-height:52px}
+      .action:not(.primary){min-height:44px}
+      .action-label{font-size:17px}
+      .primary .action-label{font-size:21px}
+      .address{min-height:55px}
+      .info-title{font-size:16px}
+      .info-sub{font-size:10px}
+      .hours-list{font-size:11.5px;line-height:1.2}
+      .tanem-mark{width:23px;height:23px;font-size:15px}
+      .tanem-copy{font-size:9.5px}
+    }
+    @media (max-width:420px) and (max-height:740px){
+      .page{
+        padding:
+          max(8px,env(safe-area-inset-top))
+          14px
+          max(5px,env(safe-area-inset-bottom));
+      }
+      .wordmark .stl{font-size:44px}
+      .wordmark .luxe{font-size:36px}
+      .subtitle{margin-top:4px;font-size:8px}
+      .content{margin-top:6px;gap:3px}
+      .award-row{margin-bottom:3px}
+      .award{min-height:28px;font-size:10px}
+      .award .pin{width:15px;height:15px}
+      .action.primary{min-height:46px}
+      .action:not(.primary){min-height:39px}
+      .action .icon{width:19px;height:19px}
+      .action-label{font-size:15px}
+      .primary .action-label{font-size:19px}
+      .address{min-height:48px}
+      .info-title{font-size:14px}
+      .info-sub{font-size:9px}
+      .hours{padding-top:1px}
+      .hours-list{font-size:10px;line-height:1.14}
+      .footer{padding-top:4px}
+      .tanem-mark{width:20px;height:20px;font-size:13px}
+      .tanem-copy{font-size:8.5px}
     }
   </style>
 </head>
@@ -528,8 +652,10 @@
       <a class="info-card address" href="https://yandex.ru/maps/?text=%D0%98%D0%B2%D0%B0%D0%BD%D1%82%D0%B5%D0%B5%D0%B2%D0%BA%D0%B0%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%2C%2016%20STLuxe" target="_blank" rel="noopener">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.7 7-12A7 7 0 1 0 5 9c0 6.3 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="12" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="1.9"/></svg>
         <div class="info-copy">
-          <div class="info-title">Ивантеевка, ул. Победы, 16</div>
-          <div class="info-sub">Московская область · открыть в Яндекс Картах</div>
+          <div class="info-title desktop-address-title">Ивантеевка, ул. Победы, 16</div>
+          <div class="info-sub desktop-address-sub">Московская область · открыть в Яндекс Картах</div>
+          <div class="info-title mobile-address-title">Открыть Яндекс Карты</div>
+          <div class="info-sub mobile-address-sub">Ивантеевка, ул. Победы, 16</div>
         </div>
         <span class="chev">›</span>
       </a>
