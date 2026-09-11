@@ -167,14 +167,20 @@ button{border:0;padding:0;background:none}
   pointer-events:none;
   background:linear-gradient(90deg,transparent,rgba(110,44,143,.15),transparent);
   transform:skewX(-22deg);
-  animation:stlGoShine 4.2s ease-in-out infinite;
+  animation:stlGoShine 7.2s ease-in-out infinite;
 }
 .site::after{
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
+  animation-delay:0s;
 }
+.book::after{animation-delay:.8s}
+.whatsapp::after{animation-delay:1.6s}
+.max::after{animation-delay:2.4s}
+.map::after{animation-delay:3.2s}
 @keyframes stlGoShine{
-  0%,68%{left:-34%}
-  100%{left:132%}
+  0%{left:-34%}
+  12%{left:132%}
+  12.01%,100%{left:132%}
 }
 @media(prefers-reduced-motion:reduce){
   .action::after{animation:none!important}
