@@ -972,7 +972,7 @@
         box-sizing:border-box;
         overflow:hidden;
         min-height:0;
-        padding:62px 84px 0;
+        padding:42px 84px 0;
         background:
           radial-gradient(420px 310px at 108% 8%,rgba(143,85,181,.19),transparent 67%),
           radial-gradient(300px 230px at -14% 88%,rgba(111,61,130,.10),transparent 72%),
@@ -1028,7 +1028,7 @@
         color:rgba(255,255,255,.83);
       }
       .std-contact-title{
-        margin:8px 0 23px;
+        margin:8px 0 42px;
         font:500 78px/.88 "Cormorant Garamond",Georgia,serif;
         letter-spacing:-.035em;
         color:#fbf8fc;
@@ -1101,7 +1101,7 @@
       }
       .std-contact-right{
         min-width:0;
-        padding-top:115px;
+        padding-top:134px;
       }
       .std-contact-map{
         position:relative;
@@ -1146,9 +1146,9 @@
       }
       .std-contact-bottom{
         width:auto;
-        margin:18px -84px 0;
+        margin:19px -84px 0;
         border-top:1px solid rgba(255,255,255,.16);
-        padding-top:13px;
+        padding-top:19px;
         padding-bottom:0;
       }
       .std-contact-brand{
@@ -1181,14 +1181,14 @@
       @media(max-width:1280px){
         .std-contact{
           min-height:0;
-          padding:48px 40px 0;
+          padding:34px 40px 0;
         }
         .std-contact-inner{
           grid-template-columns:500px minmax(0,1fr);
           gap:28px;
         }
-        .std-contact-title{font-size:72px}
-        .std-contact-right{padding-top:105px}
+        .std-contact-title{font-size:72px;margin-bottom:37px}
+        .std-contact-right{padding-top:119px}
         .std-contact-card{grid-template-columns:78px minmax(0,1fr)}
         .std-contact-card-title{font-size:25px}
         .std-contact-card-sub{font-size:13px}
