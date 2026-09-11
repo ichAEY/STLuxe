@@ -1035,7 +1035,7 @@
       }
       .std-contact-list{
         display:grid;
-        gap:6px;
+        gap:10px;
       }
       .std-contact-card{
         box-sizing:border-box;
