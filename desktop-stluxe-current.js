@@ -940,7 +940,7 @@
       .std-master-name{
         display:block;
         margin-top:18px;
-        font:500 27px/1 "Cormorant Garamond",Georgia,serif;
+        font:500 24px/1 "Cormorant Garamond",Georgia,serif;
         color:#f7f3f8;
       }
       .std-master-role{
@@ -971,12 +971,12 @@
         position:relative;
         box-sizing:border-box;
         overflow:hidden;
-        min-height:950px;
-        padding:100px 84px 52px;
+        min-height:0;
+        padding:62px 84px 0;
         background:
-          radial-gradient(620px 430px at 102% 7%,rgba(99,57,151,.27),transparent 70%),
-          radial-gradient(520px 390px at -9% 94%,rgba(111,66,170,.21),transparent 72%),
-          linear-gradient(180deg,#1d1b23 0%,#18171e 100%);
+          radial-gradient(420px 310px at 108% 8%,rgba(143,85,181,.19),transparent 67%),
+          radial-gradient(300px 230px at -14% 88%,rgba(111,61,130,.10),transparent 72%),
+          #242127;
         color:#f8f5fa;
       }
       .std-contact-inner{
@@ -1042,9 +1042,9 @@
         width:100%;
         min-height:94px;
         padding:0 22px;
-        border:1px solid rgba(255,255,255,.13);
+        border:1px solid rgba(255,255,255,.11);
         border-radius:18px;
-        background:linear-gradient(180deg,rgba(36,33,43,.88),rgba(31,29,38,.88));
+        background:rgba(255,255,255,.045);
         display:grid;
         grid-template-columns:78px minmax(0,1fr);
         align-items:center;
@@ -1054,8 +1054,8 @@
         transition:border-color .18s ease,background .18s ease;
       }
       .std-contact-card:hover{
-        border-color:rgba(210,145,246,.34);
-        background:linear-gradient(180deg,rgba(40,36,48,.92),rgba(34,31,41,.92));
+        border-color:rgba(198,155,210,.30);
+        background:rgba(255,255,255,.065);
       }
       .std-contact-card.static{
         cursor:default;
@@ -1065,7 +1065,7 @@
         height:49px;
         display:grid;
         place-items:center;
-        color:#d486fa;
+        color:#c69bd2;
       }
       .std-contact-card-icon svg{
         width:36px;
@@ -1101,12 +1101,12 @@
       }
       .std-contact-right{
         min-width:0;
-        padding-top:108px;
+        padding-top:115px;
       }
       .std-contact-map{
         position:relative;
         width:100%;
-        height:414px;
+        height:510px;
         overflow:hidden;
         border-radius:18px;
         background:#eee;
@@ -1118,12 +1118,7 @@
         border:0;
         filter:saturate(.88) contrast(.98);
       }
-      .std-contact-actions{
-        display:grid;
-        grid-template-columns:.94fr 1fr;
-        gap:14px;
-        margin-top:16px;
-      }
+      .std-contact-actions{display:none!important}
       .std-contact-action{
         box-sizing:border-box;
         height:82px;
@@ -1151,9 +1146,10 @@
       }
       .std-contact-bottom{
         width:auto;
-        margin:24px -84px 0;
+        margin:18px -84px 0;
         border-top:1px solid rgba(255,255,255,.16);
-        padding-top:20px;
+        padding-top:13px;
+        padding-bottom:0;
       }
       .std-contact-brand{
         width:max-content;
@@ -1161,13 +1157,13 @@
         display:flex;
         flex-direction:column;
         align-items:center;
-        gap:6px;
+        gap:4px;
         color:#eee8f0!important;
         text-decoration:none!important;
       }
       .std-contact-brand-mark{
-        width:38px;
-        height:38px;
+        width:34px;
+        height:34px;
         border:1px solid rgba(255,255,255,.24);
         border-radius:9px;
         display:grid;
@@ -1177,7 +1173,7 @@
         box-shadow:0 4px 14px rgba(0,0,0,.10);
       }
       .std-contact-brand-text{
-        font:500 15px/1 "Cormorant Garamond",Georgia,serif;
+        font:500 13px/1 "Cormorant Garamond",Georgia,serif;
         letter-spacing:0;
         color:#eee8f0;
       }
@@ -1185,18 +1181,19 @@
       @media(max-width:1280px){
         .std-contact{
           min-height:0;
-          padding:70px 40px 46px;
+          padding:48px 40px 0;
         }
         .std-contact-inner{
           grid-template-columns:500px minmax(0,1fr);
           gap:28px;
         }
         .std-contact-title{font-size:72px}
-        .std-contact-right{padding-top:108px}
+        .std-contact-right{padding-top:105px}
         .std-contact-card{grid-template-columns:78px minmax(0,1fr)}
         .std-contact-card-title{font-size:25px}
         .std-contact-card-sub{font-size:13px}
         .std-contact-action{font-size:25px}
+        .std-contact-map{height:510px}
         .std-contact-bottom{margin-left:-40px;margin-right:-40px}
       }
 
@@ -1610,10 +1607,7 @@
           <div class="std-contact-map">
             <iframe title="Карта STLuxe" loading="eager" src="https://yandex.ru/map-widget/v1/?mode=search&text=%D0%98%D0%B2%D0%B0%D0%BD%D1%82%D0%B5%D0%B5%D0%B2%D0%BA%D0%B0%2C%20%D1%83%D0%BB.%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%2C%2016&z=16"></iframe>
           </div>
-          <div class="std-contact-actions">
-            <a class="std-contact-action std-contact-call" href="tel:${PHONE}">Позвонить</a>
-            <a class="std-contact-action std-contact-route" href="${ROUTE}" target="_blank" rel="noopener">Построить маршрут</a>
-          </div>
+
         </div>
       </div>
 
