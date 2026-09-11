@@ -154,6 +154,26 @@ button{border:0;padding:0;background:none}
   background:linear-gradient(100deg,#aa4ec9 0%,#733391 55%,#632b80 100%);
   border-color:rgba(206,112,236,.72);
   font-size:5.0vw;
+  overflow:hidden;
+}
+.site::after{
+  content:'';
+  position:absolute;
+  top:-35%;
+  bottom:-35%;
+  left:-34%;
+  width:24%;
+  pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
+  transform:skewX(-22deg);
+  animation:stlGoShine 4.2s ease-in-out infinite;
+}
+@keyframes stlGoShine{
+  0%,68%{left:-34%}
+  100%{left:132%}
+}
+@media(prefers-reduced-motion:reduce){
+  .site::after{animation:none!important}
 }
 .site .icon{color:#fff}
 .site .chev{color:#e6c2ef}
