@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0910">
+<meta name="theme-color" content="#f7f7f9">
 <title>STLuxe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,12 +77,12 @@ button{border:0;padding:0;background:none}
 }
 .logo-main .stl{
   font-family:"Cormorant Garamond",Georgia,serif;
-  font-size:13.50vw;
+  font-size:12.86vw;
   font-weight:600;
 }
 .logo-main .luxe{
   font-family:"Cormorant Garamond",Georgia,serif;
-  font-size:10.70vw;
+  font-size:10.19vw;
   font-style:italic;
   font-weight:500;
   letter-spacing:-.075em;
@@ -323,8 +323,8 @@ button{border:0;padding:0;background:none}
     width:auto;
     min-width:520px;
   }
-  .logo-main .stl{font-size:103px}
-  .logo-main .luxe{font-size:81px}
+  .logo-main .stl{font-size:98px}
+  .logo-main .luxe{font-size:77px}
   .logo-sub{
     margin-top:13px;
     font-size:15px;
@@ -467,6 +467,91 @@ button{border:0;padding:0;background:none}
   .footer{bottom:2.2%}
 }
 
+/* White STLuxe theme */
+html,body{background:#faf9fc}
+body{
+  color:#171719;
+  background:
+    radial-gradient(62vw 48vh at -7% 2%,rgba(110,44,143,.20),transparent 68%),
+    radial-gradient(56vw 46vh at 108% 26%,rgba(143,75,173,.14),transparent 70%),
+    radial-gradient(64vw 48vh at 106% 92%,rgba(110,44,143,.18),transparent 72%),
+    linear-gradient(145deg,#ffffff 0%,#fbf9fc 48%,#f6f1f8 100%);
+}
+.stage::before{border-color:rgba(110,44,143,.18)}
+.logo{color:#171719}
+.logo-main{text-shadow:0 5px 24px rgba(110,44,143,.07)}
+.logo-sub{color:#5f5964}
+.award{
+  background:#fff;
+  color:#111;
+  border:1px solid #e7e0ea;
+  box-shadow:0 8px 24px rgba(110,44,143,.09);
+}
+.action{
+  color:#1d1b20;
+  background:rgba(255,255,255,.89);
+  border-color:#e3dce7;
+  box-shadow:
+    0 10px 30px rgba(110,44,143,.065),
+    inset 0 1px 0 rgba(255,255,255,.94);
+}
+.action:hover{
+  border-color:rgba(110,44,143,.28);
+  background:#fff;
+}
+.action .icon{color:#6e2c8f}
+.action .chev{color:#8f4bad}
+.site{
+  color:#fff;
+  background:linear-gradient(100deg,#8f4bad 0%,#6e2c8f 58%,#5b2376 100%);
+  border-color:rgba(110,44,143,.52);
+  box-shadow:
+    0 14px 34px rgba(110,44,143,.20),
+    inset 0 1px 0 rgba(255,255,255,.12);
+}
+.site:hover{
+  background:linear-gradient(100deg,#9854b5 0%,#753397 58%,#61277d 100%);
+  border-color:rgba(110,44,143,.62);
+}
+.site .icon{color:#fff}
+.site .chev{color:#f1e7f5}
+.map-sub{color:#77717c}
+.schedule-head{color:#6e2c8f}
+.schedule-head::before{
+  background:linear-gradient(90deg,transparent,rgba(110,44,143,.54));
+}
+.schedule-head::after{
+  background:linear-gradient(90deg,rgba(110,44,143,.54),transparent);
+}
+.hours{color:#28252b}
+.row .closed{color:#8f4bad}
+.footer{color:#625c66}
+.tmark{border-color:#cfc5d4;color:#2a272c}
+.toast{
+  background:rgba(255,255,255,.98);
+  border-color:#dfd6e3;
+  color:#222;
+  box-shadow:0 12px 32px rgba(110,44,143,.12);
+}
+
+@media (min-width:900px){
+  body{
+    background:
+      radial-gradient(820px 560px at -5% 2%,rgba(110,44,143,.28),transparent 68%),
+      radial-gradient(860px 560px at 104% 14%,rgba(143,75,173,.20),transparent 69%),
+      radial-gradient(980px 660px at 104% 98%,rgba(110,44,143,.25),transparent 71%),
+      radial-gradient(720px 520px at 50% 108%,rgba(143,75,173,.10),transparent 74%),
+      linear-gradient(145deg,#ffffff 0%,#fbf9fc 46%,#f5eef8 100%);
+  }
+  .action:hover,
+  .map:hover{
+    border-color:rgba(110,44,143,.28);
+    background:#fff;
+  }
+  .site:hover{
+    background:linear-gradient(100deg,#9854b5 0%,#753397 58%,#61277d 100%);
+  }
+}
 </style>
 </head>
 <body>
