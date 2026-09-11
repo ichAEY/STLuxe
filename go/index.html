@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f7f7f9">
 <title>STLuxe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0a0910;
@@ -12,8 +15,8 @@
   --line:rgba(255,255,255,.24);
   --white:#f6f2f5;
   --muted:#aaa2af;
-  --purple:#c35ff0;
-  --purple2:#7a329a;
+  --purple:#6e2c8f;
+  --purple2:#8f4bad;
   --gold:#efd29a;
   --red:#ef4048;
   --serif:Georgia,"Times New Roman",serif;
@@ -73,16 +76,16 @@ button{border:0;padding:0;background:none}
   text-shadow:0 0 18px rgba(239,210,154,.08);
 }
 .logo-main .stl{
-  font-family:var(--serif);
+  font-family:"Cormorant Garamond",Georgia,serif;
   font-size:12.86vw;
-  font-weight:400;
+  font-weight:600;
 }
 .logo-main .luxe{
-  font-family:var(--serif);
+  font-family:"Cormorant Garamond",Georgia,serif;
   font-size:10.19vw;
   font-style:italic;
-  font-weight:400;
-  letter-spacing:-.095em;
+  font-weight:500;
+  letter-spacing:-.075em;
 }
 .logo-sub{
   margin-top:2.1vh;
@@ -465,81 +468,87 @@ button{border:0;padding:0;background:none}
 }
 
 /* White STLuxe theme */
-html,body{background:#f7f7f9}
+html,body{background:#faf9fc}
 body{
-  color:#18171b;
+  color:#171719;
   background:
-    radial-gradient(70vw 48vh at -8% -5%,rgba(116,51,145,.10),transparent 70%),
-    radial-gradient(64vw 52vh at 108% 82%,rgba(126,63,154,.09),transparent 72%),
-    linear-gradient(145deg,#ffffff 0%,#fbfafc 48%,#f5f2f7 100%);
+    radial-gradient(62vw 48vh at -7% 2%,rgba(110,44,143,.20),transparent 68%),
+    radial-gradient(56vw 46vh at 108% 26%,rgba(143,75,173,.14),transparent 70%),
+    radial-gradient(64vw 48vh at 106% 92%,rgba(110,44,143,.18),transparent 72%),
+    linear-gradient(145deg,#ffffff 0%,#fbf9fc 48%,#f6f1f8 100%);
 }
-.stage::before{border-color:rgba(123,63,151,.16)}
-.logo{color:#17161a}
-.logo-main{text-shadow:none}
-.logo-sub{color:#58535d}
+.stage::before{border-color:rgba(110,44,143,.18)}
+.logo{color:#171719}
+.logo-main{text-shadow:0 5px 24px rgba(110,44,143,.07)}
+.logo-sub{color:#5f5964}
 .award{
   background:#fff;
   color:#111;
-  border:1px solid #e2dfe5;
-  box-shadow:0 7px 20px rgba(37,25,44,.08);
+  border:1px solid #e7e0ea;
+  box-shadow:0 8px 24px rgba(110,44,143,.09);
 }
 .action{
   color:#1d1b20;
-  background:rgba(255,255,255,.92);
-  border-color:#dedbe2;
-  box-shadow:0 8px 24px rgba(49,34,57,.045),inset 0 1px 0 rgba(255,255,255,.9);
+  background:rgba(255,255,255,.89);
+  border-color:#e3dce7;
+  box-shadow:
+    0 10px 30px rgba(110,44,143,.065),
+    inset 0 1px 0 rgba(255,255,255,.94);
 }
 .action:hover{
-  border-color:#cfc7d6;
+  border-color:rgba(110,44,143,.28);
   background:#fff;
 }
-.action .icon{color:#8f4bad}
-.action .chev{color:#9b62b3}
+.action .icon{color:#6e2c8f}
+.action .chev{color:#8f4bad}
 .site{
   color:#fff;
-  background:linear-gradient(100deg,#8d3fae 0%,#6e2c8f 57%,#5f247e 100%);
-  border-color:rgba(110,44,143,.48);
-  box-shadow:0 10px 28px rgba(110,44,143,.16);
+  background:linear-gradient(100deg,#8f4bad 0%,#6e2c8f 58%,#5b2376 100%);
+  border-color:rgba(110,44,143,.52);
+  box-shadow:
+    0 14px 34px rgba(110,44,143,.20),
+    inset 0 1px 0 rgba(255,255,255,.12);
 }
 .site:hover{
-  background:linear-gradient(100deg,#9747b8 0%,#763399 57%,#662a86 100%);
-  border-color:rgba(110,44,143,.58);
+  background:linear-gradient(100deg,#9854b5 0%,#753397 58%,#61277d 100%);
+  border-color:rgba(110,44,143,.62);
 }
 .site .icon{color:#fff}
-.site .chev{color:#f0dff6}
-.map-sub{color:#77727d}
-.schedule-head{color:#7f3fa3}
+.site .chev{color:#f1e7f5}
+.map-sub{color:#77717c}
+.schedule-head{color:#6e2c8f}
 .schedule-head::before{
-  background:linear-gradient(90deg,transparent,rgba(127,63,163,.55));
+  background:linear-gradient(90deg,transparent,rgba(110,44,143,.54));
 }
 .schedule-head::after{
-  background:linear-gradient(90deg,rgba(127,63,163,.55),transparent);
+  background:linear-gradient(90deg,rgba(110,44,143,.54),transparent);
 }
-.hours{color:#2a272d}
-.row .closed{color:#8b4ba4}
-.footer{color:#5f5964}
-.tmark{border-color:#c9c4cc;color:#242126}
+.hours{color:#28252b}
+.row .closed{color:#8f4bad}
+.footer{color:#625c66}
+.tmark{border-color:#cfc5d4;color:#2a272c}
 .toast{
   background:rgba(255,255,255,.98);
-  border-color:#dad6de;
+  border-color:#dfd6e3;
   color:#222;
-  box-shadow:0 10px 28px rgba(32,22,38,.10);
+  box-shadow:0 12px 32px rgba(110,44,143,.12);
 }
 
 @media (min-width:900px){
   body{
     background:
-      radial-gradient(850px 560px at -4% 4%,rgba(116,51,145,.10),transparent 70%),
-      radial-gradient(900px 620px at 104% 82%,rgba(126,63,154,.09),transparent 72%),
-      linear-gradient(145deg,#ffffff 0%,#fbfafc 46%,#f5f2f7 100%);
+      radial-gradient(760px 520px at -3% 3%,rgba(110,44,143,.18),transparent 70%),
+      radial-gradient(760px 520px at 104% 18%,rgba(143,75,173,.12),transparent 70%),
+      radial-gradient(900px 600px at 102% 96%,rgba(110,44,143,.16),transparent 73%),
+      linear-gradient(145deg,#ffffff 0%,#fbf9fc 46%,#f5f0f7 100%);
   }
   .action:hover,
   .map:hover{
-    border-color:#cfc7d6;
+    border-color:rgba(110,44,143,.28);
     background:#fff;
   }
   .site:hover{
-    background:linear-gradient(100deg,#9747b8 0%,#763399 57%,#662a86 100%);
+    background:linear-gradient(100deg,#9854b5 0%,#753397 58%,#61277d 100%);
   }
 }
 </style>
