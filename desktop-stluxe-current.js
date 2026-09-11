@@ -940,7 +940,7 @@
       .std-master-name{
         display:block;
         margin-top:18px;
-        font:500 24px/1 "Cormorant Garamond",Georgia,serif;
+        font:500 25px/1 "Cormorant Garamond",Georgia,serif;
         color:#f7f3f8;
       }
       .std-master-role{
@@ -972,7 +972,7 @@
         box-sizing:border-box;
         overflow:hidden;
         min-height:0;
-        padding:42px 84px 0;
+        padding:42px 84px 40px;
         background:
           radial-gradient(420px 310px at 108% 8%,rgba(143,85,181,.19),transparent 67%),
           radial-gradient(300px 230px at -14% 88%,rgba(111,61,130,.10),transparent 72%),
@@ -1146,10 +1146,10 @@
       }
       .std-contact-bottom{
         width:auto;
-        margin:19px -84px 0;
+        margin:32px -84px 0;
         border-top:1px solid rgba(255,255,255,.16);
-        padding-top:19px;
-        padding-bottom:0;
+        padding-top:27px;
+        padding-bottom:6px;
       }
       .std-contact-brand{
         width:max-content;
@@ -1157,13 +1157,13 @@
         display:flex;
         flex-direction:column;
         align-items:center;
-        gap:4px;
+        gap:7px;
         color:#eee8f0!important;
         text-decoration:none!important;
       }
       .std-contact-brand-mark{
-        width:34px;
-        height:34px;
+        width:36px;
+        height:36px;
         border:1px solid rgba(255,255,255,.24);
         border-radius:9px;
         display:grid;
@@ -1173,7 +1173,7 @@
         box-shadow:0 4px 14px rgba(0,0,0,.10);
       }
       .std-contact-brand-text{
-        font:500 13px/1 "Cormorant Garamond",Georgia,serif;
+        font:500 14px/1 "Cormorant Garamond",Georgia,serif;
         letter-spacing:0;
         color:#eee8f0;
       }
@@ -1181,7 +1181,7 @@
       @media(max-width:1280px){
         .std-contact{
           min-height:0;
-          padding:34px 40px 0;
+          padding:34px 40px 34px;
         }
         .std-contact-inner{
           grid-template-columns:500px minmax(0,1fr);
