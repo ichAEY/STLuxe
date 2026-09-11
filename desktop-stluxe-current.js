@@ -552,7 +552,7 @@
         background:linear-gradient(135deg,#8d45b4,#77369d);
         color:#fff!important;
         box-shadow:0 10px 28px rgba(82,39,100,.25);
-        font:500 16px/1 "Manrope",Arial,sans-serif;
+        font:500 15px/1 "Manrope",Arial,sans-serif;
         transition:background .18s ease,box-shadow .18s ease,transform .18s ease;
       }
       .std-price-open:hover{
@@ -971,8 +971,8 @@
         position:relative;
         box-sizing:border-box;
         overflow:hidden;
-        min-height:1024px;
-        padding:110px 84px 68px;
+        min-height:950px;
+        padding:100px 84px 52px;
         background:
           radial-gradient(620px 430px at 102% 7%,rgba(99,57,151,.27),transparent 70%),
           radial-gradient(520px 390px at -9% 94%,rgba(111,66,170,.21),transparent 72%),
@@ -984,8 +984,8 @@
         width:min(100%,1368px);
         margin:0 auto;
         display:grid;
-        grid-template-columns:586px minmax(0,1fr);
-        gap:34px;
+        grid-template-columns:550px minmax(0,1fr);
+        gap:30px;
         align-items:start;
       }
       .std-contact-status{
@@ -993,22 +993,22 @@
         z-index:3;
         top:0;
         right:0;
-        height:64px;
-        padding:0 29px 0 25px;
+        height:58px;
+        padding:0 26px 0 22px;
         border:1px solid rgba(255,124,139,.32);
         border-radius:999px;
         background:rgba(116,50,65,.39);
         backdrop-filter:blur(12px);
         display:flex;
         align-items:center;
-        gap:13px;
+        gap:11px;
         color:#ffb1bb;
-        font:500 18px/1 "Manrope",Arial,sans-serif;
+        font:500 17px/1 "Manrope",Arial,sans-serif;
         white-space:nowrap;
       }
       .std-contact-status svg{
-        width:28px;
-        height:28px;
+        width:25px;
+        height:25px;
         fill:none;
         stroke:currentColor;
         stroke-width:1.9;
@@ -1028,25 +1028,25 @@
         color:rgba(255,255,255,.83);
       }
       .std-contact-title{
-        margin:9px 0 27px;
-        font:500 84px/.88 "Cormorant Garamond",Georgia,serif;
+        margin:8px 0 23px;
+        font:500 78px/.88 "Cormorant Garamond",Georgia,serif;
         letter-spacing:-.035em;
         color:#fbf8fc;
       }
       .std-contact-list{
         display:grid;
-        gap:12px;
+        gap:6px;
       }
       .std-contact-card{
         box-sizing:border-box;
         width:100%;
-        min-height:103px;
-        padding:0 24px;
+        min-height:94px;
+        padding:0 22px;
         border:1px solid rgba(255,255,255,.13);
-        border-radius:20px;
+        border-radius:18px;
         background:linear-gradient(180deg,rgba(36,33,43,.88),rgba(31,29,38,.88));
         display:grid;
-        grid-template-columns:89px minmax(0,1fr);
+        grid-template-columns:78px minmax(0,1fr);
         align-items:center;
         color:#f8f5fa!important;
         text-decoration:none!important;
@@ -1061,45 +1061,54 @@
         cursor:default;
       }
       .std-contact-card-icon{
-        width:55px;
-        height:55px;
+        width:49px;
+        height:49px;
         display:grid;
         place-items:center;
         color:#d486fa;
       }
       .std-contact-card-icon svg{
-        width:42px;
-        height:42px;
+        width:36px;
+        height:36px;
         fill:none;
         stroke:currentColor;
         stroke-width:1.8;
         stroke-linecap:round;
         stroke-linejoin:round;
       }
+      .std-contact-brand-icon.whatsapp svg,
+      .std-contact-brand-icon.max svg{
+        fill:currentColor;
+        stroke:none;
+      }
+      .std-contact-brand-icon.phone svg{
+        fill:none;
+        stroke:currentColor;
+      }
       .std-contact-card-copy{
         min-width:0;
       }
       .std-contact-card-title{
         display:block;
-        font:500 28px/1.06 "Cormorant Garamond",Georgia,serif;
+        font:500 25px/1.05 "Cormorant Garamond",Georgia,serif;
         color:#f8f5fa;
       }
       .std-contact-card-sub{
         display:block;
-        margin-top:9px;
-        font:400 15px/1.2 "Manrope",Arial,sans-serif;
+        margin-top:7px;
+        font:400 13.5px/1.18 "Manrope",Arial,sans-serif;
         color:#aaa5b1;
       }
       .std-contact-right{
         min-width:0;
-        padding-top:118px;
+        padding-top:108px;
       }
       .std-contact-map{
         position:relative;
         width:100%;
-        height:447px;
+        height:414px;
         overflow:hidden;
-        border-radius:20px;
+        border-radius:18px;
         background:#eee;
       }
       .std-contact-map iframe{
@@ -1112,19 +1121,19 @@
       .std-contact-actions{
         display:grid;
         grid-template-columns:.94fr 1fr;
-        gap:16px;
-        margin-top:20px;
+        gap:14px;
+        margin-top:16px;
       }
       .std-contact-action{
         box-sizing:border-box;
-        height:91px;
-        border-radius:20px;
+        height:82px;
+        border-radius:18px;
         display:flex;
         align-items:center;
         justify-content:center;
         color:#fff!important;
         text-decoration:none!important;
-        font:400 27px/1 "Manrope",Arial,sans-serif;
+        font:500 29px/1 "Cormorant Garamond",Georgia,serif;
         transition:filter .18s ease,transform .18s ease;
       }
       .std-contact-action:hover{
@@ -1141,10 +1150,10 @@
         box-shadow:0 8px 30px rgba(117,57,145,.12);
       }
       .std-contact-bottom{
-        width:min(100%,1368px);
-        margin:29px auto 0;
+        width:auto;
+        margin:24px -84px 0;
         border-top:1px solid rgba(255,255,255,.16);
-        padding-top:35px;
+        padding-top:20px;
       }
       .std-contact-brand{
         width:max-content;
@@ -1152,30 +1161,31 @@
         display:flex;
         flex-direction:column;
         align-items:center;
-        gap:10px;
+        gap:6px;
         color:#eee8f0!important;
         text-decoration:none!important;
       }
       .std-contact-brand-mark{
-        width:49px;
-        height:49px;
-        border:1px solid rgba(255,255,255,.28);
-        border-radius:11px;
+        width:38px;
+        height:38px;
+        border:1px solid rgba(255,255,255,.24);
+        border-radius:9px;
         display:grid;
         place-items:center;
-        font:500 34px/1 "Cormorant Garamond",Georgia,serif;
+        font:500 27px/1 "Cormorant Garamond",Georgia,serif;
         color:#f6f2f7;
-        box-shadow:0 5px 18px rgba(0,0,0,.13);
+        box-shadow:0 4px 14px rgba(0,0,0,.10);
       }
       .std-contact-brand-text{
-        font:500 20px/1 "Cormorant Garamond",Georgia,serif;
+        font:500 15px/1 "Cormorant Garamond",Georgia,serif;
+        letter-spacing:0;
         color:#eee8f0;
       }
 
       @media(max-width:1280px){
         .std-contact{
           min-height:0;
-          padding:76px 40px 54px;
+          padding:70px 40px 46px;
         }
         .std-contact-inner{
           grid-template-columns:500px minmax(0,1fr);
@@ -1186,7 +1196,8 @@
         .std-contact-card{grid-template-columns:78px minmax(0,1fr)}
         .std-contact-card-title{font-size:25px}
         .std-contact-card-sub{font-size:13px}
-        .std-contact-action{font-size:22px}
+        .std-contact-action{font-size:25px}
+        .std-contact-bottom{margin-left:-40px;margin-right:-40px}
       }
 
       .std-gallery{
@@ -1555,8 +1566,8 @@
             </a>
 
             <a class="std-contact-card" href="tel:${PHONE}">
-              <span class="std-contact-card-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 4.6h2.7c.5 0 .9.3 1 .8l.8 3c.1.4 0 .8-.3 1.1l-1.6 1.6a14.4 14.4 0 0 0 5.7 5.7l1.6-1.6c.3-.3.7-.4 1.1-.3l3 .8c.5.1.8.5.8 1v2.7c0 .6-.4 1.1-1 1.2-.8.1-1.6.2-2.4.2C9.7 20.8 3.2 14.3 3.2 6c0-.8.1-1.6.2-2.4.1-.6.6-1 1.2-1Z"></path></svg>
+              <span class="std-contact-card-icon std-contact-brand-icon phone">
+                <svg aria-hidden="true"><use href="#stl-icon-phone"/></svg>
               </span>
               <span class="std-contact-card-copy">
                 <strong class="std-contact-card-title">+7 (916) 355–22–22</strong>
@@ -1565,8 +1576,8 @@
             </a>
 
             <a class="std-contact-card" href="${WHATSAPP_URL}" target="_blank" rel="noopener">
-              <span class="std-contact-card-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19.4 6.1 16A7.6 7.6 0 1 1 12 19.6c-1.4 0-2.8-.4-4-1.1L5 19.4Z"></path><path d="M9.2 8.8c.2-.4.4-.5.7-.5h.5c.2 0 .4.1.5.4l.6 1.4c.1.3 0 .5-.2.7l-.4.4c-.2.2-.2.4-.1.6.5 1 1.4 1.9 2.5 2.4.2.1.4.1.6-.1l.5-.6c.2-.2.4-.3.7-.2l1.3.6c.3.1.5.4.4.7 0 .5-.2 1-.6 1.3-.4.4-1.1.6-1.7.6-.8 0-2-.3-3.2-1.1-1.8-1.1-3.2-2.8-3.9-4.6-.3-.8-.1-1.5.1-2Z"></path></svg>
+              <span class="std-contact-card-icon std-contact-brand-icon whatsapp">
+                <svg aria-hidden="true"><use href="#stl-icon-whatsapp"/></svg>
               </span>
               <span class="std-contact-card-copy">
                 <strong class="std-contact-card-title">WhatsApp</strong>
@@ -1575,8 +1586,8 @@
             </a>
 
             <div class="std-contact-card static">
-              <span class="std-contact-card-icon">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18.5 6 15.7A7.2 7.2 0 1 1 12 19.2c-1.4 0-2.7-.4-3.8-1.1L5 18.5Z"></path><path d="M8.5 9.2h7M8.5 12h7M8.5 14.8h4.8"></path></svg>
+              <span class="std-contact-card-icon std-contact-brand-icon max">
+                <svg aria-hidden="true"><use href="#stl-icon-max"/></svg>
               </span>
               <span class="std-contact-card-copy">
                 <strong class="std-contact-card-title">MAX</strong>
