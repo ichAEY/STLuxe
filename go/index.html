@@ -157,64 +157,24 @@ button{border:0;padding:0;background:none}
   font-size:5.0vw;
   overflow:hidden;
 }
-.action::after{
+.site::after{
   content:'';
   position:absolute;
-  top:-42%;
-  bottom:-42%;
-  left:-36%;
-  width:27%;
+  top:-35%;
+  bottom:-35%;
+  left:-34%;
+  width:24%;
   pointer-events:none;
-  opacity:0;
-  background:linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(110,44,143,.04) 18%,
-    rgba(110,44,143,.19) 50%,
-    rgba(110,44,143,.04) 82%,
-    transparent 100%
-  );
-  transform:skewX(-20deg) translate3d(-25%,0,0);
-  will-change:transform,opacity;
-  animation:stlGoShine 9.6s cubic-bezier(.22,.72,.25,1) infinite;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34),transparent);
+  transform:skewX(-22deg);
+  animation:stlGoShine 4.2s ease-in-out infinite;
 }
-.site::after{
-  background:linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255,255,255,.06) 18%,
-    rgba(255,255,255,.34) 50%,
-    rgba(255,255,255,.06) 82%,
-    transparent 100%
-  );
-  animation-delay:0s;
-}
-.book::after{animation-delay:1.05s}
-.whatsapp::after{animation-delay:2.10s}
-.max::after{animation-delay:3.15s}
-.map::after{animation-delay:4.20s}
 @keyframes stlGoShine{
-  0%,2%{
-    opacity:0;
-    transform:skewX(-20deg) translate3d(-25%,0,0);
-  }
-  4%{opacity:.25}
-  6%{opacity:1}
-  11%{
-    opacity:.82;
-    transform:skewX(-20deg) translate3d(650%,0,0);
-  }
-  13%{
-    opacity:0;
-    transform:skewX(-20deg) translate3d(720%,0,0);
-  }
-  13.01%,100%{
-    opacity:0;
-    transform:skewX(-20deg) translate3d(720%,0,0);
-  }
+  0%,68%{left:-34%}
+  100%{left:132%}
 }
 @media(prefers-reduced-motion:reduce){
-  .action::after{animation:none!important}
+  .site::after{animation:none!important}
 }
 .site .icon{color:#fff}
 .site .chev{color:#e6c2ef}
