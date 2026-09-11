@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0910">
+<meta name="theme-color" content="#f7f7f9">
 <title>STLuxe</title>
 <style>
 :root{
@@ -463,6 +463,85 @@ button{border:0;padding:0;background:none}
   .hours{margin-top:14px;font-size:16px;line-height:1.36}
   .footer{bottom:2.2%}
 }
+
+/* White STLuxe theme */
+html,body{background:#f7f7f9}
+body{
+  color:#18171b;
+  background:
+    radial-gradient(70vw 48vh at -8% -5%,rgba(116,51,145,.10),transparent 70%),
+    radial-gradient(64vw 52vh at 108% 82%,rgba(126,63,154,.09),transparent 72%),
+    linear-gradient(145deg,#ffffff 0%,#fbfafc 48%,#f5f2f7 100%);
+}
+.stage::before{border-color:rgba(123,63,151,.16)}
+.logo{color:#17161a}
+.logo-main{text-shadow:none}
+.logo-sub{color:#58535d}
+.award{
+  background:#fff;
+  color:#111;
+  border:1px solid #e2dfe5;
+  box-shadow:0 7px 20px rgba(37,25,44,.08);
+}
+.action{
+  color:#1d1b20;
+  background:rgba(255,255,255,.92);
+  border-color:#dedbe2;
+  box-shadow:0 8px 24px rgba(49,34,57,.045),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.action:hover{
+  border-color:#cfc7d6;
+  background:#fff;
+}
+.action .icon{color:#8f4bad}
+.action .chev{color:#9b62b3}
+.site{
+  color:#fff;
+  background:linear-gradient(100deg,#8d3fae 0%,#6e2c8f 57%,#5f247e 100%);
+  border-color:rgba(110,44,143,.48);
+  box-shadow:0 10px 28px rgba(110,44,143,.16);
+}
+.site:hover{
+  background:linear-gradient(100deg,#9747b8 0%,#763399 57%,#662a86 100%);
+  border-color:rgba(110,44,143,.58);
+}
+.site .icon{color:#fff}
+.site .chev{color:#f0dff6}
+.map-sub{color:#77727d}
+.schedule-head{color:#7f3fa3}
+.schedule-head::before{
+  background:linear-gradient(90deg,transparent,rgba(127,63,163,.55));
+}
+.schedule-head::after{
+  background:linear-gradient(90deg,rgba(127,63,163,.55),transparent);
+}
+.hours{color:#2a272d}
+.row .closed{color:#8b4ba4}
+.footer{color:#5f5964}
+.tmark{border-color:#c9c4cc;color:#242126}
+.toast{
+  background:rgba(255,255,255,.98);
+  border-color:#dad6de;
+  color:#222;
+  box-shadow:0 10px 28px rgba(32,22,38,.10);
+}
+
+@media (min-width:900px){
+  body{
+    background:
+      radial-gradient(850px 560px at -4% 4%,rgba(116,51,145,.10),transparent 70%),
+      radial-gradient(900px 620px at 104% 82%,rgba(126,63,154,.09),transparent 72%),
+      linear-gradient(145deg,#ffffff 0%,#fbfafc 46%,#f5f2f7 100%);
+  }
+  .action:hover,
+  .map:hover{
+    border-color:#cfc7d6;
+    background:#fff;
+  }
+  .site:hover{
+    background:linear-gradient(100deg,#9747b8 0%,#763399 57%,#662a86 100%);
+  }
+}
 </style>
 </head>
 <body>
@@ -472,9 +551,9 @@ button{border:0;padding:0;background:none}
     <div class="logo-sub">Салон красоты</div>
   </header>
 
-  <a class="award" href="https://yandex.com/maps/org/beauty_salon_stluxe/51087098664/" target="_blank" rel="noopener" aria-label="Лучшее место — Яндекс Карты">
+  <a class="award" href="https://yandex.com/maps/org/beauty_salon_stluxe/51087098664/" target="_blank" rel="noopener" aria-label="Хорошее место — Яндекс Карты">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a8 8 0 0 0-8 8c0 5.5 8 12 8 12s8-6.5 8-12a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
-    <span>Лучшее место · Яндекс Карты</span>
+    <span>Хорошее место · Яндекс Карты</span>
   </a>
 
   <a class="action site" href="/" aria-label="Перейти на сайт">
