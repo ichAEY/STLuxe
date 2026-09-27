@@ -605,11 +605,11 @@ body{
     <span class="chev">›</span>
   </a>
 
-  <button class="action max" type="button" id="maxButton" aria-label="MAX">
+  <a class="action max" href="https://max.ru/id501603874149_biz" target="_blank" rel="noopener" aria-label="MAX">
     <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-5 3v-12a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
     <span>MAX</span>
     <span class="chev">›</span>
-  </button>
+  </a>
 
   <a class="action map" href="https://yandex.ru/maps/?text=%D0%98%D0%B2%D0%B0%D0%BD%D1%82%D0%B5%D0%B5%D0%B2%D0%BA%D0%B0%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9F%D0%BE%D0%B1%D0%B5%D0%B4%D1%8B%2C%2016%20STLuxe" target="_blank" rel="noopener" aria-label="Открыть Яндекс Карты">
     <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a8 8 0 0 0-8 8c0 5.5 8 12 8 12s8-6.5 8-12a8 8 0 0 0-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
@@ -635,17 +635,6 @@ body{
     <span class="tcopy">Создано в TANEM.ru</span>
   </a>
 
-  <div class="toast" id="toast">Ссылка MAX будет добавлена</div>
 </main>
-<script>
-const maxButton=document.getElementById('maxButton');
-const toast=document.getElementById('toast');
-let toastTimer;
-maxButton.addEventListener('click',()=>{
-  toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>toast.classList.remove('show'),1700);
-});
-</script>
 </body>
 </html>
